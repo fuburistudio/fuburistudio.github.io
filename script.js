@@ -50,4 +50,43 @@
 
   var initial = getSavedLang() || "en";
   setLang(initial);
+
+  if ("IntersectionObserver" in window) {
+    var revealTargets = document.querySelectorAll(".reveal");
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: "0px 0px 0px 0px" }
+    );
+    revealTargets.forEach(function (el) {
+      observer.observe(el);
+    });
+
+    // Safety net: never leave content permanently invisible if the
+    // observer misses an element (backgrounded tab, odd viewport, etc).
+    var revealFallback = setInterval(function () {
+      document.querySelectorAll(".reveal:not(.is-visible)").forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add("is-visible");
+        }
+      });
+    }, 400);
+    setTimeout(function () {
+      clearInterval(revealFallback);
+      document.querySelectorAll(".reveal:not(.is-visible)").forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    }, 4000);
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) {
+      el.classList.add("is-visible");
+    });
+  }
 })();

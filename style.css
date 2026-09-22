@@ -247,22 +247,22 @@ header {
 
 .floaty {
   position: absolute;
-  font-size: 1.7rem;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .18));
   animation: bob 3.2s ease-in-out infinite;
   z-index: 2;
 }
 
-.floaty-1 { top: 8%; left: 8%; animation-delay: 0s; }
-.floaty-2 { top: 14%; right: 10%; font-size: 1.4rem; animation-delay: .6s; }
-.floaty-3 { bottom: 12%; left: 12%; font-size: 1.3rem; animation-delay: 1.2s; }
+.floaty-1 { top: 8%; left: 8%; width: 26px; height: 26px; background: var(--color-yellow); animation-delay: 0s; }
+.floaty-2 { top: 14%; right: 10%; width: 16px; height: 16px; background: var(--color-pink); animation-delay: .6s; }
+.floaty-3 { bottom: 12%; left: 12%; width: 14px; height: 14px; background: #fff; animation-delay: 1.2s; }
 
 @keyframes bob {
   0%, 100% { transform: translateY(0) rotate(-4deg); }
   50% { transform: translateY(-10px) rotate(4deg); }
 }
-
-.sparkle { display: inline-block; animation: bob 2.6s ease-in-out infinite; }
 
 .trust-row {
   display: flex;
@@ -635,6 +635,114 @@ footer {
   text-align: center;
   color: var(--color-ink-soft);
   font-size: .82rem;
+}
+
+/* ---------- scroll reveal ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .7s cubic-bezier(.2, .7, .2, 1);
+  }
+
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  .services-grid .reveal:nth-child(2) { transition-delay: .08s; }
+  .services-grid .reveal:nth-child(3) { transition-delay: .16s; }
+  .services-grid .reveal:nth-child(4) { transition-delay: .24s; }
+
+  .who-grid .reveal:nth-child(2) { transition-delay: .06s; }
+  .who-grid .reveal:nth-child(3) { transition-delay: .12s; }
+  .who-grid .reveal:nth-child(4) { transition-delay: .18s; }
+  .who-grid .reveal:nth-child(5) { transition-delay: .24s; }
+
+  .pricing-grid .reveal:nth-child(2) { transition-delay: .1s; }
+  .pricing-grid .reveal:nth-child(3) { transition-delay: .2s; }
+
+  .process-list .reveal:nth-child(2) { transition-delay: .08s; }
+  .process-list .reveal:nth-child(3) { transition-delay: .16s; }
+  .process-list .reveal:nth-child(4) { transition-delay: .24s; }
+  .process-list .reveal:nth-child(5) { transition-delay: .32s; }
+}
+
+/* ---------- motion & hover ---------- */
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width .25s ease;
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.btn { transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+.btn:active { transform: scale(.96); }
+.btn-primary:hover { transform: translateY(-2px) scale(1.02); }
+.btn-outline:hover { transform: translateY(-2px); }
+
+.plan {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.plan:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+}
+
+.plan.featured:hover { transform: translateY(-14px); }
+
+.who-chip {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.who-chip:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 16px 28px -16px rgba(43, 33, 24, .35);
+}
+
+.who-photo img { transition: transform .35s ease; }
+.who-chip:hover .who-photo img { transform: scale(1.15) rotate(-4deg); }
+
+.work-visual img { transition: transform .5s ease; }
+.work-card:hover .work-visual img { transform: scale(1.06); }
+
+.work-link { transition: gap .2s ease; }
+.work-link:hover { gap: 10px; }
+
+.service-card .icon { transition: transform .3s ease; }
+.service-card:hover .icon { transform: rotate(-8deg) scale(1.1); }
+
+.process-step .num { transition: transform .3s ease, color .3s ease; }
+.process-step:hover .num { transform: translateX(4px); color: var(--color-primary); }
+
+.faq-item summary { transition: color .2s ease; }
+.faq-item summary:hover { color: var(--color-primary-dark); }
+
+.about-art img {
+  animation: bob 6s ease-in-out infinite;
+}
+
+.hero {
+  background-size: 200% 200%;
+  animation: heroDrift 14s ease-in-out infinite;
+}
+
+@keyframes heroDrift {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 60%; }
+}
+
+.timeline-strip {
+  background-size: 200% 200%;
+  animation: heroDrift 8s ease-in-out infinite;
 }
 
 /* ---------- responsive ---------- */
