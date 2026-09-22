@@ -7,7 +7,7 @@
 <meta name="description" content="FUBURI Studio designs and builds simple, beautiful websites for independent restaurants, salons and shops — at a price small businesses can actually afford.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&family=Nunito:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&family=Nunito:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,7 +29,7 @@
         <button type="button" data-lang-btn="en">EN</button>
         <button type="button" data-lang-btn="ja">日本語</button>
       </div>
-      <button class="menu-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="menu-toggle" aria-label="Menu"><span></span><span></span></button>
     </div>
   </div>
 </header>
@@ -63,11 +63,19 @@
         </div>
       </div>
 
-      <div class="hero-art">
+      <div class="hero-collage">
         <span class="floaty floaty-1"></span>
         <span class="floaty floaty-2"></span>
         <span class="floaty floaty-3"></span>
-        <img src="images/hero-website-builder.svg" alt="" width="800" height="799" loading="eager">
+        <svg class="hero-scribble" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 40c10-24 24-34 34-30s6 26-6 28-18-16-4-24 34-6 40 6" fill="none" stroke="var(--color-primary-dark)" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span class="hero-tag" data-lang="en" hidden>Hi there!</span>
+        <span class="hero-tag" data-lang="ja" hidden>はじめまして</span>
+        <div class="collage-photo photo-a"><img src="images/who-cafe.jpg" alt=""></div>
+        <div class="collage-photo photo-b"><img src="images/works-emerald-reef.webp" alt=""></div>
+        <div class="collage-photo photo-c"><img src="images/who-tour.jpg" alt=""></div>
+        <div class="collage-photo photo-d"><img src="images/who-salon.jpg" alt=""></div>
       </div>
     </div>
   </section>
