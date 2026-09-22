@@ -243,7 +243,7 @@ header {
   overflow: hidden;
 }
 
-.hero-art svg { width: 100%; height: 100%; }
+.hero-art img { width: 100%; height: 100%; object-fit: contain; }
 
 .floaty {
   position: absolute;
@@ -342,19 +342,20 @@ header {
   box-shadow: 0 10px 22px -16px rgba(43, 33, 24, .25);
 }
 
-.who-emoji {
-  width: 36px;
-  height: 36px;
+.who-photo {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  background: var(--color-primary-soft);
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--color-primary-soft);
 }
 
-.who-chip.who-2 .who-emoji { background: #ffd3de; }
-.who-chip.who-3 .who-emoji { background: #d9f0e2; }
+.who-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* ---------- pricing ---------- */
 .bg-alt { background: var(--color-bg-alt); }
@@ -490,17 +491,31 @@ header {
 }
 
 .work-visual {
-  background:
-    radial-gradient(60% 80% at 30% 20%, rgba(255, 255, 255, .18), transparent 60%),
-    linear-gradient(160deg, #0f5c66, #1c8a92 55%, #3fb6ad);
   min-height: 260px;
   position: relative;
   display: flex;
   align-items: flex-end;
   padding: 26px;
+  overflow: hidden;
+}
+
+.work-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.work-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 30, 35, 0) 40%, rgba(15, 30, 35, .75));
 }
 
 .work-visual span {
+  position: relative;
   color: #fff;
   font-family: var(--font-head);
   font-size: 1.3rem;
@@ -569,15 +584,14 @@ header {
 }
 
 .about-art {
-  aspect-ratio: 1 / 1;
-  max-width: 320px;
+  max-width: 420px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.about-art svg { width: 100%; height: 100%; }
+.about-art img { width: 100%; height: auto; }
 
 .about-body p { color: var(--color-ink-soft); }
 .about-body .signature { margin-top: 24px; font-family: var(--font-head); font-size: 1.1rem; color: var(--color-ink); }
