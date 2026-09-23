@@ -662,28 +662,49 @@ header {
 
 .trust-row {
   display: flex;
-  gap: 36px;
   margin-top: 56px;
   flex-wrap: wrap;
-  background-image: radial-gradient(circle, rgba(43, 33, 24, .16) 1px, transparent 1.6px);
-  background-size: 16px 16px;
-  background-color: rgba(255, 254, 251, .7);
+  background-color: rgba(255, 254, 251, .8);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  padding: 26px 30px;
+  padding: 8px;
+  box-shadow: 0 20px 40px -28px rgba(43, 33, 24, .3);
 }
 
-.trust-row div { font-size: .84rem; color: var(--color-ink-soft); }
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1 1 0;
+  min-width: 168px;
+  padding: 14px 20px;
+}
+
+.trust-item:not(:last-child) {
+  border-right: 1px solid var(--color-border);
+}
+
+.trust-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-bg-alt);
+  color: var(--color-primary-dark);
+}
+
+.trust-text { font-size: .82rem; color: var(--color-ink-soft); }
 
 .trust-row strong {
   display: block;
   font-family: var(--font-head);
-  font-size: 2.3rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 2px;
-  color: var(--color-primary-dark);
-  text-shadow: 0 2px 0 rgba(255, 255, 255, .6);
+  line-height: 1.15;
+  color: var(--color-ink);
 }
 
 /* ---------- services ---------- */
@@ -1460,4 +1481,6 @@ html.has-custom-cursor .btn { cursor: none; }
 @media (max-width: 520px) {
   section { padding: 64px 0; }
   .contact-box { padding: 48px 24px; }
+  .trust-item { flex: 1 1 100%; border-right: none !important; border-bottom: 1px solid var(--color-border); }
+  .trust-item:last-child { border-bottom: none; }
 }
