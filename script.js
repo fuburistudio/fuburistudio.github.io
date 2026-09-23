@@ -2,7 +2,8 @@
   var STORAGE_KEY = "fuburi-lang";
   var toggleButtons = document.querySelectorAll("[data-lang-btn]");
   var menuToggle = document.querySelector(".menu-toggle");
-  var navLinks = document.querySelector(".nav-links");
+  var navDrawer = document.querySelector(".nav-drawer");
+  var navOverlay = document.querySelector(".nav-overlay");
 
   function getSavedLang() {
     try {
@@ -37,14 +38,31 @@
     });
   });
 
-  if (menuToggle && navLinks) {
+  if (menuToggle && navDrawer && navOverlay) {
+    var closeMenu = function () {
+      menuToggle.classList.remove("is-open");
+      navDrawer.classList.remove("is-open");
+      navOverlay.classList.remove("is-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+      navDrawer.setAttribute("aria-hidden", "true");
+    };
+    var openMenu = function () {
+      menuToggle.classList.add("is-open");
+      navDrawer.classList.add("is-open");
+      navOverlay.classList.add("is-open");
+      menuToggle.setAttribute("aria-expanded", "true");
+      navDrawer.setAttribute("aria-hidden", "false");
+    };
     menuToggle.addEventListener("click", function () {
-      navLinks.classList.toggle("open");
+      if (navDrawer.classList.contains("is-open")) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
-    navLinks.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        navLinks.classList.remove("open");
-      });
+    navOverlay.addEventListener("click", closeMenu);
+    navDrawer.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", closeMenu);
     });
   }
 
@@ -135,6 +153,17 @@
     document.body.classList.add("hero-ready");
     document.querySelectorAll(".trust-row .count-num").forEach(animateCount);
   }, loaderDelay);
+
+  // ---------- bottom sticky CTA ----------
+  var bottomCta = document.getElementById("bottomCta");
+  var heroEl = document.querySelector(".hero");
+  if (bottomCta && heroEl) {
+    var toggleBottomCta = function () {
+      bottomCta.classList.toggle("is-visible", heroEl.getBoundingClientRect().bottom < 0);
+    };
+    window.addEventListener("scroll", toggleBottomCta, { passive: true });
+    toggleBottomCta();
+  }
 
   // ---------- scroll progress bar ----------
   var progressBar = document.querySelector(".scroll-progress");

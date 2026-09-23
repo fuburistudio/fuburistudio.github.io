@@ -30,24 +30,34 @@
 <header>
   <div class="wrap nav">
     <a href="#top" class="logo"><span class="mark">FUBURI</span> Studio</a>
-    <ul class="nav-links">
-      <li><a href="#services" data-lang="en" hidden>Services</a><a href="#services" data-lang="ja" hidden>サービス</a></li>
-      <li><a href="#pricing" data-lang="en" hidden>Pricing</a><a href="#pricing" data-lang="ja" hidden>料金</a></li>
-      <li><a href="#process" data-lang="en" hidden>Process</a><a href="#process" data-lang="ja" hidden>流れ</a></li>
-      <li><a href="#works" data-lang="en" hidden>Works</a><a href="#works" data-lang="ja" hidden>実績</a></li>
-      <li><a href="#faq" data-lang="en" hidden>FAQ</a><a href="#faq" data-lang="ja" hidden>よくある質問</a></li>
-      <li><a href="#about" data-lang="en" hidden>About</a><a href="#about" data-lang="ja" hidden>代表紹介</a></li>
-      <li><a href="#contact" data-lang="en" hidden>Contact</a><a href="#contact" data-lang="ja" hidden>お問い合わせ</a></li>
-    </ul>
     <div class="nav-right">
       <div class="lang-toggle">
         <button type="button" data-lang-btn="en">EN</button>
         <button type="button" data-lang-btn="ja">日本語</button>
       </div>
-      <button class="menu-toggle" aria-label="Menu"><span></span><span></span></button>
+      <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navDrawer">
+        <span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
+
+<div class="nav-overlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <ul class="nav-links">
+    <li><a href="#services" data-lang="en" hidden>Services</a><a href="#services" data-lang="ja" hidden>サービス</a></li>
+    <li><a href="#pricing" data-lang="en" hidden>Pricing</a><a href="#pricing" data-lang="ja" hidden>料金</a></li>
+    <li><a href="#process" data-lang="en" hidden>Process</a><a href="#process" data-lang="ja" hidden>流れ</a></li>
+    <li><a href="#works" data-lang="en" hidden>Works</a><a href="#works" data-lang="ja" hidden>実績</a></li>
+    <li><a href="#faq" data-lang="en" hidden>FAQ</a><a href="#faq" data-lang="ja" hidden>よくある質問</a></li>
+    <li><a href="#about" data-lang="en" hidden>About</a><a href="#about" data-lang="ja" hidden>代表紹介</a></li>
+    <li><a href="#contact" data-lang="en" hidden>Contact</a><a href="#contact" data-lang="ja" hidden>お問い合わせ</a></li>
+  </ul>
+  <div class="nav-drawer-foot">
+    <a href="#contact" class="btn btn-primary" data-lang="en" hidden>Get in touch</a>
+    <a href="#contact" class="btn btn-primary" data-lang="ja" hidden>お問い合わせ</a>
+  </div>
+</nav>
 
 <main id="top">
 
@@ -438,6 +448,12 @@
   </section>
 
 </main>
+
+<a href="#contact" class="bottom-cta" id="bottomCta">
+  <span data-lang="en" hidden>Let's talk</span>
+  <span data-lang="ja" hidden>ご相談はこちら</span>
+  <span class="bottom-cta-arrow" aria-hidden="true">→</span>
+</a>
 
 <footer>
   <div class="wrap">
