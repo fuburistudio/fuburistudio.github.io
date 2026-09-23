@@ -29,12 +29,20 @@
 
 <header>
   <div class="wrap nav">
-    <a href="#top" class="logo"><span class="mark">FUBURI</span> Studio</a>
+    <a href="index.html" class="logo"><span class="mark">FUBURI</span> Studio</a>
+    <nav class="nav-inline">
+      <a href="index.html" data-lang="en" hidden>Home</a><a href="index.html" data-lang="ja" hidden>ホーム</a>
+      <a href="services.html" data-lang="en" hidden>Services</a><a href="services.html" data-lang="ja" hidden>サービス</a>
+      <a href="works.html" data-lang="en" hidden>Works</a><a href="works.html" data-lang="ja" hidden>実績</a>
+      <a href="about.html" data-lang="en" hidden>About</a><a href="about.html" data-lang="ja" hidden>代表紹介</a>
+    </nav>
     <div class="nav-right">
       <div class="lang-toggle">
         <button type="button" data-lang-btn="en">EN</button>
         <button type="button" data-lang-btn="ja">日本語</button>
       </div>
+      <a href="contact.html" class="btn btn-primary nav-cta" data-lang="en" hidden>Contact</a>
+      <a href="contact.html" class="btn btn-primary nav-cta" data-lang="ja" hidden>お問い合わせ</a>
       <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navDrawer">
         <span></span><span></span>
       </button>
@@ -45,17 +53,15 @@
 <div class="nav-overlay"></div>
 <nav class="nav-drawer" id="navDrawer" aria-hidden="true">
   <ul class="nav-links">
-    <li><a href="#services" data-lang="en" hidden>Services</a><a href="#services" data-lang="ja" hidden>サービス</a></li>
-    <li><a href="#pricing" data-lang="en" hidden>Pricing</a><a href="#pricing" data-lang="ja" hidden>料金</a></li>
-    <li><a href="#process" data-lang="en" hidden>Process</a><a href="#process" data-lang="ja" hidden>流れ</a></li>
-    <li><a href="#works" data-lang="en" hidden>Works</a><a href="#works" data-lang="ja" hidden>実績</a></li>
-    <li><a href="#faq" data-lang="en" hidden>FAQ</a><a href="#faq" data-lang="ja" hidden>よくある質問</a></li>
-    <li><a href="#about" data-lang="en" hidden>About</a><a href="#about" data-lang="ja" hidden>代表紹介</a></li>
-    <li><a href="#contact" data-lang="en" hidden>Contact</a><a href="#contact" data-lang="ja" hidden>お問い合わせ</a></li>
+    <li><a href="index.html" data-lang="en" hidden>Home</a><a href="index.html" data-lang="ja" hidden>ホーム</a></li>
+    <li><a href="services.html" data-lang="en" hidden>Services</a><a href="services.html" data-lang="ja" hidden>サービス</a></li>
+    <li><a href="works.html" data-lang="en" hidden>Works</a><a href="works.html" data-lang="ja" hidden>実績</a></li>
+    <li><a href="about.html" data-lang="en" hidden>About</a><a href="about.html" data-lang="ja" hidden>代表紹介</a></li>
+    <li><a href="contact.html" data-lang="en" hidden>Contact</a><a href="contact.html" data-lang="ja" hidden>お問い合わせ</a></li>
   </ul>
   <div class="nav-drawer-foot">
-    <a href="#contact" class="btn btn-primary" data-lang="en" hidden>Get in touch</a>
-    <a href="#contact" class="btn btn-primary" data-lang="ja" hidden>お問い合わせ</a>
+    <a href="contact.html" class="btn btn-primary" data-lang="en" hidden>Get in touch</a>
+    <a href="contact.html" class="btn btn-primary" data-lang="ja" hidden>お問い合わせ</a>
   </div>
 </nav>
 
@@ -69,16 +75,16 @@
         <span class="eyebrow" data-lang="ja" hidden>個人店のためのホームページ制作</span>
 
         <h1 data-lang="en" hidden>A website your shop can be <span class="accent">proud of.</span></h1>
-        <h1 data-lang="ja" hidden>あなたのお店に、<span class="accent">ふさわしい</span>ホームページを。</h1>
+        <h1 data-lang="ja" hidden>あなたのお店に、<br><span class="accent">ふさわしい</span>ホームページを。</h1>
 
         <p class="lede" data-lang="en" hidden>FUBURI Studio designs and builds simple, good-looking websites for restaurants, salons, clinics and other independent shops — at a price that actually makes sense for a small business.</p>
         <p class="lede" data-lang="ja" hidden>ふぶりスタジオは、飲食店・美容室・整体院など個人店のための、シンプルで見栄えのするホームページを制作します。個人店でも申し込みやすい、手頃な価格で。</p>
 
         <div class="hero-cta">
-          <a href="#contact" class="btn btn-primary" data-lang="en" hidden>Get in touch</a>
-          <a href="#contact" class="btn btn-primary" data-lang="ja" hidden>お問い合わせ</a>
-          <a href="#pricing" class="btn btn-outline" data-lang="en" hidden>See pricing</a>
-          <a href="#pricing" class="btn btn-outline" data-lang="ja" hidden>料金を見る</a>
+          <a href="contact.html" class="btn btn-primary" data-lang="en" hidden>Get in touch</a>
+          <a href="contact.html" class="btn btn-primary" data-lang="ja" hidden>お問い合わせ</a>
+          <a href="services.html#pricing" class="btn btn-outline" data-lang="en" hidden>See pricing</a>
+          <a href="services.html#pricing" class="btn btn-outline" data-lang="ja" hidden>料金を見る</a>
         </div>
 
         <div class="trust-row">
@@ -119,8 +125,8 @@
     </div>
   </section>
 
-  <!-- ===================== SERVICES ===================== -->
-  <section id="services">
+  <!-- ===================== SERVICES (teaser) ===================== -->
+  <section>
     <div class="wrap">
       <div class="section-head reveal">
         <span class="eyebrow" data-lang="en" hidden>What we do</span>
@@ -194,235 +200,46 @@
     </div>
   </section>
 
-  <!-- ===================== PRICING ===================== -->
-  <section id="pricing" class="bg-alt">
+  <!-- ===================== EXPLORE ===================== -->
+  <section class="bg-alt">
     <div class="wrap">
       <div class="section-head reveal">
-        <span class="eyebrow" data-lang="en" hidden>Pricing</span>
-        <span class="eyebrow" data-lang="ja" hidden>料金プラン</span>
-        <h2 data-lang="en" hidden>Simple, honest pricing</h2>
-        <h2 data-lang="ja" hidden>わかりやすい料金設定</h2>
-        <p data-lang="en" hidden>Three plans to fit shops of any size — pick the one that matches where your business is today.</p>
-        <p data-lang="ja" hidden>お店の規模やご要望に合わせて選べる3つのプラン。まずはお気軽にご相談ください。</p>
+        <span class="eyebrow" data-lang="en" hidden>Explore</span>
+        <span class="eyebrow" data-lang="ja" hidden>もっと見る</span>
+        <h2 data-lang="en" hidden>Take a closer look</h2>
+        <h2 data-lang="ja" hidden>詳しくご覧ください</h2>
       </div>
 
-      <div class="pricing-grid">
-
-        <!-- Simple -->
-        <div class="plan reveal">
-          <h3 data-lang="en" hidden>Simple</h3>
-          <h3 data-lang="ja" hidden>シンプル</h3>
-          <div class="plan-sub" data-lang="en" hidden>A single page that gets you online</div>
-          <div class="plan-sub" data-lang="ja" hidden>まずは1ページから始めたい方に</div>
-          <div class="price"><span class="count-num" data-count-to="50000" data-prefix="¥">¥50,000</span></div>
-          <ul>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>1-page website</span><span data-lang="ja" hidden>1ページ構成のホームページ</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Copywriting included</span><span data-lang="ja" hidden>文章作成込み</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Mobile-friendly design</span><span data-lang="ja" hidden>スマホ対応デザイン</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>2 weeks of free revisions</span><span data-lang="ja" hidden>公開後2週間の修正無料</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Domain &amp; hosting help (optional, paid)</span><span data-lang="ja" hidden>ドメイン・サーバー取得サポート（オプション・有料）</span></li>
-          </ul>
-          <a href="#contact" class="btn btn-outline" data-lang="en" hidden>Choose Simple</a>
-          <a href="#contact" class="btn btn-outline" data-lang="ja" hidden>このプランで相談する</a>
-        </div>
-
-        <!-- Standard -->
-        <div class="plan featured reveal">
-          <span class="plan-badge" data-lang="en" hidden>Most popular</span>
-          <span class="plan-badge" data-lang="ja" hidden>人気プラン</span>
-          <h3 data-lang="en" hidden>Standard</h3>
-          <h3 data-lang="ja" hidden>本格</h3>
-          <div class="plan-sub" data-lang="en" hidden>A full site to grow your business</div>
-          <div class="plan-sub" data-lang="ja" hidden>しっかり集客したい方に</div>
-          <div class="price"><span class="count-num" data-count-to="100000" data-prefix="¥">¥100,000</span></div>
-          <ul>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Up to 5 pages</span><span data-lang="ja" hidden>最大5ページ構成</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Copywriting included</span><span data-lang="ja" hidden>文章作成込み</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Mobile-friendly design</span><span data-lang="ja" hidden>スマホ対応デザイン</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>2 weeks of free revisions</span><span data-lang="ja" hidden>公開後2週間の修正無料</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Free domain &amp; hosting setup help</span><span data-lang="ja" hidden>ドメイン・サーバー取得サポート無料</span></li>
-          </ul>
-          <a href="#contact" class="btn btn-primary" data-lang="en" hidden>Choose Standard</a>
-          <a href="#contact" class="btn btn-primary" data-lang="ja" hidden>このプランで相談する</a>
-        </div>
-
-        <!-- Premium -->
-        <div class="plan reveal">
-          <h3 data-lang="en" hidden>Premium</h3>
-          <h3 data-lang="ja" hidden>超本格</h3>
-          <div class="plan-sub" data-lang="en" hidden>Fully custom, top to bottom</div>
-          <div class="plan-sub" data-lang="ja" hidden>こだわり抜きたい方に</div>
-          <div class="price"><span class="count-num" data-count-to="500000" data-prefix="¥">¥500,000</span></div>
-          <ul>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Everything in Standard</span><span data-lang="ja" hidden>本格プランの内容をすべて含む</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Custom icon design</span><span data-lang="ja" hidden>オリジナルアイコンデザイン</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Animation &amp; motion effects</span><span data-lang="ja" hidden>アニメーション演出</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>SEO groundwork</span><span data-lang="ja" hidden>SEO対策</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>Light support after launch</span><span data-lang="ja" hidden>公開後の軽微な相談対応</span></li>
-            <li><span class="tick">✓</span><span data-lang="en" hidden>2 months of free revisions</span><span data-lang="ja" hidden>公開後2か月の修正無料</span></li>
-          </ul>
-          <a href="#contact" class="btn btn-outline" data-lang="en" hidden>Choose Premium</a>
-          <a href="#contact" class="btn btn-outline" data-lang="ja" hidden>このプランで相談する</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PROCESS ===================== -->
-  <section id="process">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow" data-lang="en" hidden>How it works</span>
-        <span class="eyebrow" data-lang="ja" hidden>制作の流れ</span>
-        <h2 data-lang="en" hidden>From first message to launch</h2>
-        <h2 data-lang="ja" hidden>お問い合わせから公開まで</h2>
-      </div>
-
-      <div class="process-list">
-        <div class="process-step reveal">
+      <div class="explore-grid">
+        <a href="services.html#pricing" class="explore-card reveal">
           <span class="num">01</span>
-          <h3 data-lang="en" hidden>Inquiry</h3>
-          <h3 data-lang="ja" hidden>お問い合わせ</h3>
-          <p data-lang="en" hidden>Reach out by email or WhatsApp and tell us about your shop.</p>
-          <p data-lang="ja" hidden>メールまたはWhatsAppにて、お店について気軽にご連絡ください。</p>
-        </div>
-        <div class="process-step reveal">
+          <h3 data-lang="en" hidden>Pricing</h3>
+          <h3 data-lang="ja" hidden>料金</h3>
+          <p data-lang="en" hidden>Three simple plans, from ¥50,000 — see what's included in each.</p>
+          <p data-lang="ja" hidden>¥50,000〜の3プラン。それぞれの内容をご確認ください。</p>
+          <span class="explore-arrow"><span data-lang="en" hidden>View pricing</span><span data-lang="ja" hidden>料金を見る</span> <span>→</span></span>
+        </a>
+        <a href="works.html" class="explore-card reveal">
           <span class="num">02</span>
-          <h3 data-lang="en" hidden>Consultation</h3>
-          <h3 data-lang="ja" hidden>ご相談</h3>
-          <p data-lang="en" hidden>We talk through your goals and find the right plan for you.</p>
-          <p data-lang="ja" hidden>ご要望やゴールをヒアリングし、最適なプランをご提案します。</p>
-        </div>
-        <div class="process-step reveal">
+          <h3 data-lang="en" hidden>Works</h3>
+          <h3 data-lang="ja" hidden>実績</h3>
+          <p data-lang="en" hidden>See the kind of sites we build for independent shop owners.</p>
+          <p data-lang="ja" hidden>個人店オーナー様のために制作したホームページをご紹介します。</p>
+          <span class="explore-arrow"><span data-lang="en" hidden>See our work</span><span data-lang="ja" hidden>実績を見る</span> <span>→</span></span>
+        </a>
+        <a href="about.html" class="explore-card reveal">
           <span class="num">03</span>
-          <h3 data-lang="en" hidden>First draft</h3>
-          <h3 data-lang="ja" hidden>初期納品</h3>
-          <p data-lang="en" hidden>You'll see a first draft of your site within about 2 weeks.</p>
-          <p data-lang="ja" hidden>お申込みから約2週間で、初期デザインをお届けします。</p>
-        </div>
-        <div class="process-step reveal">
-          <span class="num">04</span>
-          <h3 data-lang="en" hidden>Revisions</h3>
-          <h3 data-lang="ja" hidden>調整・修正</h3>
-          <p data-lang="en" hidden>We refine the details together until it feels right.</p>
-          <p data-lang="ja" hidden>細部まで一緒に確認しながら、仕上げていきます。</p>
-        </div>
-        <div class="process-step reveal">
-          <span class="num">05</span>
-          <h3 data-lang="en" hidden>Launch</h3>
-          <h3 data-lang="ja" hidden>公開</h3>
-          <p data-lang="en" hidden>Your site goes live — plus your free revision window continues.</p>
-          <p data-lang="ja" hidden>ホームページを公開。公開後も修正無料期間が続きます。</p>
-        </div>
-      </div>
-
-      <div class="timeline-strip">
-        <div class="big" data-lang="en" hidden>~1 month, start to finish</div>
-        <div class="big" data-lang="ja" hidden>お申込みから約1か月で公開</div>
-        <p data-lang="en" hidden>First draft within 2 weeks, then time to refine together before launch.</p>
-        <p data-lang="ja" hidden>約2週間で初期納品、その後仕上げの調整を経て公開となります。</p>
+          <h3 data-lang="en" hidden>About</h3>
+          <h3 data-lang="ja" hidden>代表紹介</h3>
+          <p data-lang="en" hidden>Why FUBURI Studio exists, and the story behind it.</p>
+          <p data-lang="ja" hidden>ふぶりスタジオを始めた理由と、その背景をご紹介します。</p>
+          <span class="explore-arrow"><span data-lang="en" hidden>Read more</span><span data-lang="ja" hidden>詳しく見る</span> <span>→</span></span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== WORKS ===================== -->
-  <section id="works" class="bg-alt">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow" data-lang="en" hidden>Selected work</span>
-        <span class="eyebrow" data-lang="ja" hidden>制作実績</span>
-        <h2 data-lang="en" hidden>Sites we've built</h2>
-        <h2 data-lang="ja" hidden>制作したホームページ</h2>
-      </div>
-
-      <div class="work-card reveal">
-        <div class="work-visual"><img src="images/works-emerald-reef.webp" alt="Emerald Reef Okinawa"><span>Emerald Reef Okinawa</span></div>
-        <div class="work-body">
-          <h3 data-lang="en" hidden>Emerald Reef Okinawa</h3>
-          <h3 data-lang="ja" hidden>Emerald Reef Okinawa</h3>
-          <p data-lang="en" hidden>A booking-ready site for a snorkeling &amp; skin-diving tour guide in Okinawa, built to convert visitors into bookings.</p>
-          <p data-lang="ja" hidden>沖縄のシュノーケリング・スキンダイビングガイド様のホームページ。予約につながる導線を意識して制作しました。</p>
-          <div class="work-tags">
-            <span data-lang="en" hidden>Tourism</span><span data-lang="ja" hidden>観光業</span>
-            <span data-lang="en" hidden>Multilingual</span><span data-lang="ja" hidden>多言語対応</span>
-            <span data-lang="en" hidden>Booking flow</span><span data-lang="ja" hidden>予約導線</span>
-          </div>
-          <a class="work-link" href="https://emerald-reef-okinawa.com/" target="_blank" rel="noopener">
-            <span data-lang="en" hidden>Visit site</span><span data-lang="ja" hidden>サイトを見る</span> ↗
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FAQ ===================== -->
-  <section id="faq">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow" data-lang="en" hidden>FAQ</span>
-        <span class="eyebrow" data-lang="ja" hidden>よくある質問</span>
-        <h2 data-lang="en" hidden>Good questions</h2>
-        <h2 data-lang="ja" hidden>よくいただくご質問</h2>
-      </div>
-
-      <div class="faq-list reveal">
-        <details class="faq-item" open>
-          <summary><span data-lang="en" hidden>Can you build the site in both Japanese and English?</span><span data-lang="ja" hidden>日本語と英語、両方のサイトを作れますか？</span></summary>
-          <p data-lang="en" hidden>Yes — bilingual (and other language) sites are one of our specialties, especially for shops looking to reach customers beyond Japan.</p>
-          <p data-lang="ja" hidden>はい、得意としています。特に海外のお客様も視野に入れている個人店様には、多言語対応をおすすめしています。</p>
-        </details>
-
-        <details class="faq-item">
-          <summary><span data-lang="en" hidden>I don't have a domain yet — is that a problem?</span><span data-lang="ja" hidden>ドメインをまだ持っていませんが大丈夫ですか？</span></summary>
-          <p data-lang="en" hidden>Not at all. Domain and hosting setup support is included free with the Standard and Premium plans, and available as a paid add-on with Simple.</p>
-          <p data-lang="ja" hidden>問題ありません。本格・超本格プランはドメイン・サーバー取得サポートが無料で付いています。シンプルプランはオプション（有料）でご案内可能です。</p>
-        </details>
-
-        <details class="faq-item">
-          <summary><span data-lang="en" hidden>What happens after the free revision period ends?</span><span data-lang="ja" hidden>修正無料期間が終わったあとはどうなりますか？</span></summary>
-          <p data-lang="en" hidden>Just reach out — we're happy to talk through any further changes on a case-by-case basis.</p>
-          <p data-lang="ja" hidden>お気軽にご連絡ください。内容に応じて個別にご相談させていただきます。</p>
-        </details>
-
-        <details class="faq-item">
-          <summary><span data-lang="en" hidden>Do you only work with shops in Singapore?</span><span data-lang="ja" hidden>シンガポール以外のお店でも依頼できますか？</span></summary>
-          <p data-lang="en" hidden>We're based around Singapore but work with independent shop owners anywhere — everything is handled remotely by email and WhatsApp.</p>
-          <p data-lang="ja" hidden>シンガポールを中心に、世界中の個人店様に対応しています。メールとWhatsAppでのやり取りで完結します。</p>
-        </details>
-
-        <details class="faq-item">
-          <summary><span data-lang="en" hidden>Do you handle photography for the site?</span><span data-lang="ja" hidden>写真撮影もお願いできますか？</span></summary>
-          <p data-lang="en" hidden>Photography isn't included in any plan — we focus on design, copywriting and build.</p>
-          <p data-lang="ja" hidden>写真撮影はいずれのプランにも含まれておりません。デザイン・文章作成・制作に専念しております。</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== ABOUT ===================== -->
-  <section id="about" class="bg-alt">
-    <div class="wrap about-grid">
-      <div class="about-art reveal">
-        <img src="images/about-startup-life.svg" alt="" width="829" height="588" loading="lazy">
-        <div class="about-accent"><img src="images/about-accent.jpg" alt=""></div>
-      </div>
-      <div class="about-body reveal">
-        <span class="eyebrow" data-lang="en" hidden>About</span>
-        <span class="eyebrow" data-lang="ja" hidden>代表紹介</span>
-        <h2 data-lang="en" hidden>Why FUBURI Studio exists</h2>
-        <h2 data-lang="ja" hidden>ふぶりスタジオを始めた理由</h2>
-        <p data-lang="en" hidden>FUBURI Studio was founded by someone who runs their own small business — and learned firsthand just how much a good website matters, and how out of reach professional web design can feel when you're running a shop on your own.</p>
-        <p data-lang="ja" hidden>ふぶりスタジオは、自らも個人事業主としてお店を営んできた代表が立ち上げました。自分自身の経験から、ホームページがどれほどお店にとって大切か、そして専門的な制作をお願いするのがいかにハードルが高いかを実感しています。</p>
-        <p data-lang="en" hidden>That experience is why FUBURI Studio focuses on making great web design simple, friendly and affordable for independent shop owners — the people who don't have a marketing team, just a business they care about.</p>
-        <p data-lang="ja" hidden>だからこそ、ふぶりスタジオは「シンプルで」「親しみやすく」「手頃な価格」であることにこだわっています。マーケティングチームを持たない、けれどお店を大切に思う個人店オーナー様のために。</p>
-        <div class="signature" data-lang="en" hidden>— Founder, FUBURI Studio</div>
-        <div class="signature" data-lang="ja" hidden>— ふぶりスタジオ代表</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== CONTACT ===================== -->
+  <!-- ===================== CONTACT CTA ===================== -->
   <section id="contact">
     <div class="wrap">
       <div class="contact-box reveal">
@@ -434,22 +251,17 @@
         <p class="lede" data-lang="ja" hidden>お店のことや、ご希望のイメージなどお聞かせください。初回のご相談は無料です。</p>
 
         <div class="contact-methods">
-          <a class="btn btn-primary" href="mailto:hello@fuburi-studio.example">
-            <span data-lang="en" hidden>Email us</span><span data-lang="ja" hidden>メールで相談</span>
-          </a>
-          <a class="btn btn-outline" href="https://wa.me/00000000000" target="_blank" rel="noopener">
-            <span data-lang="en" hidden>WhatsApp</span><span data-lang="ja" hidden>WhatsAppで相談</span>
+          <a class="btn btn-primary" href="contact.html">
+            <span data-lang="en" hidden>Contact us</span><span data-lang="ja" hidden>お問い合わせ</span>
           </a>
         </div>
-        <p class="contact-note" data-lang="en" hidden>hello@fuburi-studio.example — placeholder, update with your real email and WhatsApp number.</p>
-        <p class="contact-note" data-lang="ja" hidden>hello@fuburi-studio.example は仮の連絡先です。実際のメールアドレス・WhatsApp番号に差し替えてください。</p>
       </div>
     </div>
   </section>
 
 </main>
 
-<a href="#contact" class="bottom-cta" id="bottomCta">
+<a href="contact.html" class="bottom-cta" id="bottomCta">
   <span data-lang="en" hidden>Let's talk</span>
   <span data-lang="ja" hidden>ご相談はこちら</span>
   <span class="bottom-cta-arrow" aria-hidden="true">→</span>

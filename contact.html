@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — FUBURI Studio</title>
+<meta name="description" content="Get in touch with FUBURI Studio to talk about a website for your shop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&family=Nunito:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Caveat:wght@600;700&family=Yomogi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-loader" aria-hidden="true">
+  <span class="page-loader-mark">FUBURI</span>
+</div>
+<noscript><style>.page-loader{display:none!important;}</style></noscript>
+
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="logo"><span class="mark">FUBURI</span> Studio</a>
+    <nav class="nav-inline">
+      <a href="index.html" data-lang="en" hidden>Home</a><a href="index.html" data-lang="ja" hidden>ホーム</a>
+      <a href="services.html" data-lang="en" hidden>Services</a><a href="services.html" data-lang="ja" hidden>サービス</a>
+      <a href="works.html" data-lang="en" hidden>Works</a><a href="works.html" data-lang="ja" hidden>実績</a>
+      <a href="about.html" data-lang="en" hidden>About</a><a href="about.html" data-lang="ja" hidden>代表紹介</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button type="button" data-lang-btn="en">EN</button>
+        <button type="button" data-lang-btn="ja">日本語</button>
+      </div>
+      <a href="contact.html" class="btn btn-primary nav-cta" data-lang="en" hidden>Contact</a>
+      <a href="contact.html" class="btn btn-primary nav-cta" data-lang="ja" hidden>お問い合わせ</a>
+      <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navDrawer">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-overlay"></div>
+<nav class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <ul class="nav-links">
+    <li><a href="index.html" data-lang="en" hidden>Home</a><a href="index.html" data-lang="ja" hidden>ホーム</a></li>
+    <li><a href="services.html" data-lang="en" hidden>Services</a><a href="services.html" data-lang="ja" hidden>サービス</a></li>
+    <li><a href="works.html" data-lang="en" hidden>Works</a><a href="works.html" data-lang="ja" hidden>実績</a></li>
+    <li><a href="about.html" data-lang="en" hidden>About</a><a href="about.html" data-lang="ja" hidden>代表紹介</a></li>
+    <li><a href="contact.html" data-lang="en" hidden>Contact</a><a href="contact.html" data-lang="ja" hidden>お問い合わせ</a></li>
+  </ul>
+  <div class="nav-drawer-foot">
+    <a href="contact.html" class="btn btn-primary" data-lang="en" hidden>Get in touch</a>
+    <a href="contact.html" class="btn btn-primary" data-lang="ja" hidden>お問い合わせ</a>
+  </div>
+</nav>
+
+<main id="top">
+
+  <section class="page-header">
+    <div class="wrap">
+      <span class="eyebrow" data-lang="en" hidden>Get in touch</span>
+      <span class="eyebrow" data-lang="ja" hidden>お問い合わせ</span>
+      <h1 data-lang="en" hidden>Let's talk about your shop</h1>
+      <h1 data-lang="ja" hidden>お気軽にご相談ください</h1>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box reveal">
+        <p class="lede" data-lang="en" hidden>Tell us a little about your shop and what you're hoping for — the first conversation is free, no pressure.</p>
+        <p class="lede" data-lang="ja" hidden>お店のことや、ご希望のイメージなどお聞かせください。初回のご相談は無料です。</p>
+
+        <div class="contact-methods">
+          <a class="btn btn-primary" href="mailto:hello@fuburi-studio.example">
+            <span data-lang="en" hidden>Email us</span><span data-lang="ja" hidden>メールで相談</span>
+          </a>
+          <a class="btn btn-outline" href="https://wa.me/00000000000" target="_blank" rel="noopener">
+            <span data-lang="en" hidden>WhatsApp</span><span data-lang="ja" hidden>WhatsAppで相談</span>
+          </a>
+        </div>
+        <p class="contact-note" data-lang="en" hidden>hello@fuburi-studio.example — placeholder, update with your real email and WhatsApp number.</p>
+        <p class="contact-note" data-lang="ja" hidden>hello@fuburi-studio.example は仮の連絡先です。実際のメールアドレス・WhatsApp番号に差し替えてください。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<a href="contact.html" class="bottom-cta" id="bottomCta">
+  <span data-lang="en" hidden>Let's talk</span>
+  <span data-lang="ja" hidden>ご相談はこちら</span>
+  <span class="bottom-cta-arrow" aria-hidden="true">→</span>
+</a>
+
+<footer>
+  <div class="wrap">
+    <span data-lang="en" hidden>&copy; 2026 FUBURI Studio. All rights reserved.</span>
+    <span data-lang="ja" hidden>&copy; 2026 ふぶりスタジオ. All rights reserved.</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

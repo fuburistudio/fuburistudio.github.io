@@ -69,6 +69,14 @@
   var initial = getSavedLang() || "en";
   setLang(initial);
 
+  // ---------- active nav link ----------
+  var currentPage = location.pathname.split("/").pop() || "index.html";
+  document.querySelectorAll(".nav-inline a, .nav-drawer .nav-links a").forEach(function (a) {
+    if (a.getAttribute("href") === currentPage) {
+      a.classList.add("is-active");
+    }
+  });
+
   var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // ---------- count-up numbers ----------
@@ -157,9 +165,13 @@
   // ---------- bottom sticky CTA ----------
   var bottomCta = document.getElementById("bottomCta");
   var heroEl = document.querySelector(".hero");
-  if (bottomCta && heroEl) {
+  var footerEl = document.querySelector("footer");
+  var onContactPage = /(^|\/)contact\.html$/.test(location.pathname);
+  if (bottomCta && !onContactPage) {
     var toggleBottomCta = function () {
-      bottomCta.classList.toggle("is-visible", heroEl.getBoundingClientRect().bottom < 0);
+      var pastHero = heroEl ? heroEl.getBoundingClientRect().bottom < 0 : window.scrollY > 280;
+      var nearFooter = footerEl && footerEl.getBoundingClientRect().top < window.innerHeight + 60;
+      bottomCta.classList.toggle("is-visible", pastHero && !nearFooter);
     };
     window.addEventListener("scroll", toggleBottomCta, { passive: true });
     toggleBottomCta();
