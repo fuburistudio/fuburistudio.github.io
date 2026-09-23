@@ -306,11 +306,18 @@ header {
 .photo-b {
   width: 46%;
   aspect-ratio: 1 / 1;
-  border-radius: 38% 62% 55% 45% / 55% 45% 55% 45%;
   bottom: 4%;
   left: 0;
   animation-delay: .5s;
 }
+
+.house-shape {
+  border: none;
+  box-shadow: none;
+  filter: drop-shadow(0 14px 22px rgba(43, 33, 24, .35));
+}
+
+.house-shape img { clip-path: url(#houseClip); }
 
 .photo-c {
   width: 30%;
@@ -354,7 +361,7 @@ header {
   position: absolute;
   bottom: 12%;
   left: -6%;
-  font-family: "Caveat", cursive;
+  font-family: "Caveat", "Yomogi", cursive;
   font-size: 1.9rem;
   font-weight: 700;
   line-height: 1;
