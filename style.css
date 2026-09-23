@@ -366,25 +366,29 @@ header {
 
 .hero-tag {
   position: absolute;
-  bottom: -5%;
-  left: 8%;
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
+  top: 40%;
+  left: 4%;
   font-family: "Caveat", "Yomogi", cursive;
-  font-size: 1.7rem;
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
-  color: #fff5ea;
-  background: rgba(37, 28, 22, .88);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  padding: 12px 22px;
-  border-radius: 14px;
-  border-bottom: 3px solid var(--color-primary);
-  box-shadow: 0 16px 26px -14px rgba(37, 28, 22, .55);
-  z-index: 3;
+  color: #fff9f2;
+  text-shadow: 0 2px 4px rgba(30, 18, 10, .25), 0 10px 22px rgba(30, 18, 10, .35);
+  transform: rotate(-5deg);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-tag::after {
+  content: "";
+  display: block;
+  width: 64%;
+  height: 3px;
+  margin-top: 2px;
+  background: currentColor;
+  opacity: .55;
+  border-radius: 2px;
 }
 
 .floaty {
