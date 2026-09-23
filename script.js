@@ -51,6 +51,110 @@
   var initial = getSavedLang() || "en";
   setLang(initial);
 
+  // ---------- character split-reveal ----------
+  function wrapWordsAndChars(el) {
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          child.nodeValue.split(/(\s+)/).forEach(function (token) {
+            if (!token.length) return;
+            if (/^\s+$/.test(token)) {
+              frag.appendChild(document.createTextNode(token));
+              return;
+            }
+            var word = document.createElement("span");
+            word.className = "word";
+            token.split("").forEach(function (ch) {
+              var span = document.createElement("span");
+              span.className = "ch";
+              span.textContent = ch;
+              word.appendChild(span);
+            });
+            frag.appendChild(word);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === 1) {
+          walk(child);
+        }
+      });
+    })(el);
+  }
+
+  function splitAndStagger(el, stepMs, maxDelayMs) {
+    wrapWordsAndChars(el);
+    el.querySelectorAll(".ch").forEach(function (ch, i) {
+      ch.style.transitionDelay = Math.min(i * stepMs, maxDelayMs) + "ms";
+    });
+  }
+
+  document.querySelectorAll('.hero h1[data-lang="en"]').forEach(function (el) {
+    splitAndStagger(el, 22, 600);
+  });
+  document.querySelectorAll('.section-head h2[data-lang="en"]').forEach(function (el) {
+    splitAndStagger(el, 16, 420);
+  });
+
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      document.body.classList.add("hero-ready");
+    });
+  });
+
+  // ---------- custom cursor + magnetic buttons ----------
+  if (window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.documentElement.classList.add("has-custom-cursor");
+
+    var dot = document.createElement("div");
+    dot.className = "cursor-dot";
+    var ring = document.createElement("div");
+    ring.className = "cursor-ring";
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    var mouseX = 0, mouseY = 0, ringX = 0, ringY = 0, cursorReady = false;
+
+    window.addEventListener("mousemove", function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + "px";
+      dot.style.top = mouseY + "px";
+      if (!cursorReady) {
+        cursorReady = true;
+        ringX = mouseX;
+        ringY = mouseY;
+        document.documentElement.classList.add("cursor-ready");
+      }
+    });
+
+    (function ringLoop() {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.left = ringX + "px";
+      ring.style.top = ringY + "px";
+      requestAnimationFrame(ringLoop);
+    })();
+
+    document.querySelectorAll("a, button, .plan, .service-card, .who-chip, .faq-item summary").forEach(function (el) {
+      el.addEventListener("mouseenter", function () { ring.classList.add("is-active"); });
+      el.addEventListener("mouseleave", function () { ring.classList.remove("is-active"); });
+    });
+
+    document.querySelectorAll(".btn").forEach(function (btn) {
+      btn.addEventListener("mousemove", function (e) {
+        var rect = btn.getBoundingClientRect();
+        var relX = e.clientX - rect.left - rect.width / 2;
+        var relY = e.clientY - rect.top - rect.height / 2;
+        btn.style.transition = "transform 0s";
+        btn.style.transform = "translate(" + relX * 0.25 + "px, " + relY * 0.35 + "px) scale(1.03)";
+      });
+      btn.addEventListener("mouseleave", function () {
+        btn.style.transition = "transform .4s cubic-bezier(.22, .8, .2, 1)";
+        btn.style.transform = "";
+      });
+    });
+  }
+
   if ("IntersectionObserver" in window) {
     var revealTargets = document.querySelectorAll(".reveal");
     var observer = new IntersectionObserver(
