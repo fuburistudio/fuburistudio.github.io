@@ -51,6 +51,38 @@
   var initial = getSavedLang() || "en";
   setLang(initial);
 
+  var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------- count-up numbers ----------
+  function animateCount(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = "1";
+    var target = parseInt(el.getAttribute("data-count-to"), 10);
+    var prefix = el.getAttribute("data-prefix") || "";
+    if (prefersReducedMotion || isNaN(target)) {
+      el.textContent = prefix + target.toLocaleString("en-US");
+      return;
+    }
+    var duration = 1100;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = prefix + Math.round(target * eased).toLocaleString("en-US");
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = prefix + target.toLocaleString("en-US");
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function triggerCounts(container) {
+    container.querySelectorAll(".count-num").forEach(animateCount);
+  }
+
   // ---------- character split-reveal ----------
   function wrapWordsAndChars(el) {
     (function walk(node) {
@@ -95,11 +127,54 @@
     splitAndStagger(el, 16, 420);
   });
 
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () {
-      document.body.classList.add("hero-ready");
-    });
-  });
+  // ---------- page loader ----------
+  var loader = document.querySelector(".page-loader");
+  var loaderDelay = prefersReducedMotion ? 0 : 650;
+  setTimeout(function () {
+    if (loader) loader.classList.add("is-hidden");
+    document.body.classList.add("hero-ready");
+    document.querySelectorAll(".trust-row .count-num").forEach(animateCount);
+  }, loaderDelay);
+
+  // ---------- scroll progress bar ----------
+  var progressBar = document.querySelector(".scroll-progress");
+  if (progressBar) {
+    var updateProgress = function () {
+      var scrollTop = window.pageYOffset;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + "%";
+    };
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+  }
+
+  // ---------- parallax ----------
+  if (!prefersReducedMotion) {
+    var parallaxEls = [
+      { el: document.querySelector(".hero-collage"), speed: 0.12 },
+      { el: document.querySelector(".about-art"), speed: 0.08 }
+    ].filter(function (p) { return p.el; });
+
+    if (parallaxEls.length) {
+      var parallaxTicking = false;
+      var updateParallax = function () {
+        parallaxEls.forEach(function (p) {
+          var rect = p.el.getBoundingClientRect();
+          var center = rect.top + rect.height / 2 - window.innerHeight / 2;
+          p.el.style.transform = "translateY(" + (center * -p.speed) + "px)";
+        });
+        parallaxTicking = false;
+      };
+      window.addEventListener("scroll", function () {
+        if (!parallaxTicking) {
+          requestAnimationFrame(updateParallax);
+          parallaxTicking = true;
+        }
+      }, { passive: true });
+      updateParallax();
+    }
+  }
 
   // ---------- custom cursor + magnetic buttons ----------
   if (window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
@@ -162,6 +237,7 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
+            triggerCounts(entry.target);
             observer.unobserve(entry.target);
           }
         });
@@ -179,6 +255,7 @@
         var rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom > 0) {
           el.classList.add("is-visible");
+          triggerCounts(el);
         }
       });
     }, 400);
@@ -186,11 +263,13 @@
       clearInterval(revealFallback);
       document.querySelectorAll(".reveal:not(.is-visible)").forEach(function (el) {
         el.classList.add("is-visible");
+        triggerCounts(el);
       });
     }, 4000);
   } else {
     document.querySelectorAll(".reveal").forEach(function (el) {
       el.classList.add("is-visible");
+      triggerCounts(el);
     });
   }
 })();
