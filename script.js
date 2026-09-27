@@ -193,7 +193,7 @@
   // ---------- parallax ----------
   if (!prefersReducedMotion) {
     var parallaxEls = [
-      { el: document.querySelector(".hero-collage"), speed: 0.12 },
+      { el: document.querySelector(".hero-content"), speed: 0.06 },
       { el: document.querySelector(".about-art"), speed: 0.08 }
     ].filter(function (p) { return p.el; });
 
