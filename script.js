@@ -190,6 +190,30 @@
     updateProgress();
   }
 
+  // ---------- kinetic typography (scroll-linked) ----------
+  var kineticRows = document.querySelectorAll("[data-kinetic]");
+  if (kineticRows.length && !prefersReducedMotion) {
+    var kineticTicking = false;
+    var updateKinetic = function () {
+      kineticRows.forEach(function (row) {
+        var rect = row.parentElement.getBoundingClientRect();
+        var progress = window.innerHeight - rect.top;
+        var speed = parseFloat(row.getAttribute("data-kinetic"));
+        var offset = speed < 0 ? 0 : -row.scrollWidth / 3;
+        row.style.transform = "translate3d(" + (offset + progress * speed) + "px, 0, 0)";
+      });
+      kineticTicking = false;
+    };
+    window.addEventListener("scroll", function () {
+      if (!kineticTicking) {
+        requestAnimationFrame(updateKinetic);
+        kineticTicking = true;
+      }
+    }, { passive: true });
+    window.addEventListener("resize", updateKinetic);
+    updateKinetic();
+  }
+
   // ---------- parallax ----------
   if (!prefersReducedMotion) {
     var parallaxEls = [

@@ -1307,6 +1307,222 @@ html.has-custom-cursor .btn { cursor: none; }
 .explore-card:hover .explore-arrow { color: var(--color-primary-dark); }
 .explore-card:hover .explore-arrow span { transform: translateX(4px); }
 
+/* ---------- film grain texture ---------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  pointer-events: none;
+  opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- kinetic typography ---------- */
+.kinetic {
+  padding: 72px 0 24px;
+  overflow: hidden;
+}
+
+.kinetic-row {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(3.2rem, 9vw, 8rem);
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+  color: var(--color-ink);
+  will-change: transform;
+}
+
+.kinetic-row--outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-primary);
+}
+
+/* ---------- bento grid ---------- */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(190px, auto);
+  grid-template-areas:
+    "photo photo copy  price"
+    "photo photo lang  lang"
+    "domain dark dark  link";
+  gap: 16px;
+}
+
+.bento-tile {
+  position: relative;
+  border-radius: 26px;
+  padding: 26px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  transition: opacity .7s cubic-bezier(.2, .7, .2, 1), transform .5s cubic-bezier(.22, .8, .2, 1), box-shadow .35s ease;
+}
+
+.bento-tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 40px -24px rgba(43, 33, 24, .35);
+}
+
+.bento-tile h3 { font-size: 1.2rem; margin: 6px 0 6px; line-height: 1.35; }
+.bento-tile p { margin: 0; font-size: .9rem; color: var(--color-ink-soft); }
+
+.bento-label {
+  position: absolute;
+  top: 22px;
+  left: 26px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+}
+
+.bento-big {
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 6px;
+}
+
+.bento-big small { font-size: .5em; margin-left: 2px; }
+
+.bento-photo { grid-area: photo; padding: 0; border: none; min-height: 400px; }
+.bento-copy { grid-area: copy; }
+.bento-price { grid-area: price; }
+.bento-lang { grid-area: lang; }
+.bento-domain { grid-area: domain; }
+.bento-dark { grid-area: dark; }
+.bento-link { grid-area: link; }
+
+.bento-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.22, .8, .2, 1);
+}
+
+.bento-photo:hover img { transform: scale(1.05); }
+
+.bento-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(20, 14, 9, .78) 0%, rgba(20, 14, 9, .1) 55%, transparent 100%);
+}
+
+.bento-photo-text { position: relative; z-index: 1; padding: 28px; color: #fff9f2; }
+.bento-photo-text h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); color: #fff9f2; }
+.bento-photo .bento-label { position: static; color: var(--color-primary-soft); }
+
+.bento-price {
+  border: none;
+  color: #fff;
+  background: linear-gradient(120deg, #f2954c, #ff7e6b, #ffb35c, #f2954c);
+  background-size: 300% 300%;
+  animation: meshShift 9s ease-in-out infinite;
+}
+
+.bento-price .bento-label,
+.bento-price p { color: rgba(255, 255, 255, .9); }
+
+@keyframes meshShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.bento-lang { background: var(--color-bg-alt); }
+
+.bento-lang-pair {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  margin-bottom: 6px;
+}
+
+.bento-lang-pair i { font-style: normal; color: var(--color-primary); font-size: .7em; }
+
+.bento-dark {
+  background: var(--color-dark);
+  border: none;
+  color: #fff9f2;
+}
+
+.bento-dark .bento-label { color: var(--color-primary); }
+.bento-dark p { color: rgba(255, 250, 245, .7); }
+
+.bento-link {
+  text-decoration: none;
+  color: var(--color-ink);
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 1.1rem;
+  justify-content: space-between;
+  background: var(--color-primary-soft);
+  border: none;
+}
+
+.bento-arrow {
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--color-dark);
+  color: #fff;
+  font-size: 1.3rem;
+  transition: transform .35s cubic-bezier(.22, .8, .2, 1), background .2s ease;
+}
+
+.bento-link:hover .bento-arrow { transform: rotate(-45deg); background: var(--color-primary-dark); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .bento-photo.reveal img { clip-path: inset(100% 0 0 0); transition: clip-path 1.1s cubic-bezier(.7, 0, .2, 1), transform .8s cubic-bezier(.22, .8, .2, 1); }
+  .bento-photo.reveal.is-visible img { clip-path: inset(0 0 0 0); }
+  .bento .reveal:nth-child(2) { transition-delay: .06s; }
+  .bento .reveal:nth-child(3) { transition-delay: .12s; }
+  .bento .reveal:nth-child(4) { transition-delay: .18s; }
+  .bento .reveal:nth-child(5) { transition-delay: .24s; }
+  .bento .reveal:nth-child(6) { transition-delay: .3s; }
+  .bento .reveal:nth-child(7) { transition-delay: .36s; }
+}
+
+@media (max-width: 880px) {
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "photo photo"
+      "copy  price"
+      "lang  lang"
+      "domain dark"
+      "link  link";
+  }
+  .bento-photo { min-height: 340px; }
+}
+
+@media (max-width: 520px) {
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-areas: "photo" "copy" "price" "lang" "domain" "dark" "link";
+    grid-auto-rows: auto;
+  }
+  .bento-tile { min-height: 150px; padding-top: 56px; }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 880px) {
   .hero { padding: 140px 0 72px; }
