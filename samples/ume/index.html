@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>こもれび珈琲 | 住宅街の小さな自家焙煎珈琲店（サンプル）</title>
+<meta name="description" content="FUBURI Studio 梅プラン（1ページ構成）の制作サンプルです。架空の自家焙煎珈琲店「こもれび珈琲」のホームページ。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <a href="#top" class="logo">こもれび珈琲<small>KOMOREBI COFFEE</small></a>
+  <nav class="nav">
+    <a href="#concept">コンセプト</a>
+    <a href="#menu">メニュー</a>
+    <a href="#info">店舗情報</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <img src="img/hero.jpg" alt="焙煎機とドリップ道具が並ぶ店内">
+    <div class="hero-text">
+      <p class="hero-en">Home-roasted coffee &amp; a quiet corner</p>
+      <h1>木もれ日の下で、<br>ゆっくり一杯を。</h1>
+    </div>
+  </section>
+
+  <section class="concept fade" id="concept">
+    <div class="concept-img"><img src="img/barista.jpg" alt="カウンターでコーヒーを淹れる店主"></div>
+    <div class="concept-body">
+      <p class="label">CONCEPT</p>
+      <h2>毎朝焼く豆と、<br>手で淹れる一杯。</h2>
+      <p>住宅街の角にある、カウンター8席の小さな珈琲店です。豆は毎朝、店内の焙煎機で少しずつ焼いています。急がずに過ごせる場所として、近所の方にも、通りすがりの方にも気軽に立ち寄っていただけたら嬉しいです。</p>
+    </div>
+  </section>
+
+  <section class="menu fade" id="menu">
+    <p class="label">MENU</p>
+    <h2>メニュー</h2>
+    <div class="menu-grid">
+      <div>
+        <h3>Coffee</h3>
+        <dl>
+          <div><dt>本日のハンドドリップ</dt><dd>¥550</dd></div>
+          <div><dt>深煎りブレンド「こもれび」</dt><dd>¥580</dd></div>
+          <div><dt>カフェラテ</dt><dd>¥620</dd></div>
+          <div><dt>アイスコーヒー</dt><dd>¥580</dd></div>
+        </dl>
+      </div>
+      <div>
+        <h3>Sweets</h3>
+        <dl>
+          <div><dt>自家製バスクチーズケーキ</dt><dd>¥520</dd></div>
+          <div><dt>季節のパウンドケーキ</dt><dd>¥450</dd></div>
+          <div><dt>バタートースト</dt><dd>¥380</dd></div>
+        </dl>
+        <p class="note">コーヒー豆の量り売り（100g ¥900〜）もございます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="info fade" id="info">
+    <p class="label">INFORMATION</p>
+    <h2>店舗情報</h2>
+    <div class="info-grid">
+      <table>
+        <tr><th>営業時間</th><td>8:00 – 18:00（L.O. 17:30）</td></tr>
+        <tr><th>定休日</th><td>水曜日・第3木曜日</td></tr>
+        <tr><th>住所</th><td>〒000-0000 ○○市○○町 1-2-3<br><small>※サンプルのため架空の住所です</small></td></tr>
+        <tr><th>席数</th><td>カウンター8席</td></tr>
+        <tr><th>お支払い</th><td>現金・各種カード・QR決済</td></tr>
+      </table>
+      <div class="map" aria-label="地図（サンプル）"><span>MAP</span></div>
+    </div>
+    <a class="insta" href="#info">Instagramで最新情報を見る</a>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>こもれび珈琲 KOMOREBI COFFEE</p>
+  <small>&copy; 2026 Komorebi Coffee（サンプルサイト）</small>
+</footer>
+
+<a class="sample-badge" href="../../works.html">SAMPLE ｜ 梅プラン ¥50,000 ｜ FUBURI Studio</a>
+
+<script>
+  if (window.self !== window.top) document.documentElement.classList.add("in-frame");
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".fade").forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>

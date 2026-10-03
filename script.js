@@ -71,6 +71,40 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") toggleMenu(false); });
   }
 
+  // ---------- hero title: split into characters ----------
+  document.querySelectorAll(".hero-title").forEach(function (title) {
+    var i = 0;
+    var isJa = title.getAttribute("data-lang") === "ja";
+    function splitNode(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (child) {
+        if (child.nodeType === 1) {
+          if (child.tagName !== "BR") splitNode(child);
+          return;
+        }
+        if (child.nodeType !== 3) return;
+        var frag = document.createDocumentFragment();
+        var tokens = isJa ? [child.nodeValue] : child.nodeValue.split(/(\s+)/);
+        tokens.forEach(function (tok) {
+          if (!tok) return;
+          if (/^\s+$/.test(tok)) { frag.appendChild(document.createTextNode(" ")); return; }
+          var word = document.createElement("span");
+          word.className = "word";
+          Array.from(tok).forEach(function (c) {
+            var ch = document.createElement("span");
+            ch.className = "ch";
+            ch.textContent = c;
+            ch.style.transitionDelay = (0.15 + i * 0.035).toFixed(3) + "s";
+            i += 1;
+            word.appendChild(ch);
+          });
+          frag.appendChild(word);
+        });
+        node.replaceChild(frag, child);
+      });
+    }
+    title.querySelectorAll(".line > span").forEach(splitNode);
+  });
+
   // ---------- loader ----------
   var loader = document.querySelector(".loader");
 
@@ -79,11 +113,16 @@
     requestScrollUpdate();
   }
 
+  function closeLoader(delay) {
+    loader.classList.add("is-closing");
+    setTimeout(finishLoad, delay);
+  }
+
   if (!loader || reduce) {
     finishLoad();
   } else if (getStore(sessionStorage, VISIT_KEY)) {
     loader.classList.add("loader--quick");
-    setTimeout(finishLoad, 120);
+    setTimeout(function () { closeLoader(380); }, 80);
   } else {
     setStore(sessionStorage, VISIT_KEY, "1");
     var loaderNum = loader.querySelector(".loader-num");
@@ -94,7 +133,7 @@
       var eased = 1 - Math.pow(1 - p, 3);
       if (loaderNum) loaderNum.textContent = String(Math.round(eased * 100)).padStart(3, "0");
       if (p < 1) requestAnimationFrame(loadTick);
-      else setTimeout(finishLoad, 200);
+      else setTimeout(function () { closeLoader(560); }, 150);
     };
     requestAnimationFrame(loadTick);
   }
@@ -160,10 +199,60 @@
     container.querySelectorAll(".count-num").forEach(animateCount);
   }
 
+  // ---------- odometer digits + letter reveals ----------
+  document.querySelectorAll(".odo[data-odo]").forEach(function (el, n) {
+    var target = parseInt(el.getAttribute("data-odo"), 10);
+    var col = document.createElement("span");
+    col.className = "odo-col";
+    var digits = [];
+    for (var loop = 0; loop < 2; loop++) {
+      for (var d = 0; d < 10; d++) digits.push(d);
+    }
+    digits.push(target);
+    digits.forEach(function (d) {
+      var s = document.createElement("span");
+      s.textContent = d;
+      col.appendChild(s);
+    });
+    el.textContent = "";
+    el.appendChild(col);
+    el.__steps = digits.length - 1;
+    col.style.transitionDelay = (n * 0.18).toFixed(2) + "s";
+  });
+
+  document.querySelectorAll(".num-word").forEach(function (el) {
+    var text = el.textContent;
+    el.textContent = "";
+    Array.from(text).forEach(function (c, i) {
+      var s = document.createElement("span");
+      s.className = "lt";
+      s.textContent = c;
+      s.style.transitionDelay = (0.45 + i * 0.08).toFixed(2) + "s";
+      el.appendChild(s);
+    });
+  });
+
+  function rollOdometers(container) {
+    container.querySelectorAll(".odo").forEach(function (el) {
+      var col = el.querySelector(".odo-col");
+      if (!col || el.__rolled) return;
+      el.__rolled = true;
+      col.style.transform = "translateY(-" + (el.__steps * 0.85) + "em)";
+    });
+  }
+
+  if (reduce) {
+    document.querySelectorAll(".odo").forEach(function (el) {
+      var col = el.querySelector(".odo-col");
+      if (col) { col.style.transition = "none"; col.style.transform = "translateY(-" + (el.__steps * 0.85) + "em)"; }
+    });
+  }
+
   // ---------- reveal on view ----------
   function revealEl(el) {
     el.classList.add("is-visible");
     triggerCounts(el);
+    rollOdometers(el);
   }
 
   if ("IntersectionObserver" in window) {
@@ -209,7 +298,9 @@
 
   // ---------- scroll-driven effects ----------
   var progressBar = document.querySelector(".scroll-progress");
-  var showcase = document.querySelector(".showcase-frame");
+  var heroMedia = document.querySelector(".hero-media");
+  var heroInner = document.querySelector(".hero-inner");
+  var lightSections = document.querySelectorAll("[data-header='light']");
   var kineticRows = document.querySelectorAll("[data-kinetic]");
   var hscroll = document.querySelector(".hscroll");
   var hTrack = hscroll ? hscroll.querySelector(".hscroll-track") : null;
@@ -238,15 +329,23 @@
       progressBar.style.transform = "scaleX(" + (max > 0 ? window.scrollY / max : 0) + ")";
     }
 
+    var light = false;
+    for (var i = 0; i < lightSections.length; i++) {
+      var lr = lightSections[i].getBoundingClientRect();
+      if (lr.top <= 36 && lr.bottom >= 36) { light = true; break; }
+    }
+    body.classList.toggle("header-light", light);
+
     if (reduce) return;
 
-    if (showcase) {
-      var sr = showcase.getBoundingClientRect();
-      var sp = clamp((vh - sr.top) / (vh * 0.9), 0, 1);
-      var inset = window.innerWidth < 600 ? 5 : 10;
-      showcase.style.setProperty("--sc-x", ((1 - sp) * inset).toFixed(2) + "%");
-      showcase.style.setProperty("--sc-r", (4 + (1 - sp) * 24).toFixed(1) + "px");
-      showcase.style.setProperty("--sc-s", (1.18 - 0.18 * sp).toFixed(3));
+    if (heroMedia) {
+      var hr0 = heroMedia.parentElement.getBoundingClientRect();
+      var hp0 = clamp(-hr0.top / hr0.height, 0, 1);
+      heroMedia.style.transform = "translate3d(0," + (hp0 * 22).toFixed(2) + "%,0)";
+      if (heroInner) {
+        heroInner.style.transform = "translate3d(0," + (hp0 * -60).toFixed(1) + "px,0)";
+        heroInner.style.opacity = (1 - hp0 * 1.3).toFixed(3);
+      }
     }
 
     kineticRows.forEach(function (row) {
@@ -294,80 +393,20 @@
   window.addEventListener("load", function () { layoutHScroll(); requestScrollUpdate(); });
   layoutHScroll();
 
+  // ---------- sample-site mockups: scale the 1440px iframe to fit ----------
+  var mockScreens = document.querySelectorAll(".mock-screen");
+  function fitMock(screen) {
+    screen.style.setProperty("--mock-s", (screen.clientWidth / 1440).toFixed(4));
+  }
+  mockScreens.forEach(fitMock);
+  if ("ResizeObserver" in window) {
+    var mockRO = new ResizeObserver(function (entries) {
+      entries.forEach(function (entry) { fitMock(entry.target); });
+    });
+    mockScreens.forEach(function (s) { mockRO.observe(s); });
+  }
+
   // ---------- language init (after effects are wired) ----------
   setLang(getStore(localStorage, LANG_KEY) || "en");
 
-  // ---------- service hover preview ----------
-  var preview = document.querySelector(".svc-preview");
-  if (preview && finePointer && !reduce) {
-    var pImg = preview.querySelector("img");
-    var pX = 0, pY = 0, tX = 0, tY = 0;
-    document.querySelectorAll(".svc-row[data-img]").forEach(function (row) {
-      var src = row.getAttribute("data-img");
-      new Image().src = src;
-      row.addEventListener("mouseenter", function () {
-        pImg.src = src;
-        preview.classList.add("is-on");
-      });
-      row.addEventListener("mouseleave", function () { preview.classList.remove("is-on"); });
-    });
-    window.addEventListener("mousemove", function (e) { tX = e.clientX; tY = e.clientY; });
-    var previewLoop = function () {
-      pX += (tX - pX) * 0.12;
-      pY += (tY - pY) * 0.12;
-      preview.style.left = pX.toFixed(1) + "px";
-      preview.style.top = pY.toFixed(1) + "px";
-      requestAnimationFrame(previewLoop);
-    };
-    previewLoop();
-  }
-
-  // ---------- custom cursor + magnetic buttons ----------
-  if (finePointer && !reduce) {
-    doc.classList.add("has-cursor");
-    var cursor = document.createElement("div");
-    cursor.className = "cursor";
-    cursor.innerHTML = '<span class="cursor-label">View</span>';
-    body.appendChild(cursor);
-
-    var cX = 0, cY = 0, mX = 0, mY = 0, ready = false;
-    window.addEventListener("mousemove", function (e) {
-      mX = e.clientX;
-      mY = e.clientY;
-      if (!ready) {
-        ready = true;
-        cX = mX;
-        cY = mY;
-        doc.classList.add("cursor-ready");
-      }
-    });
-
-    document.addEventListener("mouseover", function (e) {
-      var t = e.target;
-      cursor.classList.toggle("is-view", !!t.closest("[data-cursor='view']"));
-      cursor.classList.toggle("is-hover", !!t.closest("a, button, summary, label"));
-    });
-
-    var cursorLoop = function () {
-      cX += (mX - cX) * 0.22;
-      cY += (mY - cY) * 0.22;
-      cursor.style.transform = "translate3d(" + cX.toFixed(1) + "px," + cY.toFixed(1) + "px,0)";
-      requestAnimationFrame(cursorLoop);
-    };
-    cursorLoop();
-
-    document.querySelectorAll(".btn-pill, .btn").forEach(function (btn) {
-      btn.addEventListener("mousemove", function (e) {
-        var r = btn.getBoundingClientRect();
-        var dx = e.clientX - r.left - r.width / 2;
-        var dy = e.clientY - r.top - r.height / 2;
-        btn.style.transition = "transform .15s linear";
-        btn.style.transform = "translate(" + (dx * 0.18).toFixed(1) + "px," + (dy * 0.3).toFixed(1) + "px)";
-      });
-      btn.addEventListener("mouseleave", function () {
-        btn.style.transition = "transform .7s cubic-bezier(.16,1,.3,1)";
-        btn.style.transform = "";
-      });
-    });
-  }
 })();
