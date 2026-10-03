@@ -301,7 +301,7 @@
   var heroMedia = document.querySelector(".hero-media");
   var heroInner = document.querySelector(".hero-inner");
   var lightSections = document.querySelectorAll("[data-header='light']");
-  var kineticRows = document.querySelectorAll("[data-kinetic]");
+  var depthEls = document.querySelectorAll("[data-depth]");
   var hscroll = document.querySelector(".hscroll");
   var hTrack = hscroll ? hscroll.querySelector(".hscroll-track") : null;
   var parallaxImgs = document.querySelectorAll("[data-parallax]");
@@ -348,11 +348,11 @@
       }
     }
 
-    kineticRows.forEach(function (row) {
-      var r = row.parentElement.getBoundingClientRect();
-      var speed = parseFloat(row.getAttribute("data-kinetic"));
-      var base = speed < 0 ? 0 : -row.scrollWidth / 3;
-      row.style.transform = "translate3d(" + (base + (vh - r.top) * speed).toFixed(1) + "px,0,0)";
+    depthEls.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var depth = parseFloat(el.getAttribute("data-depth"));
+      el.style.transform = "translate3d(0," + ((r.top + r.height / 2 - vh / 2) * -depth).toFixed(1) + "px,0)";
     });
 
     manifestos.forEach(function (el) {
