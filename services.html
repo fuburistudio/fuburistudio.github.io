@@ -7,55 +7,48 @@
 <meta name="description" content="What FUBURI Studio includes, our three simple pricing plans, and how the process works from inquiry to launch.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&family=Nunito:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Caveat:wght@600;700&family=Yomogi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page-sub page-services">
 
-<div class="page-loader" aria-hidden="true">
-  <span class="page-loader-mark">FUBURI</span>
+<div class="loader" aria-hidden="true">
+  <div class="loader-word"><span>FUBURI</span></div>
+  <div class="loader-count"><span class="loader-num">000</span></div>
 </div>
-<noscript><style>.page-loader{display:none!important;}</style></noscript>
+<noscript><style>.loader{display:none!important}.line>span,.fade-in{transform:none!important;opacity:1!important}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 
 <div class="scroll-progress" aria-hidden="true"></div>
 
-<header>
-  <div class="wrap nav">
-    <a href="index.html" class="logo"><span class="mark">FUBURI</span> Studio</a>
-    <nav class="nav-inline">
-      <a href="index.html" data-lang="en" hidden>Home</a><a href="index.html" data-lang="ja" hidden>ホーム</a>
-      <a href="services.html" data-lang="en" hidden>Services</a><a href="services.html" data-lang="ja" hidden>サービス</a>
-      <a href="works.html" data-lang="en" hidden>Works</a><a href="works.html" data-lang="ja" hidden>実績</a>
-      <a href="about.html" data-lang="en" hidden>About</a><a href="about.html" data-lang="ja" hidden>代表紹介</a>
-    </nav>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <button type="button" data-lang-btn="en">EN</button>
-        <button type="button" data-lang-btn="ja">日本語</button>
-      </div>
-      <a href="contact.html" class="btn btn-primary nav-cta" data-lang="en" hidden>Contact</a>
-      <a href="contact.html" class="btn btn-primary nav-cta" data-lang="ja" hidden>お問い合わせ</a>
-      <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navDrawer">
-        <span></span><span></span>
-      </button>
+<header class="site-header">
+  <a href="index.html" class="brand">FUBURI<sup>&reg;</sup><span>Studio</span></a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="services.html"><i>01</i><span data-lang="en" hidden>Services</span><span data-lang="ja" hidden>サービス</span></a>
+    <a href="works.html"><i>02</i><span data-lang="en" hidden>Works</span><span data-lang="ja" hidden>実績</span></a>
+    <a href="about.html"><i>03</i><span data-lang="en" hidden>About</span><span data-lang="ja" hidden>代表紹介</span></a>
+    <a href="contact.html"><i>04</i><span data-lang="en" hidden>Contact</span><span data-lang="ja" hidden>お問い合わせ</span></a>
+  </nav>
+  <div class="header-tools">
+    <div class="lang-toggle">
+      <button type="button" data-lang-btn="en">EN</button><span>/</span><button type="button" data-lang-btn="ja">JA</button>
     </div>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu"><span data-lang="en" hidden>Menu</span><span data-lang="ja" hidden>メニュー</span></button>
   </div>
 </header>
 
-<div class="nav-overlay"></div>
-<nav class="nav-drawer" id="navDrawer" aria-hidden="true">
-  <ul class="nav-links">
-    <li><a href="index.html" data-lang="en" hidden>Home</a><a href="index.html" data-lang="ja" hidden>ホーム</a></li>
-    <li><a href="services.html" data-lang="en" hidden>Services</a><a href="services.html" data-lang="ja" hidden>サービス</a></li>
-    <li><a href="works.html" data-lang="en" hidden>Works</a><a href="works.html" data-lang="ja" hidden>実績</a></li>
-    <li><a href="about.html" data-lang="en" hidden>About</a><a href="about.html" data-lang="ja" hidden>代表紹介</a></li>
-    <li><a href="contact.html" data-lang="en" hidden>Contact</a><a href="contact.html" data-lang="ja" hidden>お問い合わせ</a></li>
-  </ul>
-  <div class="nav-drawer-foot">
-    <a href="contact.html" class="btn btn-primary" data-lang="en" hidden>Get in touch</a>
-    <a href="contact.html" class="btn btn-primary" data-lang="ja" hidden>お問い合わせ</a>
+<div class="menu" id="menu" aria-hidden="true">
+  <nav class="menu-links" aria-label="Menu">
+    <a href="index.html"><i>00</i><span><span data-lang="en" hidden>Home</span><span data-lang="ja" hidden>ホーム</span></span></a>
+    <a href="services.html"><i>01</i><span><span data-lang="en" hidden>Services</span><span data-lang="ja" hidden>サービス</span></span></a>
+    <a href="works.html"><i>02</i><span><span data-lang="en" hidden>Works</span><span data-lang="ja" hidden>実績</span></span></a>
+    <a href="about.html"><i>03</i><span><span data-lang="en" hidden>About</span><span data-lang="ja" hidden>代表紹介</span></span></a>
+    <a href="contact.html"><i>04</i><span><span data-lang="en" hidden>Contact</span><span data-lang="ja" hidden>お問い合わせ</span></span></a>
+  </nav>
+  <div class="menu-foot">
+    <a href="mailto:hello@fuburi-studio.example">hello@fuburi-studio.example</a>
+    <span>Singapore &mdash; Worldwide</span>
   </div>
-</nav>
+</div>
 
 <main id="top">
 
@@ -64,7 +57,7 @@
       <span class="eyebrow" data-lang="en" hidden>Services &amp; pricing</span>
       <span class="eyebrow" data-lang="ja" hidden>サービス・料金</span>
       <h1 data-lang="en" hidden>Everything your shop needs online</h1>
-      <h1 data-lang="ja" hidden>お店に必要なホームページを、まるごと</h1>
+      <h1 data-lang="ja" hidden>お店に必要な<br>ホームページを、<br>まるごと。</h1>
     </div>
   </section>
 
@@ -258,19 +251,38 @@
 
 </main>
 
-<a href="contact.html" class="bottom-cta" id="bottomCta">
-  <span data-lang="en" hidden>Let's talk</span>
-  <span data-lang="ja" hidden>ご相談はこちら</span>
-  <span class="bottom-cta-arrow" aria-hidden="true">→</span>
-</a>
-
-<footer>
+<footer class="site-footer">
   <div class="wrap">
-    <span data-lang="en" hidden>&copy; 2026 FUBURI Studio. All rights reserved.</span>
-    <span data-lang="ja" hidden>&copy; 2026 ふぶりスタジオ. All rights reserved.</span>
+    <div class="foot-hero">
+      <p class="label">(Contact)</p>
+      <h2 class="foot-cta">
+        <span data-lang="en" hidden>Have a shop?<br><em>Let&rsquo;s talk.</em></span>
+        <span data-lang="ja" hidden>お店のこと、<br><em>話しましょう。</em></span>
+      </h2>
+    </div>
+    <div class="foot-grid">
+      <a class="foot-mail" href="mailto:hello@fuburi-studio.example">hello@fuburi-studio.example &nearr;</a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="services.html"><span data-lang="en" hidden>Services</span><span data-lang="ja" hidden>サービス</span></a>
+        <a href="works.html"><span data-lang="en" hidden>Works</span><span data-lang="ja" hidden>実績</span></a>
+        <a href="about.html"><span data-lang="en" hidden>About</span><span data-lang="ja" hidden>代表紹介</span></a>
+        <a href="contact.html"><span data-lang="en" hidden>Contact</span><span data-lang="ja" hidden>お問い合わせ</span></a>
+      </nav>
+      <div class="foot-social">
+        <a href="https://wa.me/00000000000" target="_blank" rel="noopener">WhatsApp &nearr;</a>
+        <a href="#top"><span data-lang="en" hidden>Back to top &uarr;</span><span data-lang="ja" hidden>トップへ戻る &uarr;</span></a>
+      </div>
+    </div>
   </div>
+  <div class="wrap foot-bottom">
+    <span>&copy; 2026 FUBURI Studio</span>
+    <span>Singapore &mdash; Worldwide</span>
+    <span data-clock>SGT --:--</span>
+  </div>
+  <div class="foot-word" aria-hidden="true">FUBURI</div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -7,289 +7,293 @@
 <meta name="description" content="FUBURI Studio designs and builds simple, beautiful websites for independent restaurants, salons and shops — at a price small businesses can actually afford.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@500;700;900&family=Nunito:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700&family=Caveat:wght@600;700&family=Yomogi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page-home">
 
-<div class="page-loader" aria-hidden="true">
-  <span class="page-loader-mark">FUBURI</span>
+<div class="loader" aria-hidden="true">
+  <div class="loader-word"><span>FUBURI</span></div>
+  <div class="loader-count"><span class="loader-num">000</span></div>
 </div>
-<noscript><style>.page-loader{display:none!important;}</style></noscript>
+<noscript><style>.loader{display:none!important}.line>span,.fade-in{transform:none!important;opacity:1!important}.reveal{opacity:1!important;transform:none!important}</style></noscript>
 
 <div class="scroll-progress" aria-hidden="true"></div>
 
-<header>
-  <div class="wrap nav">
-    <a href="index.html" class="logo"><span class="mark">FUBURI</span> Studio</a>
-    <nav class="nav-inline">
-      <a href="index.html" data-lang="en" hidden>Home</a><a href="index.html" data-lang="ja" hidden>ホーム</a>
-      <a href="services.html" data-lang="en" hidden>Services</a><a href="services.html" data-lang="ja" hidden>サービス</a>
-      <a href="works.html" data-lang="en" hidden>Works</a><a href="works.html" data-lang="ja" hidden>実績</a>
-      <a href="about.html" data-lang="en" hidden>About</a><a href="about.html" data-lang="ja" hidden>代表紹介</a>
-    </nav>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <button type="button" data-lang-btn="en">EN</button>
-        <button type="button" data-lang-btn="ja">日本語</button>
-      </div>
-      <a href="contact.html" class="btn btn-primary nav-cta" data-lang="en" hidden>Contact</a>
-      <a href="contact.html" class="btn btn-primary nav-cta" data-lang="ja" hidden>お問い合わせ</a>
-      <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navDrawer">
-        <span></span><span></span>
-      </button>
+<header class="site-header">
+  <a href="index.html" class="brand">FUBURI<sup>&reg;</sup><span>Studio</span></a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="services.html"><i>01</i><span data-lang="en" hidden>Services</span><span data-lang="ja" hidden>サービス</span></a>
+    <a href="works.html"><i>02</i><span data-lang="en" hidden>Works</span><span data-lang="ja" hidden>実績</span></a>
+    <a href="about.html"><i>03</i><span data-lang="en" hidden>About</span><span data-lang="ja" hidden>代表紹介</span></a>
+    <a href="contact.html"><i>04</i><span data-lang="en" hidden>Contact</span><span data-lang="ja" hidden>お問い合わせ</span></a>
+  </nav>
+  <div class="header-tools">
+    <div class="lang-toggle">
+      <button type="button" data-lang-btn="en">EN</button><span>/</span><button type="button" data-lang-btn="ja">JA</button>
     </div>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu"><span data-lang="en" hidden>Menu</span><span data-lang="ja" hidden>メニュー</span></button>
   </div>
 </header>
 
-<div class="nav-overlay"></div>
-<nav class="nav-drawer" id="navDrawer" aria-hidden="true">
-  <ul class="nav-links">
-    <li><a href="index.html" data-lang="en" hidden>Home</a><a href="index.html" data-lang="ja" hidden>ホーム</a></li>
-    <li><a href="services.html" data-lang="en" hidden>Services</a><a href="services.html" data-lang="ja" hidden>サービス</a></li>
-    <li><a href="works.html" data-lang="en" hidden>Works</a><a href="works.html" data-lang="ja" hidden>実績</a></li>
-    <li><a href="about.html" data-lang="en" hidden>About</a><a href="about.html" data-lang="ja" hidden>代表紹介</a></li>
-    <li><a href="contact.html" data-lang="en" hidden>Contact</a><a href="contact.html" data-lang="ja" hidden>お問い合わせ</a></li>
-  </ul>
-  <div class="nav-drawer-foot">
-    <a href="contact.html" class="btn btn-primary" data-lang="en" hidden>Get in touch</a>
-    <a href="contact.html" class="btn btn-primary" data-lang="ja" hidden>お問い合わせ</a>
+<div class="menu" id="menu" aria-hidden="true">
+  <nav class="menu-links" aria-label="Menu">
+    <a href="index.html"><i>00</i><span><span data-lang="en" hidden>Home</span><span data-lang="ja" hidden>ホーム</span></span></a>
+    <a href="services.html"><i>01</i><span><span data-lang="en" hidden>Services</span><span data-lang="ja" hidden>サービス</span></span></a>
+    <a href="works.html"><i>02</i><span><span data-lang="en" hidden>Works</span><span data-lang="ja" hidden>実績</span></span></a>
+    <a href="about.html"><i>03</i><span><span data-lang="en" hidden>About</span><span data-lang="ja" hidden>代表紹介</span></span></a>
+    <a href="contact.html"><i>04</i><span><span data-lang="en" hidden>Contact</span><span data-lang="ja" hidden>お問い合わせ</span></span></a>
+  </nav>
+  <div class="menu-foot">
+    <a href="mailto:hello@fuburi-studio.example">hello@fuburi-studio.example</a>
+    <span>Singapore &mdash; Worldwide</span>
   </div>
-</nav>
+</div>
 
 <main id="top">
 
   <!-- ===================== HERO ===================== -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-content">
-        <span class="eyebrow" data-lang="en" hidden>Web design for independent shops</span>
-        <span class="eyebrow" data-lang="ja" hidden>個人店のためのホームページ制作</span>
+      <div class="hero-top mono fade-in">
+        <span>(FUBURI Studio)</span>
+        <span data-lang="en" hidden>Web design for independent shops</span><span data-lang="ja" hidden>個人店のためのホームページ制作</span>
+        <span data-clock>SGT --:--</span>
+      </div>
 
-        <h1 data-lang="en" hidden>A website your shop can be <span class="accent">proud of.</span></h1>
-        <h1 data-lang="ja" hidden>あなたのお店に、<br><span class="accent">ふさわしい</span>ホームページを。</h1>
+      <h1 class="hero-title" data-lang="en" hidden>
+        <span class="line"><span>A website</span></span>
+        <span class="line"><span>your shop can be</span></span>
+        <span class="line"><span><em>proud of.</em></span></span>
+      </h1>
+      <h1 class="hero-title hero-title--ja" data-lang="ja" hidden>
+        <span class="line"><span>あなたのお店に、</span></span>
+        <span class="line"><span><em>ふさわしい</em><br class="sp">ホームページを。</span></span>
+      </h1>
 
-        <p class="lede" data-lang="en" hidden>FUBURI Studio designs and builds simple, good-looking websites for restaurants, salons, clinics and other independent shops — at a price that actually makes sense for a small business.</p>
-        <p class="lede" data-lang="ja" hidden>ふぶりスタジオは、飲食店・美容室・整体院など個人店のための、シンプルで見栄えのするホームページを制作します。個人店でも申し込みやすい、手頃な価格で。</p>
-
+      <div class="hero-bottom fade-in">
+        <p class="hero-lede" data-lang="en" hidden>FUBURI Studio designs and builds websites for restaurants, salons, clinics and other independent shops &mdash; at a price that makes sense for a small business.</p>
+        <p class="hero-lede" data-lang="ja" hidden>飲食店・美容室・整体院など、個人店のためのホームページをデザインし、制作します。個人店でも申し込みやすい、わかりやすい価格で。</p>
         <div class="hero-cta">
-          <a href="contact.html" class="btn btn-primary" data-lang="en" hidden>Get in touch</a>
-          <a href="contact.html" class="btn btn-primary" data-lang="ja" hidden>お問い合わせ</a>
-          <a href="services.html#pricing" class="btn btn-outline" data-lang="en" hidden>See pricing</a>
-          <a href="services.html#pricing" class="btn btn-outline" data-lang="ja" hidden>料金を見る</a>
+          <a href="contact.html" class="btn-pill">
+            <span data-lang="en" hidden>Start a project</span><span data-lang="ja" hidden>相談してみる</span>
+            <span class="arr" aria-hidden="true">&nearr;</span>
+          </a>
         </div>
+        <ul class="hero-meta mono">
+          <li data-lang="en" hidden>3 plans &mdash; from &yen;50,000</li><li data-lang="ja" hidden>3プラン &mdash; &yen;50,000〜</li>
+          <li data-lang="en" hidden>~1 month to launch</li><li data-lang="ja" hidden>約1か月で公開</li>
+          <li data-lang="en" hidden>Free revisions after launch</li><li data-lang="ja" hidden>公開後の修正無料</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-        <div class="trust-row">
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"/></svg>
-            </span>
-            <div class="trust-text">
-              <strong><span class="count-num" data-count-to="3">3</span></strong>
-              <span data-lang="en" hidden>simple plans, from ¥50,000</span><span data-lang="ja" hidden>プラン展開、¥50,000〜</span>
-            </div>
-          </div>
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-            </span>
-            <div class="trust-text">
-              <strong><span class="count-num" data-count-to="1">1</span> <span data-lang="en" hidden>month</span><span data-lang="ja" hidden>か月</span></strong>
-              <span data-lang="en" hidden>average turnaround</span><span data-lang="ja" hidden>制作期間の目安</span>
-            </div>
-          </div>
-          <div class="trust-item">
-            <span class="trust-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
-            </span>
-            <div class="trust-text">
-              <strong data-lang="en" hidden>Free</strong><strong data-lang="ja" hidden>無料</strong>
-              <span data-lang="en" hidden>revisions after launch</span><span data-lang="ja" hidden>公開後の修正</span>
-            </div>
-          </div>
-        </div>
+  <!-- ===================== SHOWCASE ===================== -->
+  <section class="showcase">
+    <div class="showcase-frame">
+      <img src="images/contact-bg.jpg" alt="A shop owner opening the door of a small grocery store in the morning">
+      <div class="showcase-cap mono">
+        <span data-lang="en" hidden>(Fig. 01) Every shop has a story worth telling.</span><span data-lang="ja" hidden>(Fig. 01) どのお店にも、伝える価値のある物語がある。</span>
+        <span>Scroll &darr;</span>
       </div>
     </div>
   </section>
 
   <!-- ===================== KINETIC TYPE ===================== -->
   <section class="kinetic" aria-hidden="true">
-    <div class="kinetic-row" data-kinetic="-0.35">Websites&nbsp;for&nbsp;independent&nbsp;shops&nbsp;—&nbsp;Websites&nbsp;for&nbsp;independent&nbsp;shops&nbsp;—</div>
-    <div class="kinetic-row kinetic-row--outline" data-kinetic="0.35">Made&nbsp;with&nbsp;care&nbsp;✦&nbsp;Made&nbsp;with&nbsp;care&nbsp;✦&nbsp;Made&nbsp;with&nbsp;care&nbsp;✦</div>
+    <div class="kinetic-row" data-kinetic="-0.4">Websites for independent shops &mdash; Websites for independent shops &mdash;</div>
+    <div class="kinetic-row kinetic-row--serif" data-kinetic="0.4">made with care &mdash; made with care &mdash; made with care &mdash;</div>
   </section>
 
-  <!-- ===================== SERVICES (bento) ===================== -->
-  <section>
+  <!-- ===================== MANIFESTO ===================== -->
+  <section class="manifesto">
+    <div class="wrap grid">
+      <p class="label">(01) &mdash; <span data-lang="en" hidden>About us</span><span data-lang="ja" hidden>わたしたちについて</span></p>
+      <p class="manifesto-text" data-lang="en" hidden>We design and build websites for restaurants, salons, clinics and boutiques &mdash; the shops that make a neighbourhood worth living in. Simple to start, honest in price, and made to be proud of.</p>
+      <p class="manifesto-text" data-lang="ja" hidden>飲食店、美容室、整体院、雑貨店。街をおもしろくしている個人店のために、ホームページをデザインし、つくっています。始めやすく、わかりやすい価格で、誇れるものを。</p>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section class="services">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow" data-lang="en" hidden>What we do</span>
-        <span class="eyebrow" data-lang="ja" hidden>サービス内容</span>
-        <h2 data-lang="en" hidden>Everything your shop needs online</h2>
-        <h2 data-lang="ja" hidden>お店に必要なホームページを、まるごと</h2>
-        <p data-lang="en" hidden>From the first sketch to the words on the page, we handle the whole website so you can get back to running your shop.</p>
-        <p data-lang="ja" hidden>デザインから掲載する文章まで、ホームページ制作をまるごとお任せください。あなたはお店の仕事に集中できます。</p>
+      <div class="sec-head reveal">
+        <p class="label">(02) &mdash; <span data-lang="en" hidden>Services</span><span data-lang="ja" hidden>サービス</span></p>
+        <h2 class="sec-title"><span data-lang="en" hidden>What we <em>make</em></span><span data-lang="ja" hidden>できること</span></h2>
       </div>
 
-      <div class="bento">
-        <div class="bento-tile bento-photo reveal">
-          <img src="images/who-flowershop.jpg" alt="" loading="lazy">
-          <div class="bento-photo-text">
-            <span class="bento-label" data-lang="en" hidden>01 / Design</span><span class="bento-label" data-lang="ja" hidden>01 / デザイン</span>
-            <h3 data-lang="en" hidden>Designed around your shop — never a template.</h3>
-            <h3 data-lang="ja" hidden>テンプレートではなく、<br>お店に合わせたオリジナル。</h3>
-          </div>
-        </div>
+      <ul class="svc-list">
+        <li><a href="services.html" class="svc-row" data-img="images/who-flowershop.jpg" data-cursor="view">
+          <span class="svc-num mono">01</span>
+          <span class="svc-title"><span data-lang="en" hidden>Design &amp; build</span><span data-lang="ja" hidden>オリジナル制作</span></span>
+          <span class="svc-desc"><span data-lang="en" hidden>A site shaped around your shop &mdash; never a template.</span><span data-lang="ja" hidden>テンプレートではなく、お店に合わせたデザイン。</span></span>
+          <span class="svc-arrow" aria-hidden="true">&nearr;</span>
+        </a></li>
+        <li><a href="services.html" class="svc-row" data-img="images/about-accent.jpg" data-cursor="view">
+          <span class="svc-num mono">02</span>
+          <span class="svc-title"><span data-lang="en" hidden>Copywriting</span><span data-lang="ja" hidden>文章づくり</span></span>
+          <span class="svc-desc"><span data-lang="en" hidden>Catch copy and shop intro, written for you.</span><span data-lang="ja" hidden>キャッチコピーや紹介文もおまかせ。</span></span>
+          <span class="svc-arrow" aria-hidden="true">&nearr;</span>
+        </a></li>
+        <li><a href="services.html" class="svc-row" data-img="images/who-tour.jpg" data-cursor="view">
+          <span class="svc-num mono">03</span>
+          <span class="svc-title"><span data-lang="en" hidden>Bilingual sites</span><span data-lang="ja" hidden>多言語対応</span></span>
+          <span class="svc-desc"><span data-lang="en" hidden>Reach customers beyond your own language.</span><span data-lang="ja" hidden>海外のお客様にも届くサイトに。</span></span>
+          <span class="svc-arrow" aria-hidden="true">&nearr;</span>
+        </a></li>
+        <li><a href="services.html" class="svc-row" data-img="images/who-spa.jpg" data-cursor="view">
+          <span class="svc-num mono">04</span>
+          <span class="svc-title"><span data-lang="en" hidden>Domain &amp; hosting</span><span data-lang="ja" hidden>公開サポート</span></span>
+          <span class="svc-desc"><span data-lang="en" hidden>We help you get your domain and hosting set up.</span><span data-lang="ja" hidden>ドメイン・サーバーの取得もサポート。</span></span>
+          <span class="svc-arrow" aria-hidden="true">&nearr;</span>
+        </a></li>
+      </ul>
+      <div class="svc-more">
+        <a href="services.html#pricing" class="link-arrow"><span data-lang="en" hidden>Services &amp; pricing</span><span data-lang="ja" hidden>サービスと料金を見る</span> &nearr;</a>
+      </div>
+    </div>
+    <div class="svc-preview" aria-hidden="true"><img src="images/who-flowershop.jpg" alt=""></div>
+  </section>
 
-        <div class="bento-tile bento-copy reveal">
-          <span class="bento-label" data-lang="en" hidden>02 / Copy</span><span class="bento-label" data-lang="ja" hidden>02 / 文章</span>
-          <h3 data-lang="en" hidden>Copywriting included</h3>
-          <h3 data-lang="ja" hidden>文章づくりもおまかせ</h3>
-          <p data-lang="en" hidden>Catch copy and shop intro, written for you.</p>
-          <p data-lang="ja" hidden>キャッチコピーや紹介文も制作します。</p>
+  <!-- ===================== NUMBERS ===================== -->
+  <section class="numbers">
+    <div class="wrap">
+      <p class="label">(03) &mdash; <span data-lang="en" hidden>In numbers</span><span data-lang="ja" hidden>数字で見る</span></p>
+      <div class="num-grid reveal">
+        <div class="num-cell">
+          <span class="num-big"><span class="count-num" data-count-to="3">3</span></span>
+          <span class="num-cap mono"><span data-lang="en" hidden>Plans, from &yen;50,000</span><span data-lang="ja" hidden>プラン展開、&yen;50,000〜</span></span>
         </div>
-
-        <div class="bento-tile bento-price reveal">
-          <span class="bento-label" data-lang="en" hidden>From</span><span class="bento-label" data-lang="ja" hidden>料金</span>
-          <div class="bento-big">¥50,000<small data-lang="ja" hidden>〜</small><small data-lang="en" hidden>+</small></div>
-          <p data-lang="en" hidden>3 simple plans</p>
-          <p data-lang="ja" hidden>わかりやすい3プラン</p>
+        <div class="num-cell">
+          <span class="num-big"><span class="count-num" data-count-to="1">1</span><small data-lang="en" hidden>month</small><small data-lang="ja" hidden>か月</small></span>
+          <span class="num-cap mono"><span data-lang="en" hidden>Average time to launch</span><span data-lang="ja" hidden>制作期間の目安</span></span>
         </div>
-
-        <div class="bento-tile bento-lang reveal">
-          <span class="bento-label" data-lang="en" hidden>03 / Bilingual</span><span class="bento-label" data-lang="ja" hidden>03 / 多言語</span>
-          <div class="bento-lang-pair"><span>EN</span><i>⇄</i><span>日本語</span></div>
-          <p data-lang="en" hidden>Reach customers beyond your own language.</p>
-          <p data-lang="ja" hidden>海外のお客様にも届くサイトに。</p>
+        <div class="num-cell">
+          <span class="num-big num-big--serif" data-lang="en" hidden>Free</span><span class="num-big num-big--serif" data-lang="ja" hidden>無料</span>
+          <span class="num-cap mono"><span data-lang="en" hidden>Revisions after launch</span><span data-lang="ja" hidden>公開後の修正</span></span>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="bento-tile bento-domain reveal">
-          <span class="bento-label" data-lang="en" hidden>04 / Setup</span><span class="bento-label" data-lang="ja" hidden>04 / 公開準備</span>
-          <h3 data-lang="en" hidden>Domain &amp; hosting help</h3>
-          <h3 data-lang="ja" hidden>ドメイン・サーバーもサポート</h3>
-        </div>
-
-        <div class="bento-tile bento-dark reveal">
-          <span class="bento-label" data-lang="en" hidden>Turnaround</span><span class="bento-label" data-lang="ja" hidden>制作期間</span>
-          <div class="bento-big"><span data-lang="en" hidden>~1 month</span><span data-lang="ja" hidden>約1か月</span></div>
-          <p data-lang="en" hidden>First draft in 2 weeks, then we refine together.</p>
-          <p data-lang="ja" hidden>約2週間で初稿、その後一緒に仕上げます。</p>
-        </div>
-
-        <a href="services.html" class="bento-tile bento-link reveal">
-          <span data-lang="en" hidden>See all services</span><span data-lang="ja" hidden>サービス詳細へ</span>
-          <span class="bento-arrow" aria-hidden="true">→</span>
-        </a>
+  <!-- ===================== PROCESS (pinned horizontal) ===================== -->
+  <section class="hscroll" id="process">
+    <div class="hscroll-sticky">
+      <div class="wrap hscroll-head">
+        <h2 class="hscroll-title"><span data-lang="en" hidden>From hello to <em>launch</em></span><span data-lang="ja" hidden>相談から<em>公開</em>まで</span></h2>
+        <p class="label">(04) &mdash; <span data-lang="en" hidden>How it works</span><span data-lang="ja" hidden>制作の流れ</span></p>
+      </div>
+      <div class="hscroll-track">
+        <article class="step">
+          <span class="step-num">01</span>
+          <div><h3><span data-lang="en" hidden>Inquiry</span><span data-lang="ja" hidden>お問い合わせ</span></h3><p><span data-lang="en" hidden>Message us by email or WhatsApp and tell us about your shop.</span><span data-lang="ja" hidden>メールまたはWhatsAppで、お店のことを気軽にお聞かせください。</span></p></div>
+        </article>
+        <article class="step">
+          <span class="step-num">02</span>
+          <div><h3><span data-lang="en" hidden>Consultation</span><span data-lang="ja" hidden>ご相談</span></h3><p><span data-lang="en" hidden>We talk through your goals and find the right plan.</span><span data-lang="ja" hidden>ご要望やゴールを伺い、最適なプランをご提案します。</span></p></div>
+        </article>
+        <article class="step">
+          <span class="step-num">03</span>
+          <div><h3><span data-lang="en" hidden>First draft</span><span data-lang="ja" hidden>初期納品</span></h3><p><span data-lang="en" hidden>You see a first draft of your site within about 2 weeks.</span><span data-lang="ja" hidden>約2週間で、初期デザインをお届けします。</span></p></div>
+        </article>
+        <article class="step">
+          <span class="step-num">04</span>
+          <div><h3><span data-lang="en" hidden>Revisions</span><span data-lang="ja" hidden>調整・修正</span></h3><p><span data-lang="en" hidden>We refine the details together until it feels right.</span><span data-lang="ja" hidden>細部まで一緒に確認しながら仕上げます。</span></p></div>
+        </article>
+        <article class="step">
+          <span class="step-num">05</span>
+          <div><h3><span data-lang="en" hidden>Launch</span><span data-lang="ja" hidden>公開</span></h3><p><span data-lang="en" hidden>Your site goes live &mdash; and free revisions continue.</span><span data-lang="ja" hidden>ホームページを公開。公開後も修正無料期間が続きます。</span></p></div>
+        </article>
+        <article class="step step--end">
+          <p><span data-lang="en" hidden>About one month, start to finish.</span><span data-lang="ja" hidden>お申込みから、約1か月で公開。</span></p>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- ===================== WHO WE HELP ===================== -->
-  <section class="who-band">
+  <section class="who">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow" data-lang="en" hidden>Who we help</span>
-        <span class="eyebrow" data-lang="ja" hidden>こんなお店にぴったり</span>
-        <h2 data-lang="en" hidden>Made for shops like yours</h2>
-        <h2 data-lang="ja" hidden>こんな個人店様におすすめです</h2>
-      </div>
-      <div class="who-grid">
-        <div class="who-chip reveal"><span class="who-photo"><img src="images/who-cafe.jpg" alt=""></span><span data-lang="en" hidden>Restaurants &amp; cafés</span><span data-lang="ja" hidden>飲食店・カフェ</span></div>
-        <div class="who-chip reveal"><span class="who-photo"><img src="images/who-salon.jpg" alt=""></span><span data-lang="en" hidden>Hair &amp; beauty salons</span><span data-lang="ja" hidden>美容室・サロン</span></div>
-        <div class="who-chip reveal"><span class="who-photo"><img src="images/who-spa.jpg" alt=""></span><span data-lang="en" hidden>Clinics &amp; wellness</span><span data-lang="ja" hidden>整体院・クリニック</span></div>
-        <div class="who-chip reveal"><span class="who-photo"><img src="images/who-boutique.jpg" alt=""></span><span data-lang="en" hidden>Boutiques &amp; shops</span><span data-lang="ja" hidden>雑貨店・ブティック</span></div>
-        <div class="who-chip reveal"><span class="who-photo"><img src="images/who-tour.jpg" alt=""></span><span data-lang="en" hidden>Tours &amp; experiences</span><span data-lang="ja" hidden>ツアー・体験ガイド</span></div>
-      </div>
+      <p class="label">(05) &mdash; <span data-lang="en" hidden>Who we help</span><span data-lang="ja" hidden>こんなお店に</span></p>
+      <ul class="who-list reveal">
+        <li><span data-lang="en" hidden>Restaurants</span><span data-lang="ja" hidden>飲食店</span><span class="who-thumb"><img src="images/who-cafe.jpg" alt=""></span></li>
+        <li><span data-lang="en" hidden>Salons</span><span data-lang="ja" hidden>美容室</span><span class="who-thumb"><img src="images/who-salon.jpg" alt=""></span></li>
+        <li><span data-lang="en" hidden>Clinics</span><span data-lang="ja" hidden>整体院</span><span class="who-thumb"><img src="images/who-spa.jpg" alt=""></span></li>
+        <li><span data-lang="en" hidden>Boutiques</span><span data-lang="ja" hidden>雑貨店</span><span class="who-thumb"><img src="images/who-boutique.jpg" alt=""></span></li>
+        <li><span data-lang="en" hidden>Tours &amp; experiences</span><span data-lang="ja" hidden>ツアー・体験ガイド</span><span class="who-thumb"><img src="images/who-tour.jpg" alt=""></span></li>
+      </ul>
     </div>
   </section>
 
   <!-- ===================== MARQUEE ===================== -->
-  <section class="marquee-section">
+  <section class="marquee-section" aria-hidden="true">
     <div class="marquee">
       <div class="marquee-inner" data-lang="en" hidden>
-        <span class="marquee-group"><span>Restaurants <i>✦</i> Cafés <i>✦</i> Salons <i>✦</i> Clinics <i>✦</i> Boutiques <i>✦</i> Tours <i>✦</i> </span></span>
-        <span class="marquee-group" aria-hidden="true"><span>Restaurants <i>✦</i> Cafés <i>✦</i> Salons <i>✦</i> Clinics <i>✦</i> Boutiques <i>✦</i> Tours <i>✦</i> </span></span>
+        <span class="marquee-group"><span>Restaurants <i>✦</i> Cafés <i>✦</i> Salons <i>✦</i> Clinics <i>✦</i> Boutiques <i>✦</i> Tours <i>✦</i></span></span>
+        <span class="marquee-group"><span>Restaurants <i>✦</i> Cafés <i>✦</i> Salons <i>✦</i> Clinics <i>✦</i> Boutiques <i>✦</i> Tours <i>✦</i></span></span>
       </div>
       <div class="marquee-inner" data-lang="ja" hidden>
-        <span class="marquee-group"><span>飲食店 <i>✦</i> カフェ <i>✦</i> 美容室 <i>✦</i> 整体院 <i>✦</i> 雑貨店 <i>✦</i> ツアー <i>✦</i> </span></span>
-        <span class="marquee-group" aria-hidden="true"><span>飲食店 <i>✦</i> カフェ <i>✦</i> 美容室 <i>✦</i> 整体院 <i>✦</i> 雑貨店 <i>✦</i> ツアー <i>✦</i> </span></span>
+        <span class="marquee-group"><span>飲食店 <i>✦</i> カフェ <i>✦</i> 美容室 <i>✦</i> 整体院 <i>✦</i> 雑貨店 <i>✦</i> ツアー <i>✦</i></span></span>
+        <span class="marquee-group"><span>飲食店 <i>✦</i> カフェ <i>✦</i> 美容室 <i>✦</i> 整体院 <i>✦</i> 雑貨店 <i>✦</i> ツアー <i>✦</i></span></span>
       </div>
     </div>
   </section>
 
-  <!-- ===================== EXPLORE ===================== -->
-  <section class="bg-alt">
+  <!-- ===================== SELECTED WORK ===================== -->
+  <section class="work">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow" data-lang="en" hidden>Explore</span>
-        <span class="eyebrow" data-lang="ja" hidden>もっと見る</span>
-        <h2 data-lang="en" hidden>Take a closer look</h2>
-        <h2 data-lang="ja" hidden>詳しくご覧ください</h2>
+      <div class="sec-head reveal">
+        <p class="label">(06) &mdash; <span data-lang="en" hidden>Selected work</span><span data-lang="ja" hidden>制作実績</span></p>
+        <h2 class="sec-title"><span data-lang="en" hidden>Recent <em>work</em></span><span data-lang="ja" hidden>最近の<em>実績</em></span></h2>
+        <a href="works.html" class="link-arrow"><span data-lang="en" hidden>All works</span><span data-lang="ja" hidden>実績一覧</span> &nearr;</a>
       </div>
-
-      <div class="explore-grid">
-        <a href="services.html#pricing" class="explore-card reveal">
-          <span class="num">01</span>
-          <h3 data-lang="en" hidden>Pricing</h3>
-          <h3 data-lang="ja" hidden>料金</h3>
-          <p data-lang="en" hidden>Three simple plans, from ¥50,000 — see what's included in each.</p>
-          <p data-lang="ja" hidden>¥50,000〜の3プラン。それぞれの内容をご確認ください。</p>
-          <span class="explore-arrow"><span data-lang="en" hidden>View pricing</span><span data-lang="ja" hidden>料金を見る</span> <span>→</span></span>
-        </a>
-        <a href="works.html" class="explore-card reveal">
-          <span class="num">02</span>
-          <h3 data-lang="en" hidden>Works</h3>
-          <h3 data-lang="ja" hidden>実績</h3>
-          <p data-lang="en" hidden>See the kind of sites we build for independent shop owners.</p>
-          <p data-lang="ja" hidden>個人店オーナー様のために制作したホームページをご紹介します。</p>
-          <span class="explore-arrow"><span data-lang="en" hidden>See our work</span><span data-lang="ja" hidden>実績を見る</span> <span>→</span></span>
-        </a>
-        <a href="about.html" class="explore-card reveal">
-          <span class="num">03</span>
-          <h3 data-lang="en" hidden>About</h3>
-          <h3 data-lang="ja" hidden>代表紹介</h3>
-          <p data-lang="en" hidden>Why FUBURI Studio exists, and the story behind it.</p>
-          <p data-lang="ja" hidden>ふぶりスタジオを始めた理由と、その背景をご紹介します。</p>
-          <span class="explore-arrow"><span data-lang="en" hidden>Read more</span><span data-lang="ja" hidden>詳しく見る</span> <span>→</span></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== CONTACT CTA ===================== -->
-  <section id="contact">
-    <div class="wrap">
-      <div class="contact-box reveal">
-        <span class="eyebrow" data-lang="en" hidden>Get in touch</span>
-        <span class="eyebrow" data-lang="ja" hidden>お問い合わせ</span>
-        <h2 data-lang="en" hidden>Let's talk about your shop</h2>
-        <h2 data-lang="ja" hidden>お気軽にご相談ください</h2>
-        <p class="lede" data-lang="en" hidden>Tell us a little about your shop and what you're hoping for — the first conversation is free, no pressure.</p>
-        <p class="lede" data-lang="ja" hidden>お店のことや、ご希望のイメージなどお聞かせください。初回のご相談は無料です。</p>
-
-        <div class="contact-methods">
-          <a class="btn btn-primary" href="contact.html">
-            <span data-lang="en" hidden>Contact us</span><span data-lang="ja" hidden>お問い合わせ</span>
-          </a>
+      <a href="works.html" class="work-feature reveal" data-cursor="view">
+        <div class="work-media"><img src="images/works-emerald-reef.webp" alt="Emerald Reef Okinawa website" data-parallax></div>
+        <div class="work-info">
+          <span class="mono">2026</span>
+          <h3>Emerald Reef Okinawa</h3>
+          <span class="mono"><span data-lang="en" hidden>Tourism &middot; Multilingual &middot; Booking</span><span data-lang="ja" hidden>観光 &middot; 多言語 &middot; 予約導線</span></span>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
 </main>
 
-<a href="contact.html" class="bottom-cta" id="bottomCta">
-  <span data-lang="en" hidden>Let's talk</span>
-  <span data-lang="ja" hidden>ご相談はこちら</span>
-  <span class="bottom-cta-arrow" aria-hidden="true">→</span>
-</a>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
-    <span data-lang="en" hidden>&copy; 2026 FUBURI Studio. All rights reserved.</span>
-    <span data-lang="ja" hidden>&copy; 2026 ふぶりスタジオ. All rights reserved.</span>
+    <div class="foot-hero">
+      <p class="label">(Contact)</p>
+      <h2 class="foot-cta">
+        <span data-lang="en" hidden>Have a shop?<br><em>Let&rsquo;s talk.</em></span>
+        <span data-lang="ja" hidden>お店のこと、<br><em>話しましょう。</em></span>
+      </h2>
+    </div>
+    <div class="foot-grid">
+      <a class="foot-mail" href="mailto:hello@fuburi-studio.example">hello@fuburi-studio.example &nearr;</a>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="services.html"><span data-lang="en" hidden>Services</span><span data-lang="ja" hidden>サービス</span></a>
+        <a href="works.html"><span data-lang="en" hidden>Works</span><span data-lang="ja" hidden>実績</span></a>
+        <a href="about.html"><span data-lang="en" hidden>About</span><span data-lang="ja" hidden>代表紹介</span></a>
+        <a href="contact.html"><span data-lang="en" hidden>Contact</span><span data-lang="ja" hidden>お問い合わせ</span></a>
+      </nav>
+      <div class="foot-social">
+        <a href="https://wa.me/00000000000" target="_blank" rel="noopener">WhatsApp &nearr;</a>
+        <a href="#top"><span data-lang="en" hidden>Back to top &uarr;</span><span data-lang="ja" hidden>トップへ戻る &uarr;</span></a>
+      </div>
+    </div>
   </div>
+  <div class="wrap foot-bottom">
+    <span>&copy; 2026 FUBURI Studio</span>
+    <span>Singapore &mdash; Worldwide</span>
+    <span data-clock>SGT --:--</span>
+  </div>
+  <div class="foot-word" aria-hidden="true">FUBURI</div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
