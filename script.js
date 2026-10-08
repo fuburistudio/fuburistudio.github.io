@@ -277,6 +277,41 @@
     document.querySelectorAll(".reveal").forEach(revealEl);
   }
 
+  // ---------- typewriter (catch copy / web address) ----------
+  document.querySelectorAll(".typer").forEach(function (el) {
+    var out = el.querySelector(".typer-text");
+    var idx = 0;
+    function words() {
+      return (el.getAttribute(doc.lang === "ja" ? "data-ja" : "data-en") || "").split("|");
+    }
+    if (reduce) {
+      out.textContent = words()[0];
+      return;
+    }
+    function run() {
+      var list = words();
+      var chars = Array.from(list[idx % list.length]);
+      var n = 0;
+      (function type() {
+        out.textContent = chars.slice(0, n).join("");
+        if (n < chars.length) { n++; setTimeout(type, 55 + Math.random() * 70); }
+        else setTimeout(erase, 2600);
+      })();
+      function erase() {
+        if (n > 0) { n--; out.textContent = chars.slice(0, n).join(""); setTimeout(erase, 28); }
+        else { idx++; setTimeout(run, 420); }
+      }
+    }
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { io.disconnect(); setTimeout(run, 700); }
+      }, { threshold: 0.4 });
+      io.observe(el);
+    } else {
+      run();
+    }
+  });
+
   // ---------- manifesto word split ----------
   var manifestos = document.querySelectorAll(".manifesto-text");
   manifestos.forEach(function (el) {
