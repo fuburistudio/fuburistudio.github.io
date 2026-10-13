@@ -347,6 +347,39 @@
     if (reduce) el.__words.forEach(function (w) { w.style.opacity = 1; });
   });
 
+  // ---------- hero background video ----------
+  var heroVideo = document.querySelector(".hero-video");
+  if (heroVideo) {
+    var smallScreen = window.matchMedia("(max-width: 700px)").matches;
+    var setClip = function (name) {
+      heroVideo.poster = "videos/hero-" + name + ".jpg";
+      if (reduce) return; // keep the still frame for people who prefer less motion
+      heroVideo.src = "videos/hero-" + name + (smallScreen ? "-sm" : "") + ".mp4";
+      var p = heroVideo.play();
+      if (p && p.catch) p.catch(function () { /* autoplay blocked: the poster stays */ });
+    };
+    // browsers hold autoplay while the tab is in the background; resume once it is shown
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden && !reduce && heroVideo.paused) {
+        var p = heroVideo.play();
+        if (p && p.catch) p.catch(function () { /* the poster stays */ });
+      }
+    });
+    var picked = new URLSearchParams(location.search).get("hero");
+    setClip(/^(coffee|florist|grocer)$/.test(picked || "") ? picked : heroVideo.getAttribute("data-clip"));
+
+    // temporary: switch between candidate clips
+    document.querySelectorAll(".hero-picker button").forEach(function (b) {
+      if (picked && b.getAttribute("data-clip") === picked) {
+        document.querySelectorAll(".hero-picker button").forEach(function (x) { x.classList.toggle("on", x === b); });
+      }
+      b.addEventListener("click", function () {
+        document.querySelectorAll(".hero-picker button").forEach(function (x) { x.classList.toggle("on", x === b); });
+        setClip(b.getAttribute("data-clip"));
+      });
+    });
+  }
+
   // ---------- scroll-driven effects ----------
   var progressBar = document.querySelector(".scroll-progress");
   var heroMedia = document.querySelector(".hero-media");
