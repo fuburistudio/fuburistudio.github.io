@@ -26,10 +26,10 @@
   <nav class="nav">
     <a href="index.html#symptoms">お悩み</a>
     <a href="index.html#menu">メニュー</a>
-    <a href="index.html#flow">施術の流れ</a>
+    <a href="index.html#news">お知らせ</a>
     <a href="blog/index.html">ブログ</a>
     <a href="login.html" class="nav-member" data-member-link>ログイン</a>
-    <a href="index.html#reserve" class="nav-reserve">ご予約</a>
+    <a href="reserve.html" class="nav-reserve">ご予約</a>
   </nav>
   <button class="nav-btn" type="button" aria-label="メニュー" aria-expanded="false"><span></span><span></span></button>
 </header>
@@ -41,7 +41,7 @@
       <p class="hero-en">NAGI body care — quiet hands, calm body.</p>
       <h1 class="split">からだに、<br>凪を取り戻す。</h1>
       <p class="hero-sub">肩こり・腰の重さ・姿勢のくずれ。<br>力まかせにしない、やさしい整体です。</p>
-      <div class="hero-actions"><a href="#reserve" class="btn btn-gold">ご予約はこちら</a><a href="login.html" class="btn btn-ghost" data-member-link>会員ログイン</a></div>
+      <div class="hero-actions"><a href="reserve.html" class="btn btn-gold">ご予約はこちら</a><a href="login.html" class="btn btn-ghost" data-member-link>会員ログイン</a></div>
     </div>
     <span class="scroll-hint">SCROLL</span>
   </section>
@@ -72,20 +72,36 @@
     </div>
   </section>
 
+  <section class="sec news-sec" id="news">
+    <div class="sec-head rv"><p class="en">News</p><h2>お知らせ</h2></div>
+    <ul class="news-list rv" data-sheet="news">
+      <li class="news-item"><time>2026.10.10</time><span class="news-tag">お休み</span><div><h3>11月の休診日のお知らせ</h3><p>11月は毎週木曜に加えて、23日（月・祝）もお休みをいただきます。</p></div></li>
+    </ul>
+  </section>
+
   <section class="sec" id="menu">
     <div class="sec-head rv"><p class="en">Menu &amp; Price</p><h2>メニュー・料金</h2></div>
-    <div class="menu-list">
+    <div class="menu-list" data-sheet="menu">
       <div class="menu-row rv"><div><h3>初回カウンセリング＋整体</h3><p>はじめての方はこちら。姿勢と動きをていねいに確認します。</p></div><span class="time">90分</span><span class="price">¥8,800</span></div>
       <div class="menu-row rv"><div><h3>整体 スタンダード</h3><p>全身のバランスを整える、基本のコースです。</p></div><span class="time">60分</span><span class="price">¥6,600</span></div>
       <div class="menu-row rv"><div><h3>整体 ＋ ヘッドケア</h3><p>首から頭まわりの緊張をじっくりゆるめます。</p></div><span class="time">80分</span><span class="price">¥9,350</span></div>
       <div class="menu-row rv"><div><h3>会員プラン（月2回）</h3><p>定期的に整えたい方向け。マイページから予約管理ができます。</p></div><span class="time">60分×2</span><span class="price">¥11,000</span></div>
     </div>
+    <details class="sheet-demo rv">
+      <summary><span class="sheet-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg></span><span class="sheet-sum">お知らせと料金表は、<b>Googleスプレッドシート</b>から自動で表示しています</span><span class="sheet-open">仕組みを見る</span></summary>
+      <div class="sheet-body">
+        <p>お店の方は、いつものスプレッドシートを書き換えるだけ。ホームページのお知らせと料金表が、自動で新しくなります。<b>下の表のマスを書き換えてみてください。</b>上のお知らせと料金表が、その場で変わります。</p>
+        <div class="sheet-tabs" role="tablist"><button type="button" class="on" data-sheet-tab="news">お知らせ</button><button type="button" data-sheet-tab="menu">料金表</button></div>
+        <div class="sheet-grid" data-sheet-view></div>
+        <p class="fine">※このサンプルでは、スプレッドシートの代わりに同じ形のCSVファイルを読み込んでいます。表を書き換えても保存はされません。</p>
+      </div>
+    </details>
   </section>
 
   <section class="sec flow" id="flow">
     <div class="sec-head rv"><p class="en">Flow</p><h2>施術の流れ</h2></div>
     <ol class="flow-list">
-      <li class="rv"><span class="num">01</span><h3>Web予約</h3><p>ご都合のよい日時を、24時間いつでも選べます。</p></li>
+      <li class="rv"><span class="num">01</span><h3>Web予約</h3><p>24時間いつでも予約でき、確認メールがすぐに届きます。</p></li>
       <li class="rv"><span class="num">02</span><h3>カウンセリング</h3><p>お悩みや生活習慣を伺い、からだの状態を確認します。</p></li>
       <li class="rv"><span class="num">03</span><h3>施術</h3><p>力まかせではない、やさしい手技で整えていきます。</p></li>
       <li class="rv"><span class="num">04</span><h3>セルフケアのご提案</h3><p>ご自宅でできるケアを、ブログやマイページでもご案内します。</p></li>
@@ -119,8 +135,8 @@
   <section class="reserve rv" id="reserve">
     <p class="en">Reservation</p>
     <h2>ご予約は、Webから24時間。</h2>
-    <p>会員の方は、マイページから予約の確認・変更ができます。</p>
-    <div class="hero-actions center"><a href="#reserve" class="btn btn-gold">Webで予約する</a><a href="login.html" class="btn btn-ghost" data-member-link>会員ログイン</a></div>
+    <p>ご予約のあとは確認メールがすぐに届き、前日にはリマインドもお送りします。</p>
+    <div class="hero-actions center"><a href="reserve.html" class="btn btn-gold">Webで予約する</a><a href="login.html" class="btn btn-ghost" data-member-link>会員ログイン</a></div>
   </section>
 </main>
 <footer class="footer">

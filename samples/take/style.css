@@ -207,3 +207,25 @@ h1, h2, h3 { font-weight: 400; margin: 0; line-height: 1.6; }
   .cards, .staff-grid { grid-template-columns: 1fr; }
   .news-list li { flex-wrap: wrap; gap: 8px 14px; }
 }
+
+/* instagram feed */
+.ig-profile { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+.ig-avatar { flex: none; width: 58px; height: 58px; padding: 2px; border-radius: 50%; background: conic-gradient(from 210deg, #f2b45e, #e1306c, #833ab4, #f2b45e); }
+.ig-avatar span { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border: 3px solid var(--bg); border-radius: 50%; background: var(--ink); color: #fff; font-family: var(--serif); font-size: .8rem; letter-spacing: .12em; }
+.ig-name { display: flex; flex-direction: column; line-height: 1.5; min-width: 0; }
+.ig-name small { color: var(--muted); font-size: .76rem; }
+.ig-follow { margin-left: auto; padding: 8px 22px; border-radius: 8px; background: var(--ink); color: #fff; font-size: .8rem; transition: background .3s; }
+.ig-follow:hover { background: var(--accent); }
+.ig-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.ig-grid a { position: relative; display: block; aspect-ratio: 1; overflow: hidden; }
+.ig-grid img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.16, 1, .3, 1); }
+.ig-over { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding: 14px; background: linear-gradient(180deg, rgba(20, 22, 25, 0) 40%, rgba(20, 22, 25, .7)); color: #fff; font-size: .8rem; line-height: 1.5; opacity: 0; transition: opacity .4s; }
+.ig-like { display: inline-flex; align-items: center; gap: 6px; }
+.ig-grid a:hover img { transform: scale(1.06); }
+.ig-grid a:hover .ig-over { opacity: 1; }
+.ig-note { margin: 16px 0 0; font-size: .74rem; color: var(--muted); }
+@media (max-width: 600px) {
+  .ig-grid { gap: 3px; }
+  .ig-name small { display: none; }
+  .ig-cap { display: none; }
+}

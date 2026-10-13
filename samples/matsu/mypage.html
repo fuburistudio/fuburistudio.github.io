@@ -24,10 +24,10 @@
   <nav class="nav">
     <a href="index.html#symptoms">お悩み</a>
     <a href="index.html#menu">メニュー</a>
-    <a href="index.html#flow">施術の流れ</a>
+    <a href="index.html#news">お知らせ</a>
     <a href="blog/index.html">ブログ</a>
     <a href="login.html" class="nav-member" data-member-link>ログイン</a>
-    <a href="index.html#reserve" class="nav-reserve">ご予約</a>
+    <a href="reserve.html" class="nav-reserve">ご予約</a>
   </nav>
   <button class="nav-btn" type="button" aria-label="メニュー" aria-expanded="false"><span></span><span></span></button>
 </header>
@@ -43,13 +43,14 @@
       <p class="m-label">次回のご予約</p>
       <p class="m-big">10月18日（土）14:00</p>
       <p>整体 スタンダード（60分）／ 担当：凪 院長</p>
-      <div class="m-actions"><button type="button" class="btn btn-gold">予約を変更する</button><button type="button" class="btn btn-ghost dark">キャンセル</button></div>
+      <div class="m-actions"><a href="reserve.html" class="btn btn-gold">予約を変更する</a><button type="button" class="btn btn-ghost dark">キャンセル</button></div>
     </div>
-    <div class="m-card points rv">
-      <p class="m-label">保有ポイント</p>
-      <p class="m-big"><span data-count="1250">0</span><small> pt</small></p>
-      <div class="bar"><span style="width:62%"></span></div>
-      <p>あと750ptで、ヘッドケア10分サービス</p>
+    <div class="m-card stamps rv" data-stamp-card>
+      <p class="m-label">スタンプカード</p>
+      <p class="m-big"><span data-stamp-count>7</span><small> / 10</small></p>
+      <ol class="stamp-grid" data-stamp-grid aria-label="来院スタンプ"></ol>
+      <p class="stamp-note">5個目：ヘッドケア10分無料 ／ 10個目：施術1回 ¥2,000 OFF</p>
+      <button type="button" class="stamp-demo" data-stamp-demo>＋ 来院スタンプを押してみる（デモ）</button>
     </div>
     <div class="m-card plan rv">
       <p class="m-label">ご契約中のプラン</p>
@@ -59,10 +60,14 @@
     <div class="m-card history rv">
       <p class="m-label">来院履歴</p>
       <table>
-        <tr><th>2026.09.27</th><td>整体 スタンダード</td><td>+66pt</td></tr>
-        <tr><th>2026.09.13</th><td>整体 ＋ ヘッドケア</td><td>+93pt</td></tr>
-        <tr><th>2026.08.30</th><td>整体 スタンダード</td><td>+66pt</td></tr>
+        <tr><th>2026.09.27</th><td>整体 スタンダード</td><td>スタンプ +1</td></tr>
+        <tr><th>2026.09.13</th><td>整体 ＋ ヘッドケア</td><td>スタンプ +1</td></tr>
+        <tr><th>2026.08.30</th><td>整体 スタンダード</td><td>スタンプ +1</td></tr>
       </table>
+    </div>
+    <div class="m-card coupons rv">
+      <p class="m-label">使えるクーポン</p>
+      <ul class="coupon-list" data-coupons></ul>
     </div>
     <div class="m-card care rv">
       <p class="m-label">院長からのセルフケア</p>
