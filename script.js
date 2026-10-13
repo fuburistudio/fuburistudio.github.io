@@ -444,21 +444,6 @@
   window.addEventListener("load", function () { layoutHScroll(); requestScrollUpdate(); });
   layoutHScroll();
 
-  // ---------- sample-site mockups: scale the iframe (desktop or phone width) to fit ----------
-  var mockScreens = document.querySelectorAll(".mock-screen");
-  function fitMock(screen) {
-    var frame = screen.querySelector("iframe");
-    var w = (frame && frame.offsetWidth) || 1440;
-    screen.style.setProperty("--mock-s", (screen.clientWidth / w).toFixed(4));
-  }
-  mockScreens.forEach(fitMock);
-  if ("ResizeObserver" in window) {
-    var mockRO = new ResizeObserver(function (entries) {
-      entries.forEach(function (entry) { fitMock(entry.target); });
-    });
-    mockScreens.forEach(function (s) { mockRO.observe(s); });
-  }
-
   // ---------- language init (after effects are wired) ----------
   setLang(getStore(localStorage, LANG_KEY) || "en");
 
