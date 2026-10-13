@@ -365,19 +365,7 @@
         if (p && p.catch) p.catch(function () { /* the poster stays */ });
       }
     });
-    var picked = new URLSearchParams(location.search).get("hero");
-    setClip(/^(coffee|florist|grocer)$/.test(picked || "") ? picked : heroVideo.getAttribute("data-clip"));
-
-    // temporary: switch between candidate clips
-    document.querySelectorAll(".hero-picker button").forEach(function (b) {
-      if (picked && b.getAttribute("data-clip") === picked) {
-        document.querySelectorAll(".hero-picker button").forEach(function (x) { x.classList.toggle("on", x === b); });
-      }
-      b.addEventListener("click", function () {
-        document.querySelectorAll(".hero-picker button").forEach(function (x) { x.classList.toggle("on", x === b); });
-        setClip(b.getAttribute("data-clip"));
-      });
-    });
+    setClip(heroVideo.getAttribute("data-clip"));
   }
 
   // ---------- scroll-driven effects ----------

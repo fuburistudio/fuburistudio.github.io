@@ -472,33 +472,10 @@ body.is-loaded .hero-media video { transform: scale(1.04); }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(18, 17, 16, .85) 0%, rgba(18, 17, 16, .25) 55%, rgba(18, 17, 16, .45) 100%);
+  background: linear-gradient(0deg, rgba(18, 17, 16, .85) 0%, rgba(18, 17, 16, .25) 55%, rgba(18, 17, 16, .5) 86%, rgba(18, 17, 16, .7) 100%);
 }
 
 .hero-inner { position: relative; z-index: 1; will-change: transform, opacity; }
-
-/* temporary: compare hero video candidates */
-.hero-picker {
-  position: absolute;
-  top: 88px;
-  right: var(--pad);
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 5px 5px 5px 14px;
-  border: 1px solid rgba(242, 238, 231, .25);
-  border-radius: 999px;
-  background: rgba(18, 17, 16, .45);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  color: var(--paper);
-}
-
-.hero-picker .mono { margin-right: 6px; opacity: .7; }
-.hero-picker button { padding: 7px 14px; border: 0; border-radius: 999px; background: transparent; color: inherit; font-size: .8rem; cursor: pointer; transition: background .3s, color .3s; }
-.hero-picker button:hover { background: rgba(242, 238, 231, .15); }
-.hero-picker button.on { background: var(--paper); color: var(--ink); }
 
 .hero-title {
   font-size: clamp(3rem, 9.4vw, 10.6rem);
@@ -1578,8 +1555,6 @@ body.is-loaded .page-photo img { scale: 1; }
 
 
   .bento-tile { grid-column: 1 / -1; min-height: 340px; }
-  .hero-picker { top: 76px; right: 16px; padding-left: 10px; }
-  .hero-picker button span { display: none; }
   .plans-compare { flex-direction: column; align-items: stretch; text-align: center; border-radius: 20px; padding: 20px; }
   .plans-compare .btn-pill { justify-content: space-between; }
   .num-grid { grid-template-columns: 1fr; }

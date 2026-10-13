@@ -97,6 +97,23 @@
     });
   });
 
+  // ---------- hero video ----------
+  var heroVideo = document.querySelector(".hero-video");
+  if (heroVideo) {
+    if (reduce) {
+      heroVideo.removeAttribute("autoplay");
+      heroVideo.pause();
+    } else {
+      // browsers hold autoplay while the tab is in the background; resume once it is shown
+      document.addEventListener("visibilitychange", function () {
+        if (!document.hidden && heroVideo.paused) {
+          var p = heroVideo.play();
+          if (p && p.catch) p.catch(function () { /* the poster stays */ });
+        }
+      });
+    }
+  }
+
   // ---------- intro ----------
   function ready() { doc.classList.add("is-ready"); }
   if (reduce || doc.classList.contains("in-frame") || !document.querySelector(".intro")) {
