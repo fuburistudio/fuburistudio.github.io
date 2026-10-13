@@ -1104,6 +1104,21 @@ html[lang="ja"] .bento-type { font-family: "Shippori Mincho", serif; font-weight
 .plan-box--premium .plan-go-arr { background: var(--accent); color: var(--ink); }
 .plan-box--premium .plan-go:hover .plan-go-arr { background: var(--ink); color: var(--paper); }
 
+.plans-compare {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-top: clamp(16px, 1.6vw, 24px);
+  padding: clamp(16px, 1.6vw, 20px) clamp(16px, 1.6vw, 20px) clamp(16px, 1.6vw, 20px) clamp(22px, 2.4vw, 36px);
+  border-radius: 28px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.plans-compare p { margin: 0; font-size: clamp(.98rem, 1.2vw, 1.15rem); font-weight: 500; }
+.plans-compare .btn-pill { flex: none; }
+
 .client-row {
   display: grid;
   grid-template-columns: 2fr 6fr 3fr auto;
@@ -1208,7 +1223,7 @@ html[lang="ja"] .bento-type { font-family: "Shippori Mincho", serif; font-weight
 .page-sub main > section:not(.page-header) { padding: clamp(72px, 9vw, 140px) 0; }
 .bg-alt { background: var(--paper-2); }
 
-.page-header { padding: clamp(150px, 24vh, 260px) 0 clamp(40px, 6vw, 80px); border-bottom: 1px solid var(--line); }
+.page-header { padding: clamp(112px, 15vh, 168px) 0 clamp(40px, 6vw, 80px); border-bottom: 1px solid var(--line); }
 .page-header .wrap { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); align-items: end; }
 .page-header .eyebrow { grid-column: 1 / span 3; align-self: start; padding-top: 1em; }
 
@@ -1515,6 +1530,8 @@ body.is-loaded .page-photo img { scale: 1; }
 
 
   .bento-tile { grid-column: 1 / -1; min-height: 340px; }
+  .plans-compare { flex-direction: column; align-items: stretch; text-align: center; border-radius: 20px; padding: 20px; }
+  .plans-compare .btn-pill { justify-content: space-between; }
   .num-grid { grid-template-columns: 1fr; }
   .num-cell { padding: 24px 0; border-left: 0; border-top: 1px solid var(--line); }
   .num-cell:first-child { border-top: 0; }
