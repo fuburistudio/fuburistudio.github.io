@@ -78,6 +78,33 @@
     if (e.persisted) { veil.classList.remove("is-on"); veil.classList.add("is-off"); }
   });
 
+  // ---------- sign up (demo) ----------
+  var reg = document.querySelector(".reg-form");
+  if (reg) {
+    var regErr = reg.querySelector(".auth-error");
+    reg.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var miss = [];
+      if (!reg.elements.name.value.trim()) miss.push("お名前");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reg.elements.email.value.trim())) miss.push("メールアドレス");
+      if (reg.elements.password.value.length < 8) miss.push("パスワード（8文字以上）");
+      if (!reg.elements.agree.checked) miss.push("規約への同意");
+      if (miss.length) { regErr.textContent = miss.join("・") + "をご確認ください。"; regErr.hidden = false; return; }
+      try {
+        sessionStorage.setItem(MEMBER_KEY, "1");
+        sessionStorage.setItem("nagi-demo-name", reg.elements.name.value.trim());
+        sessionStorage.setItem("nagi-demo-stamps", "0");
+      } catch (er) { /* storage blocked */ }
+      location.href = "mypage.html";
+    });
+  }
+  var nameSlot = document.querySelector("[data-member-name]");
+  if (nameSlot) {
+    var saved = null;
+    try { saved = sessionStorage.getItem("nagi-demo-name"); } catch (er) { /* storage blocked */ }
+    if (saved) nameSlot.textContent = saved;
+  }
+
   // ---------- nav ----------
   var btn = document.querySelector(".nav-btn");
   if (btn) {
@@ -171,7 +198,9 @@
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
       e.target.classList.add("on");
-      e.target.querySelectorAll("[data-count]").forEach(count);
+      e.target.querySelectorAll("[data-count]").forEach(function (el) {
+        if (el.closest(".rv") === e.target) count(el);
+      });
       io.unobserve(e.target);
     });
   }, { threshold: 0.15 });
@@ -239,11 +268,16 @@
       }).join("");
     },
     menu: function (rows) {
-      return rows.slice(1).map(function (r) {
+      var imgs = ["img/hand.jpg", "img/back.jpg", "img/treat.jpg", "img/towel.jpg"];
+      var tags = ["はじめての方", "いちばん人気", "じっくり", "会員限定"];
+      return rows.slice(1).map(function (r, i) {
         var yen = Number(String(r[3] || "").replace(/[^\d]/g, ""));
-        return '<div class="menu-row"><div><h3>' + esc(r[0] || "") + "</h3><p>" + esc(r[1] || "") + '</p></div><span class="time">' +
-          esc(r[2] || "") + '</span><span class="price">' + (yen ? "¥" + yen.toLocaleString("ja-JP") : esc(r[3] || "")) + "</span>" +
-          '<a class="menu-book" href="reserve.html?menu=' + encodeURIComponent(r[0] || "") + '">予約する<i aria-hidden="true">→</i></a></div>';
+        var href = "reserve.html?menu=" + encodeURIComponent(r[0] || "");
+        var price = yen ? "¥" + yen.toLocaleString("ja-JP") : esc(r[3] || "");
+        return '<article class="menu-card on"><a class="menu-card-img" href="' + href + '" tabindex="-1" aria-hidden="true"><img src="' + imgs[i % 4] + '" alt="" loading="lazy">' +
+          '<span class="menu-tag">' + tags[i % 4] + '</span></a><div class="menu-card-body"><p class="menu-meta"><span class="menu-no">' + ("0" + (i + 1)).slice(-2) +
+          '</span><span class="time">' + esc(r[2] || "") + '</span></p><h3>' + esc(r[0] || "") + '</h3><p class="menu-desc">' + esc(r[1] || "") +
+          '</p><div class="menu-card-foot"><span class="price">' + price + '</span><a class="menu-book" href="' + href + '">予約する<i aria-hidden="true">→</i></a></div></div></article>';
       }).join("");
     }
   };

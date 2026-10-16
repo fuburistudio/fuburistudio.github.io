@@ -138,6 +138,27 @@
     requestAnimationFrame(loadTick);
   }
 
+  // ---------- floating consult button ----------
+  if (!body.classList.contains("page-contact")) {
+    var fab = document.createElement("a");
+    fab.className = "fab";
+    fab.href = "contact.html";
+    fab.innerHTML =
+      '<svg viewBox="0 0 120 120" aria-hidden="true"><defs><path id="fab-ring" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs>' +
+      '<text><textPath href="#fab-ring">Free consultation · Free consultation · </textPath></text></svg>' +
+      '<span class="fab-center"><span data-lang="en">Talk</span><span data-lang="ja">相談する</span></span>';
+    fab.setAttribute("aria-label", "Contact / お問い合わせ");
+    body.appendChild(fab);
+    var fabTop = document.querySelector(".hero, .page-header");
+    var showFab = function () {
+      var limit = fabTop ? fabTop.offsetHeight * 0.6 : 300;
+      var nearFoot = (window.innerHeight + window.scrollY) > document.documentElement.scrollHeight - 260;
+      fab.classList.toggle("is-shown", window.scrollY > limit && !nearFoot);
+    };
+    window.addEventListener("scroll", showFab, { passive: true });
+    showFab();
+  }
+
   // ---------- page transitions ----------
   document.addEventListener("click", function (e) {
     var a = e.target.closest("a");
