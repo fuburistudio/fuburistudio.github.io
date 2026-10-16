@@ -104,12 +104,18 @@
       heroVideo.removeAttribute("autoplay");
       heroVideo.pause();
     } else {
-      // browsers hold autoplay while the tab is in the background; resume once it is shown
-      document.addEventListener("visibilitychange", function () {
-        if (!document.hidden && heroVideo.paused) {
-          var p = heroVideo.play();
-          if (p && p.catch) p.catch(function () { /* the poster stays */ });
-        }
+      heroVideo.muted = true;
+      var playHero = function () {
+        if (!heroVideo.paused) return;
+        var p = heroVideo.play();
+        if (p && p.catch) p.catch(function () { /* the poster stays until the next nudge */ });
+      };
+      playHero();
+      heroVideo.addEventListener("canplay", playHero);
+      document.addEventListener("visibilitychange", function () { if (!document.hidden) playHero(); });
+      // some phones only allow playback after the first touch or scroll
+      ["touchstart", "scroll", "pointerdown"].forEach(function (ev) {
+        window.addEventListener(ev, playHero, { passive: true, once: true });
       });
     }
   }

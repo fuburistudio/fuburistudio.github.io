@@ -114,7 +114,13 @@ body::after {
 /* ---------- loader / page transition ---------- */
 .loader {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* use the tallest viewport so the cover reaches the bottom while the phone toolbar slides away */
+  height: 100vh;
+  height: 100lvh;
+  min-height: 100%;
   z-index: 900;
   background: var(--ink);
   color: var(--paper);
@@ -123,6 +129,7 @@ body::after {
   justify-content: space-between;
   gap: 24px;
   padding: var(--pad);
+  padding-bottom: calc(var(--pad) + 100lvh - 100svh);
   clip-path: inset(0 0 0 0);
   transition: clip-path 1.1s var(--ease-io);
 }

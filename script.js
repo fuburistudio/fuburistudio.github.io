@@ -348,24 +348,29 @@
   });
 
   // ---------- hero background video ----------
+  // Sources sit in the HTML so the phone starts downloading right away; this only nudges playback.
   var heroVideo = document.querySelector(".hero-video");
   if (heroVideo) {
-    var smallScreen = window.matchMedia("(max-width: 700px)").matches;
-    var setClip = function (name) {
-      heroVideo.poster = "videos/hero-" + name + ".jpg";
-      if (reduce) return; // keep the still frame for people who prefer less motion
-      heroVideo.src = "videos/hero-" + name + (smallScreen ? "-sm" : "") + ".mp4";
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    var playHero = function () {
+      if (reduce || !heroVideo.paused) return;
       var p = heroVideo.play();
-      if (p && p.catch) p.catch(function () { /* autoplay blocked: the poster stays */ });
+      if (p && p.catch) p.catch(function () { /* autoplay refused: the poster stays until the next nudge */ });
     };
-    // browsers hold autoplay while the tab is in the background; resume once it is shown
-    document.addEventListener("visibilitychange", function () {
-      if (!document.hidden && !reduce && heroVideo.paused) {
-        var p = heroVideo.play();
-        if (p && p.catch) p.catch(function () { /* the poster stays */ });
-      }
-    });
-    setClip(heroVideo.getAttribute("data-clip"));
+    if (reduce) {
+      heroVideo.removeAttribute("autoplay");
+      heroVideo.pause();
+    } else {
+      playHero();
+      heroVideo.addEventListener("loadeddata", playHero);
+      heroVideo.addEventListener("canplay", playHero);
+      document.addEventListener("visibilitychange", function () { if (!document.hidden) playHero(); });
+      // some phones only allow playback after the first touch or scroll
+      ["touchstart", "scroll", "pointerdown"].forEach(function (ev) {
+        window.addEventListener(ev, playHero, { passive: true, once: true });
+      });
+    }
   }
 
   // ---------- scroll-driven effects ----------

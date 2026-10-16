@@ -54,7 +54,10 @@
 
   <!-- ===================== HERO ===================== -->
   <section class="hero" data-header="light">
-    <div class="hero-media"><video class="hero-video" data-clip="florist" poster="videos/hero-florist.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video></div>
+    <div class="hero-media"><video class="hero-video" poster="videos/hero-florist.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="videos/hero-florist-sm.mp4" type="video/mp4" media="(max-width: 700px)">
+      <source src="videos/hero-florist.mp4" type="video/mp4">
+    </video></div>
     <div class="wrap hero-inner">
       <h1 class="hero-title" data-lang="en" hidden>
         <span class="line"><span>A website</span></span>
