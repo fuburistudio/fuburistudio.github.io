@@ -1526,7 +1526,7 @@ body.is-loaded .page-photo img { scale: 1; }
 .contact-box .btn-primary:hover { background: var(--paper); border-color: var(--paper); }
 .contact-box .btn-outline { border-color: rgba(242, 238, 231, .4); color: var(--paper); }
 .contact-box .btn-outline:hover { background: var(--paper); color: var(--ink); }
-.contact-note { margin: 26px 0 0; font-family: var(--mono); font-size: .68rem; color: rgba(242, 238, 231, .5); }
+.contact-note { margin: 22px 0 0; font-family: var(--mono); font-size: clamp(.9rem, 1.2vw, 1.05rem); letter-spacing: .02em; color: rgba(242, 238, 231, .75); user-select: all; }
 
 /* ============================================================
    Responsive
