@@ -54,6 +54,30 @@
     });
   }
 
+  // ---------- page veil (between pages) ----------
+  var veil = document.createElement("div");
+  veil.className = "veil";
+  veil.setAttribute("aria-hidden", "true");
+  veil.innerHTML = '<span>凪</span>';
+  body.appendChild(veil);
+  requestAnimationFrame(function () { veil.classList.add("is-off"); });
+  setTimeout(function () { veil.classList.add("is-off"); }, 400);
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a");
+    if (!a || reduce || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var href = a.getAttribute("href");
+    if (!href || href.charAt(0) === "#" || a.target === "_blank" || /^(mailto|tel):/i.test(href)) return;
+    var url = new URL(a.href, location.href);
+    if (url.origin !== location.origin || (url.pathname === location.pathname && url.hash)) return;
+    e.preventDefault();
+    veil.classList.remove("is-off");
+    veil.classList.add("is-on");
+    setTimeout(function () { location.href = url.href; }, 620);
+  });
+  window.addEventListener("pageshow", function (e) {
+    if (e.persisted) { veil.classList.remove("is-on"); veil.classList.add("is-off"); }
+  });
+
   // ---------- nav ----------
   var btn = document.querySelector(".nav-btn");
   if (btn) {
@@ -84,7 +108,8 @@
     var i = 0;
     Array.prototype.slice.call(el.childNodes).forEach(function (node) {
       if (node.nodeType !== 3) return;
-      var frag = document.createDocumentFragment();
+      var frag = document.createElement("span");
+      frag.className = "line-nw";
       Array.from(node.nodeValue).forEach(function (ch) {
         var s = document.createElement("span");
         s.className = "ch";
@@ -150,10 +175,22 @@
       io.unobserve(e.target);
     });
   }, { threshold: 0.15 });
-  document.querySelectorAll(".rv").forEach(function (el) { io.observe(el); });
+  document.querySelectorAll(".rv, .img-reveal").forEach(function (el) { io.observe(el); });
+
+  // ---------- faq filter ----------
+  var faqChips = document.querySelectorAll("[data-faq]");
+  faqChips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var f = chip.getAttribute("data-faq");
+      faqChips.forEach(function (c) { c.classList.toggle("on", c === chip); });
+      document.querySelectorAll(".faq[data-cat]").forEach(function (q) {
+        q.hidden = f !== "all" && q.getAttribute("data-cat") !== f;
+      });
+    });
+  });
 
   // ---------- blog filter ----------
-  var chips = document.querySelectorAll(".chip");
+  var chips = document.querySelectorAll(".chip[data-filter]");
   chips.forEach(function (chip) {
     chip.addEventListener("click", function () {
       var f = chip.getAttribute("data-filter");
@@ -205,7 +242,8 @@
       return rows.slice(1).map(function (r) {
         var yen = Number(String(r[3] || "").replace(/[^\d]/g, ""));
         return '<div class="menu-row"><div><h3>' + esc(r[0] || "") + "</h3><p>" + esc(r[1] || "") + '</p></div><span class="time">' +
-          esc(r[2] || "") + '</span><span class="price">' + (yen ? "¥" + yen.toLocaleString("ja-JP") : esc(r[3] || "")) + "</span></div>";
+          esc(r[2] || "") + '</span><span class="price">' + (yen ? "¥" + yen.toLocaleString("ja-JP") : esc(r[3] || "")) + "</span>" +
+          '<a class="menu-book" href="reserve.html?menu=' + encodeURIComponent(r[0] || "") + '">予約する<i aria-hidden="true">→</i></a></div>';
       }).join("");
     }
   };
@@ -277,6 +315,12 @@
     var closedMsg = rsvForm.querySelector(".rsv-closed");
     var errBox = rsvForm.querySelector(".rsv-error");
     var picked = "";
+    var wanted = new URLSearchParams(location.search).get("menu");
+    if (wanted) {
+      rsvForm.querySelectorAll('input[name="menu"]').forEach(function (r) {
+        if (r.value.split("|")[0] === wanted) r.checked = true;
+      });
+    }
 
     var tmr = new Date();
     tmr.setDate(tmr.getDate() + 1);

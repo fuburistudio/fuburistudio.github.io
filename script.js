@@ -153,12 +153,15 @@
     toggleMenu(false);
     loader.classList.add("loader--quick");
     body.classList.add("is-leaving");
-    setTimeout(function () { location.href = url.href; }, 650);
+    setTimeout(function () {
+      body.classList.add("is-covered");
+      location.href = url.href;
+    }, 650);
   });
 
   window.addEventListener("pageshow", function (e) {
     if (e.persisted) {
-      body.classList.remove("is-leaving");
+      body.classList.remove("is-leaving", "is-covered");
       finishLoad();
     }
   });

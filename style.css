@@ -175,6 +175,15 @@ body::after {
 .loader.is-closing .loader-count { opacity: 0; transition: opacity .3s; }
 
 body.is-loaded .loader { clip-path: inset(50% 0 50% 0); pointer-events: none; }
+
+/* while the cover is up, hide the page behind it so nothing can show below a phone toolbar */
+html:has(body:not(.is-loaded)),
+html:has(body.is-covered) { background: var(--ink); }
+body:not(.is-loaded),
+body.is-covered { background: var(--ink); }
+body:not(.is-loaded) > :not(.loader),
+body.is-covered > :not(.loader) { visibility: hidden; animation: show-anyway 0s 5s forwards; }
+@keyframes show-anyway { to { visibility: visible; } }
 body.is-loaded.is-leaving .loader { clip-path: inset(0 0 0 0); transition-duration: .65s; }
 
 /* ---------- header ---------- */
@@ -541,7 +550,7 @@ body.is-loaded .hero-title .ch { transform: none; }
 .btn-pill--light .arr { background: var(--ink); color: var(--paper); }
 
 /* ---------- manifesto (scroll-lit words) ---------- */
-.manifesto { padding: clamp(80px, 13vw, 200px) 0; }
+.manifesto { padding: clamp(150px, 18vw, 280px) 0 clamp(90px, 13vw, 200px); }
 .manifesto .label { grid-column: 1 / span 3; padding-top: .9em; }
 
 .manifesto-text {
@@ -876,16 +885,18 @@ html[lang="ja"] .bento-type { font-family: "Shippori Mincho", serif; font-weight
 }
 
 .collage-text em { color: var(--accent); }
-.collage-text [data-lang="ja"] { font-size: .78em; letter-spacing: -.03em; line-height: 1.25; display: block; }
+.collage-text [data-lang="ja"] { font-size: clamp(1.6rem, 2.9vw, 2.9rem); letter-spacing: -.02em; line-height: 1.45; display: block; }
+.nowrap { white-space: nowrap; }
 
 .collage-cap {
   grid-column: 5 / span 4;
   grid-row: 2;
   align-self: end;
-  margin: 0;
-  padding-top: 18px;
+  margin: clamp(40px, 6vw, 88px) 0 0;
+  padding-top: 22px;
   border-top: 1px solid var(--line);
-  font-size: clamp(1.15rem, 1.6vw, 1.6rem);
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  word-break: auto-phrase;
   font-weight: 500;
   letter-spacing: -.01em;
   line-height: 1.55;
@@ -1170,6 +1181,8 @@ html[lang="ja"] .bento-type { font-family: "Shippori Mincho", serif; font-weight
 
 .foot-cta em { color: var(--accent); }
 .foot-cta [data-lang="ja"] { letter-spacing: -.04em; line-height: 1.1; }
+.foot-cta [data-lang="ja"] em { white-space: nowrap; }
+@media (max-width: 600px) { .foot-cta [data-lang="ja"] { font-size: .8em; } }
 
 .foot-grid {
   display: grid;

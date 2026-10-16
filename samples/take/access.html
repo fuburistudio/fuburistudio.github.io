@@ -42,12 +42,38 @@
     </table>
     <div class="map"><span>MAP</span></div>
   </section>
-  <section class="block reserve rv" id="reserve">
-    <p class="en">Reservation</p>
-    <h2>ご予約方法</h2>
-    <div class="reserve-grid">
-      <div class="reserve-card"><h3>Web予約</h3><p>24時間受付。空き状況を見ながらご予約いただけます。</p><a href="#reserve" class="btn">Webで予約する</a></div>
-      <div class="reserve-card"><h3>お電話</h3><p>営業時間内に承ります。施術中は折り返しになる場合があります。</p><a href="#reserve" class="btn btn-line">000-0000-0000</a></div>
+  <section class="block reserve" id="reserve">
+    <div class="rv"><p class="en">Reservation</p><h2>Web予約</h2></div>
+    <div class="rsv-wrap">
+      <form class="rsv-form rv" novalidate>
+        <label class="field"><span>メニュー</span>
+          <select name="menu">
+            <option value="cut">カット ／ ¥6,600</option>
+            <option value="color">カット＋カラー ／ ¥12,100〜</option>
+            <option value="perm">カット＋パーマ ／ ¥13,200〜</option>
+            <option value="care">髪質改善トリートメント ／ ¥8,800</option>
+            <option value="spa">ヘッドスパ 60分 ／ ¥7,700</option>
+          </select>
+        </label>
+        <label class="field"><span>ご希望日</span><input type="date" name="date" required></label>
+        <p class="closed" hidden>火曜日は定休日です。別の日をお選びください。</p>
+        <div class="field"><span>時間</span><div class="slots"><button type="button" class="slot">10:00</button><button type="button" class="slot">11:00</button><button type="button" class="slot">12:00</button><button type="button" class="slot">13:00</button><button type="button" class="slot">14:00</button><button type="button" class="slot">15:00</button><button type="button" class="slot">16:00</button><button type="button" class="slot">17:00</button><button type="button" class="slot">18:00</button></div></div>
+        <div class="row2">
+          <label class="field"><span>お名前</span><input type="text" name="name" autocomplete="name" placeholder="雨野 しずく"></label>
+          <label class="field"><span>電話番号</span><input type="tel" name="tel" autocomplete="tel" placeholder="000-0000-0000"></label>
+        </div>
+        <p class="form-error" role="alert" hidden></p>
+        <button type="submit" class="btn">この内容で予約する<span class="arr" aria-hidden="true">→</span></button>
+        <p class="fine">※このサンプルの予約は動作見本です。入力内容はどこにも送信されません。</p>
+      </form>
+      <div class="rsv-done" hidden>
+        <p class="en">Thank you</p>
+        <h3>ご予約を受け付けました</h3>
+        <p class="rsv-summary"></p>
+        <p>当日はお気をつけてお越しください。確認のSMSが届きます（サンプルのため実際には届きません）。</p>
+        <a href="index.html" class="btn btn-line">トップへ戻る<span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <aside class="rsv-tel rv"><p class="en">By phone</p><h3>お電話でのご予約</h3><p>営業時間内に承ります。施術中は折り返しになる場合があります。</p><a href="tel:000-0000-0000" class="tel">000-0000-0000</a></aside>
     </div>
   </section>
 

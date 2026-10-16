@@ -31,8 +31,8 @@
     <div class="hero-img"><img src="img/hero.jpg" alt="アーチと観葉植物のある明るいサロン"></div>
     <div class="hero-copy">
       <p class="en">quiet hair, quiet time.</p>
-      <h1>雨の日みたいに、<br>静かで、やさしい時間を。</h1>
-      <a href="access.html#reserve" class="btn">ご予約はこちら <span aria-hidden="true">→</span></a>
+      <h1><span class="ln"><span>雨の日みたいに、</span></span><span class="ln"><span>静かで、やさしい時間を。</span></span></h1>
+      <a href="access.html#reserve" class="btn btn-light">ご予約はこちら<span class="arr" aria-hidden="true">→</span></a>
     </div>
     <p class="hero-mark" aria-hidden="true">AME</p>
     <p class="hero-side" aria-hidden="true">HAIR SALON — EST. 2026</p>
@@ -47,9 +47,24 @@
   <section class="block rv">
     <div class="block-head"><p class="en">Menu</p><h2>人気のメニュー</h2><a href="menu.html" class="more">すべてのメニュー →</a></div>
     <div class="cards">
-      <article class="card"><div class="card-img"><img src="img/ig-5.jpg" alt="" loading="lazy"></div><p class="card-en">01 — Cut</p><h3>カット</h3><p>骨格と髪のクセを見てつくる、伸びても崩れにくいカット。</p><p class="price">¥6,600</p></article>
-      <article class="card"><div class="card-img"><img src="img/ig-1.jpg" alt="" loading="lazy"></div><p class="card-en">02 — Color</p><h3>カット＋カラー</h3><p>透明感のある色味を、ダメージを抑えた薬剤で。</p><p class="price">¥12,100〜</p></article>
-      <article class="card"><div class="card-img"><img src="img/ig-2.jpg" alt="" loading="lazy"></div><p class="card-en">03 — Care</p><h3>髪質改善トリートメント</h3><p>広がりやパサつきを抑えて、まとまる髪へ。</p><p class="price">¥8,800</p></article>
+      <article class="card rv"><div class="card-img"><img src="img/ig-5.jpg" alt="" loading="lazy"></div><p class="card-en">01 — Cut</p><h3>カット</h3><p>骨格と髪のクセを見てつくる、伸びても崩れにくいカット。</p><p class="price">¥6,600</p><a class="card-book" href="access.html?menu=cut#reserve">このメニューで予約<span class="arr" aria-hidden="true">→</span></a></article>
+      <article class="card rv"><div class="card-img"><img src="img/ig-1.jpg" alt="" loading="lazy"></div><p class="card-en">02 — Color</p><h3>カット＋カラー</h3><p>透明感のある色味を、ダメージを抑えた薬剤で。</p><p class="price">¥12,100〜</p><a class="card-book" href="access.html?menu=color#reserve">このメニューで予約<span class="arr" aria-hidden="true">→</span></a></article>
+      <article class="card rv"><div class="card-img"><img src="img/ig-2.jpg" alt="" loading="lazy"></div><p class="card-en">03 — Care</p><h3>髪質改善トリートメント</h3><p>広がりやパサつきを抑えて、まとまる髪へ。</p><p class="price">¥8,800</p><a class="card-book" href="access.html?menu=care#reserve">このメニューで予約<span class="arr" aria-hidden="true">→</span></a></article>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="gallery-head rv">
+      <div><p class="en">Style gallery</p><h2>最近のスタイル</h2></div>
+      <div class="gallery-ctrl"><button type="button" data-dir="-1" aria-label="前へ">←</button><span class="gallery-count"><b>01</b> / 06</span><button type="button" data-dir="1" aria-label="次へ">→</button></div>
+    </div>
+    <div class="gallery-track" tabindex="0" aria-label="スタイルギャラリー（横にスクロールできます）">
+      <figure><img src="img/ig-1.jpg" alt="" loading="lazy"><figcaption><span>01</span>ロング × ハイライト</figcaption></figure>
+      <figure><img src="img/ig-2.jpg" alt="" loading="lazy"><figcaption><span>02</span>ゆるふわミディアム</figcaption></figure>
+      <figure><img src="img/ig-3.jpg" alt="" loading="lazy"><figcaption><span>03</span>編みおろしアレンジ</figcaption></figure>
+      <figure><img src="img/ig-4.jpg" alt="" loading="lazy"><figcaption><span>04</span>お呼ばれアップ</figcaption></figure>
+      <figure><img src="img/ig-5.jpg" alt="" loading="lazy"><figcaption><span>05</span>ボブのブロー仕上げ</figcaption></figure>
+      <figure><img src="img/ig-6.jpg" alt="" loading="lazy"><figcaption><span>06</span>秋のブラウンカラー</figcaption></figure>
     </div>
   </section>
 
@@ -83,7 +98,7 @@
   <section class="cta rv">
     <p class="en">Reservation</p>
     <h2>ご予約・ご相談はお気軽に</h2>
-    <a href="access.html#reserve" class="btn btn-light">予約する</a>
+    <a href="access.html#reserve" class="btn btn-light">Webで予約する<span class="arr" aria-hidden="true">→</span></a>
   </section>
 
 </main>
