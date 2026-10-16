@@ -494,6 +494,62 @@
   window.addEventListener("load", function () { layoutHScroll(); requestScrollUpdate(); });
   layoutHScroll();
 
+  // ---------- contact form (sent by email through FormSubmit) ----------
+  var cform = document.querySelector(".cform");
+  if (cform) {
+    var cfErr = cform.querySelector(".cf-error");
+    var cfBtn = cform.querySelector(".cf-submit");
+    var isJa = function () { return doc.lang === "ja"; };
+    cform.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var bad = [];
+      cform.querySelectorAll(".is-bad").forEach(function (el) { el.classList.remove("is-bad"); });
+      var need = function (name, en, ja, ok) {
+        var field = cform.elements[name];
+        if (!ok(field)) {
+          bad.push(isJa() ? ja : en);
+          (field.closest(".cf-field") || field.closest(".cf-agree")).classList.add("is-bad");
+        }
+      };
+      need("お名前", "your name", "お名前", function (f) { return f.value.trim(); });
+      need("email", "a valid email", "メールアドレス", function (f) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim()); });
+      need("お問い合わせ内容", "a message", "お問い合わせ内容", function (f) { return f.value.trim(); });
+      need("個人情報の取り扱い", "your agreement", "個人情報の取り扱いへの同意", function (f) { return f.checked; });
+      if (bad.length) {
+        cfErr.textContent = isJa() ? bad.join("・") + "をご確認ください。" : "Please check " + bad.join(", ") + ".";
+        cfErr.hidden = false;
+        return;
+      }
+      cfErr.hidden = true;
+      cfBtn.disabled = true;
+      var data = new FormData(cform);
+      var who = cform.elements["お名前"].value.trim();
+      data.append("_subject", "【お問い合わせ】FUBURI Studio — " + who + " 様");
+      data.append("_template", "table");
+      data.append("_captcha", "false");
+      data.append("ページの言語", isJa() ? "日本語" : "English");
+      fetch("https://formsubmit.co/ajax/fuburistudio@gmail.com", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" }
+      })
+        .then(function (res) { return res.json().catch(function () { return {}; }).then(function (j) { if (!res.ok || j.success === "false") throw new Error(j.message || res.status); }); })
+        .then(function () {
+          cform.hidden = true;
+          var done = document.querySelector(".cform-done");
+          done.hidden = false;
+          done.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+        })
+        .catch(function () {
+          cfBtn.disabled = false;
+          cfErr.textContent = isJa()
+            ? "送信できませんでした。時間をおいて再度お試しいただくか、fuburistudio@gmail.com まで直接メールでご連絡ください。"
+            : "Sorry, the message could not be sent. Please try again, or email fuburistudio@gmail.com directly.";
+          cfErr.hidden = false;
+        });
+    });
+  }
+
   // ---------- language init (after effects are wired) ----------
   setLang(getStore(localStorage, LANG_KEY) || "en");
 

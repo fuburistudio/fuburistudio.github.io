@@ -64,17 +64,73 @@
 
   <!-- ===================== CONTACT ===================== -->
   <section id="contact">
-    <div class="wrap">
-      <div class="contact-box reveal">
-        <p class="lede" data-lang="en" hidden>Tell us a little about your shop and what you're hoping for — the first conversation is free, no pressure.</p>
+    <div class="wrap contact-wrap">
+      <aside class="contact-box contact-side reveal">
+        <p class="lede" data-lang="en" hidden>Tell us a little about your shop and what you're hoping for &mdash; the first conversation is free, no pressure.</p>
         <p class="lede" data-lang="ja" hidden>お店のことや、ご希望のイメージなどお聞かせください。初回のご相談は無料です。</p>
+        <ol class="contact-steps">
+          <li><b>01</b><span data-lang="en" hidden>Send the form</span><span data-lang="ja" hidden>フォームを送信</span></li>
+          <li><b>02</b><span data-lang="en" hidden>We reply within 2 business days</span><span data-lang="ja" hidden>2営業日以内にメールでご返信</span></li>
+          <li><b>03</b><span data-lang="en" hidden>A free online consultation</span><span data-lang="ja" hidden>オンラインで無料相談</span></li>
+        </ol>
+        <p class="contact-direct"><span data-lang="en" hidden>Prefer email?</span><span data-lang="ja" hidden>メールで直接ご連絡いただくこともできます。</span><br><a href="mailto:fuburistudio@gmail.com">fuburistudio@gmail.com</a></p>
+      </aside>
 
-        <div class="contact-methods">
-          <a class="btn btn-primary" href="mailto:fuburistudio@gmail.com">
-            <span data-lang="en" hidden>Email us</span><span data-lang="ja" hidden>メールで相談</span>
-          </a>
+      <form class="cform reveal" novalidate>
+        <input type="text" name="_honey" class="cform-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <fieldset class="cf-group">
+          <legend><span data-lang="en" hidden>What can we help with?</span><span data-lang="ja" hidden>ご相談の種類</span><em class="req">*</em></legend>
+          <div class="cf-chips">
+            <label><input type="radio" name="ご相談の種類" value="新しくホームページを作りたい" checked><span><span data-lang="en" hidden>A new website</span><span data-lang="ja" hidden>新しく作りたい</span></span></label>
+            <label><input type="radio" name="ご相談の種類" value="今のホームページをリニューアルしたい"><span><span data-lang="en" hidden>Redesign</span><span data-lang="ja" hidden>リニューアル</span></span></label>
+            <label><input type="radio" name="ご相談の種類" value="料金・プランについて聞きたい"><span><span data-lang="en" hidden>Plans &amp; pricing</span><span data-lang="ja" hidden>料金・プラン</span></span></label>
+            <label><input type="radio" name="ご相談の種類" value="その他"><span><span data-lang="en" hidden>Other</span><span data-lang="ja" hidden>その他</span></span></label>
+          </div>
+        </fieldset>
+
+        <div class="cf-row">
+          <label class="cf-field"><span class="cf-label"><span data-lang="en" hidden>Your name</span><span data-lang="ja" hidden>お名前</span><em class="req">*</em></span><input type="text" name="お名前" autocomplete="name" required></label>
+          <label class="cf-field"><span class="cf-label"><span data-lang="en" hidden>Shop / company</span><span data-lang="ja" hidden>店舗名・会社名</span></span><input type="text" name="店舗名・会社名" autocomplete="organization"></label>
         </div>
-        <p class="contact-note">fuburistudio@gmail.com</p>
+        <div class="cf-row">
+          <label class="cf-field"><span class="cf-label"><span data-lang="en" hidden>Email</span><span data-lang="ja" hidden>メールアドレス</span><em class="req">*</em></span><input type="email" name="email" autocomplete="email" required></label>
+          <label class="cf-field"><span class="cf-label"><span data-lang="en" hidden>Phone (optional)</span><span data-lang="ja" hidden>電話番号（任意）</span></span><input type="tel" name="電話番号" autocomplete="tel"></label>
+        </div>
+
+        <fieldset class="cf-group">
+          <legend><span data-lang="en" hidden>Plan you&rsquo;re considering</span><span data-lang="ja" hidden>検討中のプラン</span></legend>
+          <div class="cf-chips">
+            <label><input type="radio" name="検討中のプラン" value="まだ決めていない" checked><span><span data-lang="en" hidden>Not sure yet</span><span data-lang="ja" hidden>未定</span></span></label>
+            <label><input type="radio" name="検討中のプラン" value="シンプル（¥50,000）"><span><span data-lang="en" hidden>Simple</span><span data-lang="ja" hidden>シンプル</span></span></label>
+            <label><input type="radio" name="検討中のプラン" value="本格（¥100,000）"><span><span data-lang="en" hidden>Standard</span><span data-lang="ja" hidden>本格</span></span></label>
+            <label><input type="radio" name="検討中のプラン" value="超本格（¥500,000）"><span><span data-lang="en" hidden>Premium</span><span data-lang="ja" hidden>超本格</span></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="cf-group">
+          <legend><span data-lang="en" hidden>When would you like to launch?</span><span data-lang="ja" hidden>公開の希望時期</span></legend>
+          <div class="cf-chips">
+            <label><input type="radio" name="公開の希望時期" value="できるだけ早く"><span><span data-lang="en" hidden>As soon as possible</span><span data-lang="ja" hidden>できるだけ早く</span></span></label>
+            <label><input type="radio" name="公開の希望時期" value="1〜3か月以内"><span><span data-lang="en" hidden>1&ndash;3 months</span><span data-lang="ja" hidden>1〜3か月以内</span></span></label>
+            <label><input type="radio" name="公開の希望時期" value="時期は未定" checked><span><span data-lang="en" hidden>No date yet</span><span data-lang="ja" hidden>未定</span></span></label>
+          </div>
+        </fieldset>
+
+        <label class="cf-field"><span class="cf-label"><span data-lang="en" hidden>Message</span><span data-lang="ja" hidden>お問い合わせ内容</span><em class="req">*</em></span><textarea name="お問い合わせ内容" rows="6" required></textarea></label>
+
+        <label class="cf-agree"><input type="checkbox" name="個人情報の取り扱い" value="同意する" required><span><span data-lang="en" hidden>I agree that my details are used only to reply to this enquiry.</span><span data-lang="ja" hidden>入力した情報を、このお問い合わせへの返信のためだけに使用することに同意します。</span></span></label>
+
+        <p class="cf-error" role="alert" hidden></p>
+        <button type="submit" class="btn-pill cf-submit"><span class="cf-submit-text"><span data-lang="en" hidden>Send message</span><span data-lang="ja" hidden>送信する</span></span><span class="arr" aria-hidden="true">&rarr;</span></button>
+        <p class="cf-note"><span data-lang="en" hidden>Fields marked * are required.</span><span data-lang="ja" hidden>* は必須項目です。</span></p>
+      </form>
+
+      <div class="cform-done" hidden>
+        <p class="cf-done-mark" aria-hidden="true">&#10003;</p>
+        <h2><span data-lang="en" hidden>Thank you &mdash; message sent.</span><span data-lang="ja" hidden>送信が完了しました。</span></h2>
+        <p><span data-lang="en" hidden>We&rsquo;ll get back to you by email within 2 business days.</span><span data-lang="ja" hidden>2営業日以内に、メールでご返信いたします。しばらくお待ちください。</span></p>
+        <a class="btn-pill" href="index.html"><span data-lang="en" hidden>Back to home</span><span data-lang="ja" hidden>トップへ戻る</span><span class="arr" aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </section>
