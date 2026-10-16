@@ -173,21 +173,16 @@
     e.preventDefault();
     toggleMenu(false);
     loader.classList.add("loader--quick");
-    body.classList.add("is-prep");
-    void loader.offsetWidth;
-    setTimeout(function () {
-      body.classList.remove("is-prep");
-      body.classList.add("is-leaving");
-    }, 20);
+    body.classList.add("is-leaving");
     setTimeout(function () {
       body.classList.add("is-covered");
       location.href = url.href;
-    }, 760);
+    }, 650);
   });
 
   window.addEventListener("pageshow", function (e) {
     if (e.persisted) {
-      body.classList.remove("is-leaving", "is-covered", "is-prep");
+      body.classList.remove("is-leaving", "is-covered");
       finishLoad();
     }
   });
