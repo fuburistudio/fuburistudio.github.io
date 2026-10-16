@@ -118,7 +118,7 @@ body::after {
   left: 0;
   right: 0;
   /* use the tallest viewport so the cover reaches the bottom while the phone toolbar slides away */
-  --ext: 30vh;
+  --ext: 40vh;
   height: calc(100vh + var(--ext));
   height: calc(100lvh + var(--ext));
   min-height: 100%;
@@ -176,7 +176,8 @@ body::after {
 .loader.is-closing .loader-word span { transform: translateY(-105%); transition: transform .5s var(--ease-io); animation: none; }
 .loader.is-closing .loader-count { opacity: 0; transition: opacity .3s; }
 
-body.is-loaded .loader { clip-path: inset(50vh 0 calc(50vh + var(--ext)) 0); clip-path: inset(50lvh 0 calc(50lvh + var(--ext)) 0); pointer-events: none; visibility: hidden; transition: clip-path 1.1s var(--ease-io), visibility 0s 1.1s; }
+/* on arrival the cover lifts away upward, so the bottom of the screen is uncovered last-to-first from below */
+body.is-loaded .loader { clip-path: inset(0 0 100% 0); pointer-events: none; visibility: hidden; transition: clip-path 1.1s var(--ease-io), visibility 0s 1.1s; }
 body.is-loaded .loader::after { opacity: 0; transition: opacity .3s .6s; }
 
 /* while the cover is up, hide the page behind it so nothing can show below a phone toolbar */
@@ -187,7 +188,9 @@ body.is-covered { background: var(--ink); }
 body:not(.is-loaded) > :not(.loader),
 body.is-covered > :not(.loader) { visibility: hidden; animation: show-anyway 0s 5s forwards; }
 @keyframes show-anyway { to { visibility: visible; } }
-body.is-loaded.is-leaving .loader { clip-path: inset(0 0 0 0); visibility: visible; transition: clip-path .65s var(--ease-io), visibility 0s; }
+/* on leaving it rises from below the bottom edge of the screen */
+body.is-loaded.is-prep .loader { clip-path: inset(100% 0 0 0); visibility: visible; transition: none; }
+body.is-loaded.is-leaving .loader { clip-path: inset(0 0 0 0); visibility: visible; transition: clip-path .7s var(--ease-io), visibility 0s; }
 
 /* ---------- header ---------- */
 .site-header {
