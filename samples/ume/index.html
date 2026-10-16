@@ -8,65 +8,125 @@
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700&family=Zen+Maru+Gothic:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header class="header">
-  <a href="#top" class="logo">こもれび珈琲<small>KOMOREBI COFFEE</small></a>
+  <a href="#top" class="logo">
+    <svg class="logo-sun" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="6"/><path d="M16 2v5M16 25v5M2 16h5M25 16h5M6 6l3.5 3.5M22.5 22.5 26 26M6 26l3.5-3.5M22.5 9.5 26 6"/></svg>
+    <span>こもれび珈琲<small>KOMOREBI COFFEE</small></span>
+  </a>
   <nav class="nav">
     <a href="#concept">コンセプト</a>
     <a href="#menu">メニュー</a>
     <a href="#info">店舗情報</a>
   </nav>
+  <span class="open-pill"><i></i>OPEN 8:00–18:00</span>
 </header>
 
 <main id="top">
   <section class="hero">
-    <img src="img/hero.jpg" alt="焙煎機とドリップ道具が並ぶ店内">
+    <div class="hero-img"><img src="img/hero.jpg" alt="焙煎機とドリップ道具が並ぶ店内"></div>
     <div class="hero-text">
-      <p class="hero-en">Home-roasted coffee &amp; a quiet corner</p>
+      <p class="hand">good morning,</p>
       <h1>木もれ日の下で、<br>ゆっくり一杯を。</h1>
+      <p class="hero-sub">住宅街の角にある、カウンター8席の自家焙煎珈琲店。</p>
     </div>
+    <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true">
+      <defs><path id="stamp-circle" d="M100 100m-74 0a74 74 0 1 1 148 0a74 74 0 1 1-148 0"/></defs>
+      <text><textPath href="#stamp-circle">HOME ROASTED · HAND DRIPPED · SINCE 2026 · </textPath></text>
+      <circle cx="100" cy="100" r="40"/>
+    </svg>
   </section>
 
   <section class="concept fade" id="concept">
-    <div class="concept-img"><img src="img/barista.jpg" alt="カウンターでコーヒーを淹れる店主"></div>
+    <div class="concept-img">
+      <img src="img/barista.jpg" alt="カウンターでコーヒーを淹れる店主">
+      <img class="concept-sticker" src="img/menu-beans.webp" alt="" aria-hidden="true">
+    </div>
     <div class="concept-body">
-      <p class="label">CONCEPT</p>
+      <p class="hand">our story</p>
       <h2>毎朝焼く豆と、<br>手で淹れる一杯。</h2>
-      <p>住宅街の角にある、カウンター8席の小さな珈琲店です。豆は毎朝、店内の焙煎機で少しずつ焼いています。急がずに過ごせる場所として、近所の方にも、通りすがりの方にも気軽に立ち寄っていただけたら嬉しいです。</p>
+      <p>豆は毎朝、店内の小さな焙煎機で少しずつ焼いています。一杯ずつハンドドリップで淹れるので、少しだけお時間をいただきます。急がずに過ごせる場所として、近所の方にも、通りすがりの方にも気軽に立ち寄っていただけたら嬉しいです。</p>
+      <ul class="points">
+        <li><b>毎朝</b>店内で焙煎</li>
+        <li><b>8席</b>カウンターだけ</li>
+        <li><b>12種</b>季節の豆</li>
+      </ul>
     </div>
   </section>
 
-  <section class="menu fade" id="menu">
-    <p class="label">MENU</p>
-    <h2>メニュー</h2>
-    <div class="menu-grid">
+  <section class="menu" id="menu">
+    <div class="menu-head fade">
+      <p class="hand">menu</p>
+      <h2>今日の一杯と、<br>ちいさな甘いもの。</h2>
+    </div>
+
+    <h3 class="menu-cat fade"><span>Coffee</span>コーヒー</h3>
+    <ul class="menu-cards">
+      <li class="item fade" style="--blob: #f3dcc3">
+        <div class="item-img"><img src="img/menu-drip.webp" alt="ハンドドリップコーヒー" loading="lazy"></div>
+        <h4>本日のハンドドリップ</h4>
+        <p>その日いちばんの豆を、1杯ずつ。</p>
+        <span class="price">¥550</span>
+      </li>
+      <li class="item item--pick fade" style="--blob: #ead7c0">
+        <span class="pick">いちばん人気!</span>
+        <div class="item-img"><img src="img/menu-latte.webp" alt="ラテアートのカフェラテ" loading="lazy"></div>
+        <h4>カフェラテ</h4>
+        <p>深煎りブレンドに、ふわふわのミルク。</p>
+        <span class="price">¥620</span>
+      </li>
+      <li class="item fade" style="--blob: #dde4d3">
+        <div class="item-img"><img src="img/menu-iced.webp" alt="アイスカフェラテ" loading="lazy"></div>
+        <h4>アイスコーヒー</h4>
+        <p>水出しでじっくり。すっきりした後味。</p>
+        <span class="price">¥580</span>
+      </li>
+      <li class="item fade" style="--blob: #e8d9cf">
+        <div class="item-img"><img src="img/menu-beans.webp" alt="焙煎したコーヒー豆" loading="lazy"></div>
+        <h4>深煎りブレンド「こもれび」</h4>
+        <p>ほろ苦く、チョコのような甘い余韻。</p>
+        <span class="price">¥580</span>
+      </li>
+    </ul>
+
+    <h3 class="menu-cat fade"><span>Sweets</span>甘いもの</h3>
+    <ul class="menu-cards menu-cards--3">
+      <li class="item fade" style="--blob: #f4e6c8">
+        <div class="item-img"><img src="img/menu-cheesecake.webp" alt="チーズケーキ" loading="lazy"></div>
+        <h4>自家製チーズケーキ</h4>
+        <p>しっとり濃厚。深煎りと相性抜群。</p>
+        <span class="price">¥520</span>
+      </li>
+      <li class="item fade" style="--blob: #efdcc9">
+        <div class="item-img"><img src="img/menu-pound.webp" alt="パウンドケーキ" loading="lazy"></div>
+        <h4>季節のパウンドケーキ</h4>
+        <p>いまは、レモンとはちみつ。</p>
+        <span class="price">¥450</span>
+      </li>
+      <li class="item fade" style="--blob: #f2e2bf">
+        <div class="item-img"><img src="img/menu-toast.webp" alt="バタートースト" loading="lazy"></div>
+        <h4>バタートースト</h4>
+        <p>厚切り食パンに、たっぷりのバター。</p>
+        <span class="price">¥380</span>
+      </li>
+    </ul>
+
+    <div class="beans fade">
+      <img src="img/menu-beans.webp" alt="" aria-hidden="true">
       <div>
-        <h3>Coffee</h3>
-        <dl>
-          <div><dt>本日のハンドドリップ</dt><dd>¥550</dd></div>
-          <div><dt>深煎りブレンド「こもれび」</dt><dd>¥580</dd></div>
-          <div><dt>カフェラテ</dt><dd>¥620</dd></div>
-          <div><dt>アイスコーヒー</dt><dd>¥580</dd></div>
-        </dl>
-      </div>
-      <div>
-        <h3>Sweets</h3>
-        <dl>
-          <div><dt>自家製バスクチーズケーキ</dt><dd>¥520</dd></div>
-          <div><dt>季節のパウンドケーキ</dt><dd>¥450</dd></div>
-          <div><dt>バタートースト</dt><dd>¥380</dd></div>
-        </dl>
-        <p class="note">コーヒー豆の量り売り（100g ¥900〜）もございます。</p>
+        <p class="hand">take home</p>
+        <h3>豆の量り売りもしています</h3>
+        <p>100g ¥900〜。挽き方はご自宅の道具に合わせてお好みで。</p>
       </div>
     </div>
   </section>
 
   <section class="info fade" id="info">
-    <p class="label">INFORMATION</p>
+    <p class="hand">information</p>
     <h2>店舗情報</h2>
     <div class="info-grid">
       <table>
@@ -76,14 +136,15 @@
         <tr><th>席数</th><td>カウンター8席</td></tr>
         <tr><th>お支払い</th><td>現金・各種カード・QR決済</td></tr>
       </table>
-      <div class="map" aria-label="地図（サンプル）"><span>MAP</span></div>
+      <div class="map" aria-label="地図（サンプル）"><span>こもれび珈琲</span></div>
     </div>
-    <a class="insta" href="#info">Instagramで最新情報を見る</a>
+    <a class="insta" href="#info">Instagramで最新情報を見る →</a>
   </section>
 </main>
 
 <footer class="footer">
-  <p>こもれび珈琲 KOMOREBI COFFEE</p>
+  <p class="hand">see you tomorrow.</p>
+  <p class="footer-name">こもれび珈琲 KOMOREBI COFFEE</p>
   <small>&copy; 2026 Komorebi Coffee（サンプルサイト）</small>
 </footer>
 
