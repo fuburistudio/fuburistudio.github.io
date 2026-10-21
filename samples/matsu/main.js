@@ -194,12 +194,20 @@
     menu: function (rows) {
       var imgs = ["img/hand.jpg", "img/back.jpg", "img/treat.jpg", "img/towel.jpg"];
       var tags = ["はじめての方", "いちばん人気", "じっくり", "会員限定"];
+      // 写真 column: a Google Drive share link, any https image URL, or a path on this site
+      var photo = function (v) {
+        v = String(v || "").trim();
+        var drive = v.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]{20,})/);
+        if (drive) return "https://drive.google.com/thumbnail?id=" + drive[1] + "&sz=w1200";
+        if (/^https:\/\//i.test(v) || /^[\w\/.-]+\.(jpe?g|png|webp|gif)$/i.test(v)) return v;
+        return "";
+      };
       return rows.slice(1).map(function (r, i) {
         var yen = Number(String(r[3] || "").replace(/[^\d]/g, ""));
         var href = "reserve.html?menu=" + encodeURIComponent(r[0] || "");
         var price = yen ? "¥" + yen.toLocaleString("ja-JP") : esc(r[3] || "");
-        return '<article class="menu-card on"><a class="menu-card-img" href="' + href + '" tabindex="-1" aria-hidden="true"><img src="' + imgs[i % 4] + '" alt="" loading="lazy">' +
-          '<span class="menu-tag">' + tags[i % 4] + '</span></a><div class="menu-card-body"><p class="menu-meta"><span class="menu-no">' + ("0" + (i + 1)).slice(-2) +
+        return '<article class="menu-card on"><a class="menu-card-img" href="' + href + '" tabindex="-1" aria-hidden="true"><img src="' + esc(photo(r[4]) || imgs[i % 4]) + '" alt="" loading="lazy">' +
+          '<span class="menu-tag">' + esc(r[5] || tags[i % 4]) + '</span></a><div class="menu-card-body"><p class="menu-meta"><span class="menu-no">' + ("0" + (i + 1)).slice(-2) +
           '</span><span class="time">' + esc(r[2] || "") + '</span></p><h3>' + esc(r[0] || "") + '</h3><p class="menu-desc">' + esc(r[1] || "") +
           '</p><div class="menu-card-foot"><span class="price">' + price + '</span><a class="menu-book" href="' + href + '">予約する<i aria-hidden="true">→</i></a></div></div></article>';
       }).join("");
