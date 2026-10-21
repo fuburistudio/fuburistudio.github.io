@@ -712,3 +712,15 @@ h1, h2, h3, .hero-sub, .page-head p { word-break: auto-phrase; }
   .menu-card { grid-template-columns: 1fr; }
   .menu-card-img { min-height: 0; aspect-ratio: 16 / 9; }
 }
+
+/* firebase members */
+.auth-pending .mypage { visibility: hidden; }
+[data-member-content][hidden], .verify-gate[hidden] { display: none; }
+.verify-gate { padding-top: 48px; }
+.verify-card { max-width: 720px; }
+.verify-card b { font-weight: 500; word-break: break-all; }
+.auth-note-ok { margin: 0; padding: 10px 14px; background: #e6f0e3; color: #2f5b28; font-size: .84rem; border-radius: 4px; }
+.verify-card .auth-note-ok { margin-top: 16px; }
+.link-btn { display: block; margin: 16px auto 0; padding: 0; border: 0; background: none; color: #9b7640; font-size: .84rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.reset-form { margin-top: 16px; padding-top: 18px; border-top: 1px solid var(--line); }
+.reset-form[hidden] { display: none; }

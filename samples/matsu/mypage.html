@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;600;700&family=Cormorant:ital,wght@0,500;1,500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="member-page" data-requires-login>
+<body class="member-page auth-pending" data-requires-login>
 <header class="header">
   <a href="index.html" class="logo"><svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19C5 10 10 5 19 5c0 9-5 14-14 14Z" pathLength="1"/><path d="M5 19 13 11" pathLength="1"/></svg><span>凪<small>NAGI body care</small></span></a>
   <nav class="nav">
@@ -40,6 +40,16 @@
     <h1><span data-member-name>デモ会員</span> 様</h1>
     <p>いつもご来院ありがとうございます。</p>
   </section>
+  <section class="sec verify-gate" data-verify hidden>
+    <div class="m-card verify-card">
+      <p class="m-label">メールアドレスの確認</p>
+      <p class="m-big">確認メールを送りました</p>
+      <p><b data-verify-email></b> に届いたメールのリンクを押すと、マイページがご利用いただけます。メールが見当たらないときは、迷惑メールフォルダもご確認ください。</p>
+      <p class="auth-note-ok" role="status" hidden></p>
+      <div class="m-actions"><button type="button" class="btn btn-gold" data-verify-check>確認が済んだので開く</button><button type="button" class="btn btn-ghost dark" data-verify-resend>確認メールを再送する</button><button type="button" class="btn btn-ghost dark" data-logout>ログアウト</button></div>
+    </div>
+  </section>
+  <div data-member-content>
   <section class="sec member-grid">
     <div class="m-card next rv">
       <p class="m-label">次回のご予約</p>
@@ -49,7 +59,7 @@
     </div>
     <div class="m-card stamps rv" data-stamp-card>
       <p class="m-label">スタンプカード</p>
-      <p class="m-big"><span data-stamp-count>7</span><small> / 10</small></p>
+      <p class="m-big"><span data-stamp-count>0</span><small> / 10</small></p>
       <ol class="stamp-grid" data-stamp-grid aria-label="来院スタンプ"></ol>
       <p class="stamp-note">5個目：ヘッドケア10分無料 ／ 10個目：施術1回 ¥2,000 OFF</p>
       <button type="button" class="stamp-demo" data-stamp-demo>＋ 来院スタンプを押してみる（デモ）</button>
@@ -78,6 +88,7 @@
     </div>
   </section>
   <div class="logout-wrap"><button type="button" class="btn btn-ghost dark" data-logout>ログアウト</button></div>
+  </div>
 </main>
 <footer class="footer">
   <div class="footer-top">
@@ -89,5 +100,6 @@
 </footer>
 <a class="sample-badge" href="../../works.html">SAMPLE ｜ 超本格プラン ¥500,000 ｜ FUBURI Studio</a>
 <script src="main.js"></script>
+<script type="module" src="auth.js"></script>
 </body>
 </html>

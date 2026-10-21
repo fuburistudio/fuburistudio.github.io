@@ -50,10 +50,10 @@
       <label>パスワード（8文字以上）<input type="password" name="password" autocomplete="new-password" minlength="8" required></label>
       <label class="check"><input type="checkbox" name="agree"> <span><a href="#" class="u">利用規約</a>と<a href="#" class="u">プライバシーポリシー</a>に同意します</span></label>
       <p class="auth-error" role="alert" hidden></p>
-      <button type="submit" class="btn btn-gold wide">登録してマイページへ</button>
+      <button type="submit" class="btn btn-gold wide">登録して確認メールを受け取る</button>
     </form>
     <p class="auth-switch">すでに会員の方は <a href="login.html" class="u">ログイン</a></p>
-    <p class="auth-fine">※このサンプルの会員登録は動作見本です。入力内容はどこにも送信されず、この画面を閉じると消えます。実際の制作では、安全な認証サービスと連携し、確認メールの送信まで構築します。</p>
+    <p class="auth-fine">※このサンプルは、本物の会員機能（Google Firebase）で動いています。登録すると、入力したメールアドレスに確認メールが届きます。デモ用のため、登録内容は予告なく削除することがあります。テスト用のメールアドレスでのご登録をおすすめします。</p>
   </div>
 </main>
 <footer class="footer">
@@ -66,5 +66,6 @@
 </footer>
 <a class="sample-badge" href="../../works.html">SAMPLE ｜ 超本格プラン ¥500,000 ｜ FUBURI Studio</a>
 <script src="main.js"></script>
+<script type="module" src="auth.js"></script>
 </body>
 </html>

@@ -39,19 +39,21 @@
     <p class="en">Members</p>
     <h1>会員ログイン</h1>
     <p class="auth-note">ログインすると、ご予約の確認・変更、スタンプカード、来院履歴をマイページで見られます。</p>
-    <div class="demo-box">
-      <strong>デモ用アカウント</strong>
-      <p>メール：demo@nagi.example<br>パスワード：demo1234</p>
-      <button type="button" class="demo-fill">デモ情報を入力する</button>
-    </div>
-    <form class="auth-form" novalidate>
+    <form class="auth-form login-form" novalidate>
       <label>メールアドレス<input type="email" name="email" autocomplete="username" required></label>
       <label>パスワード<input type="password" name="password" autocomplete="current-password" required></label>
-      <p class="auth-error" role="alert" hidden>メールアドレスまたはパスワードが正しくありません。</p>
+      <p class="auth-error" role="alert" hidden></p>
       <button type="submit" class="btn btn-gold wide">ログイン</button>
     </form>
+    <button type="button" class="link-btn" data-reset-toggle>パスワードをお忘れの方</button>
+    <form class="auth-form reset-form" hidden novalidate>
+      <label>登録したメールアドレス<input type="email" name="email" autocomplete="email" required></label>
+      <p class="auth-note-ok" role="status" hidden></p>
+      <p class="auth-error" role="alert" hidden></p>
+      <button type="submit" class="btn btn-ghost dark wide">再設定メールを送る</button>
+    </form>
     <p class="auth-switch">はじめての方は <a href="register.html" class="u">会員登録（無料）</a></p>
-    <p class="auth-fine">※このサンプルのログインは動作見本です。入力内容はどこにも送信されません。実際の制作では、安全な認証サービスと連携して構築します。</p>
+    <p class="auth-fine">※このサンプルは、本物の会員機能（Google Firebase）で動いています。登録したメールアドレスに、確認メールやパスワード再設定のメールが実際に届きます。デモ用のため、登録内容は予告なく削除することがあります。</p>
   </div>
 </main>
 <footer class="footer">
@@ -64,5 +66,6 @@
 </footer>
 <a class="sample-badge" href="../../works.html">SAMPLE ｜ 超本格プラン ¥500,000 ｜ FUBURI Studio</a>
 <script src="main.js"></script>
+<script type="module" src="auth.js"></script>
 </body>
 </html>

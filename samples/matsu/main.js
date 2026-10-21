@@ -1,58 +1,9 @@
 (function () {
   var doc = document.documentElement;
   var body = document.body;
-  var MEMBER_KEY = "nagi-demo-member";
-  var DEMO_EMAIL = "demo@nagi.example";
-  var DEMO_PASS = "demo1234";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (window.self !== window.top) doc.classList.add("in-frame");
-
-  function isMember() {
-    try { return sessionStorage.getItem(MEMBER_KEY) === "1"; } catch (e) { return false; }
-  }
-
-  // ---------- auth guard (demo) ----------
-  if (body.hasAttribute("data-requires-login") && !isMember()) {
-    location.replace("login.html");
-    return;
-  }
-
-  document.querySelectorAll("[data-member-link]").forEach(function (a) {
-    if (isMember()) {
-      a.textContent = "マイページ";
-      a.setAttribute("href", a.getAttribute("href").replace("login.html", "mypage.html"));
-    }
-  });
-
-  var logout = document.querySelector("[data-logout]");
-  if (logout) {
-    logout.addEventListener("click", function () {
-      try { sessionStorage.removeItem(MEMBER_KEY); } catch (e) { /* storage blocked */ }
-      location.href = "login.html";
-    });
-  }
-
-  var form = document.querySelector(".auth-form");
-  if (form) {
-    var err = form.querySelector(".auth-error");
-    var fill = document.querySelector(".demo-fill");
-    if (fill) {
-      fill.addEventListener("click", function () {
-        form.email.value = DEMO_EMAIL;
-        form.password.value = DEMO_PASS;
-      });
-    }
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (form.email.value.trim() === DEMO_EMAIL && form.password.value === DEMO_PASS) {
-        try { sessionStorage.setItem(MEMBER_KEY, "1"); } catch (er) { /* storage blocked */ }
-        location.href = "mypage.html";
-      } else {
-        err.hidden = false;
-      }
-    });
-  }
 
   // ---------- page veil (between pages) ----------
   var veil = document.createElement("div");
@@ -77,33 +28,6 @@
   window.addEventListener("pageshow", function (e) {
     if (e.persisted) { veil.classList.remove("is-on"); veil.classList.add("is-off"); }
   });
-
-  // ---------- sign up (demo) ----------
-  var reg = document.querySelector(".reg-form");
-  if (reg) {
-    var regErr = reg.querySelector(".auth-error");
-    reg.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var miss = [];
-      if (!reg.elements.name.value.trim()) miss.push("お名前");
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(reg.elements.email.value.trim())) miss.push("メールアドレス");
-      if (reg.elements.password.value.length < 8) miss.push("パスワード（8文字以上）");
-      if (!reg.elements.agree.checked) miss.push("規約への同意");
-      if (miss.length) { regErr.textContent = miss.join("・") + "をご確認ください。"; regErr.hidden = false; return; }
-      try {
-        sessionStorage.setItem(MEMBER_KEY, "1");
-        sessionStorage.setItem("nagi-demo-name", reg.elements.name.value.trim());
-        sessionStorage.setItem("nagi-demo-stamps", "0");
-      } catch (er) { /* storage blocked */ }
-      location.href = "mypage.html";
-    });
-  }
-  var nameSlot = document.querySelector("[data-member-name]");
-  if (nameSlot) {
-    var saved = null;
-    try { saved = sessionStorage.getItem("nagi-demo-name"); } catch (er) { /* storage blocked */ }
-    if (saved) nameSlot.textContent = saved;
-  }
 
   // ---------- nav ----------
   var btn = document.querySelector(".nav-btn");
@@ -455,44 +379,6 @@
         setTimeout(function () { li.classList.add("on"); }, 250 + i * 450);
         setTimeout(function () { li.classList.add("done"); li.querySelector(".af-check").textContent = "✓"; }, 750 + i * 450);
       });
-    });
-  }
-
-  // ---------- stamp card (demo) ----------
-  var card = document.querySelector("[data-stamp-card]");
-  if (card) {
-    var STAMP_KEY = "nagi-demo-stamps";
-    var LEAF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19C5 10 10 5 19 5c0 9-5 14-14 14Z"/><path d="M5 19 13 11"/></svg>';
-    var REWARDS = { 5: ["ヘッドケア10分 無料", "スタンプ5個の特典"], 10: ["施術1回 ¥2,000 OFF", "スタンプ10個の特典"] };
-    var grid = card.querySelector("[data-stamp-grid]");
-    var countEl = card.querySelector("[data-stamp-count]");
-    var couponList = document.querySelector("[data-coupons]");
-    var stamps = parseInt(getStore(STAMP_KEY) || "7", 10);
-
-    for (var n = 1; n <= 10; n++) {
-      var li = document.createElement("li");
-      li.className = "stamp" + (REWARDS[n] ? " gift" : "");
-      li.innerHTML = n + LEAF;
-      grid.appendChild(li);
-    }
-
-    function paintStamps(fresh) {
-      grid.querySelectorAll(".stamp").forEach(function (s, i) { s.classList.toggle("on", i < stamps); });
-      countEl.textContent = stamps;
-      var html = "";
-      [10, 5].forEach(function (k) {
-        if (stamps >= k) {
-          html += '<li class="coupon' + (fresh === k ? " is-new" : "") + '"><b>' + REWARDS[k][0] + "</b><small>" + REWARDS[k][1] + "・次回のご来院で使えます</small></li>";
-        }
-      });
-      couponList.innerHTML = html || '<li class="coupon-empty">スタンプ5個でクーポンが届きます。</li>';
-    }
-    paintStamps(0);
-
-    card.querySelector("[data-stamp-demo]").addEventListener("click", function () {
-      stamps = stamps >= 10 ? 1 : stamps + 1;
-      setStore(STAMP_KEY, String(stamps));
-      paintStamps(REWARDS[stamps] ? stamps : 0);
     });
   }
 })();
