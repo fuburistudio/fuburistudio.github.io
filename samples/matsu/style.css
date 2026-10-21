@@ -724,3 +724,10 @@ h1, h2, h3, .hero-sub, .page-head p { word-break: auto-phrase; }
 .link-btn { display: block; margin: 16px auto 0; padding: 0; border: 0; background: none; color: #9b7640; font-size: .84rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .reset-form { margin-top: 16px; padding-top: 18px; border-top: 1px solid var(--line); }
 .reset-form[hidden] { display: none; }
+
+.google-btn { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; padding: 14px 20px; border: 1px solid #dadce0; border-radius: 99px; background: #fff; color: #3c4043; font: inherit; font-size: .92rem; font-weight: 500; cursor: pointer; transition: background .3s, box-shadow .3s; }
+.google-btn:hover { background: #f8f9fa; box-shadow: 0 6px 18px -10px rgba(0, 0, 0, .35); }
+.google-btn[disabled] { opacity: .6; cursor: progress; }
+[data-google-error] { margin-top: 12px; }
+.or { display: flex; align-items: center; gap: 14px; margin: 22px 0 18px; font-size: .78rem; color: var(--muted); }
+.or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--line); }

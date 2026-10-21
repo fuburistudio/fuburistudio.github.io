@@ -4,7 +4,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
 import {
   getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  sendEmailVerification, sendPasswordResetEmail, updateProfile, signOut
+  sendEmailVerification, sendPasswordResetEmail, updateProfile, signOut,
+  GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult
 } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
 import {
   getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp
@@ -36,6 +37,9 @@ const ERRORS = {
   "auth/too-many-requests": "試行回数が多すぎます。しばらく時間をおいてからお試しください。",
   "auth/network-request-failed": "通信できませんでした。電波の良いところで、もう一度お試しください。",
   "auth/operation-not-allowed": "現在この方法では登録できません。（管理者の方へ：Firebaseでメール／パスワードのログインを有効にしてください）",
+  "auth/popup-blocked": "ログイン用の画面が開けませんでした。もう一度お試しください。",
+  "auth/account-exists-with-different-credential": "このメールアドレスは別の方法で登録されています。メールアドレスとパスワードでログインしてください。",
+  "auth/unauthorized-domain": "このサイトからのログインが許可されていません。（管理者の方へ：Firebaseの承認済みドメインを確認してください）",
   "auth/unauthorized-continue-uri": "このページのアドレスが許可されていません。（管理者の方へ：Firebaseの承認済みドメインを確認してください）"
 };
 const message = (err) => ERRORS[err && err.code] || "うまくいきませんでした。時間をおいて、もう一度お試しください。" + (err && err.code ? "（" + err.code + "）" : "");
@@ -55,6 +59,39 @@ onAuthStateChanged(auth, (user) => {
     }
   });
 });
+
+// ---------- continue with Google ----------
+async function ensureMember(user) {
+  const ref = doc(db, "members", user.uid);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) {
+    await setDoc(ref, { name: (user.displayName || "会員").slice(0, 40), stamps: 0, createdAt: serverTimestamp(), updatedAt: serverTimestamp() });
+  }
+}
+
+const googleButtons = document.querySelectorAll("[data-google]");
+if (googleButtons.length) {
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: "select_account" });
+  const errBox = document.querySelector("[data-google-error]");
+  getRedirectResult(auth).then(async (res) => {
+    if (res && res.user) { await ensureMember(res.user); location.href = "mypage.html"; }
+  }).catch((ex) => show(errBox, message(ex)));
+  googleButtons.forEach((b) => b.addEventListener("click", async () => {
+    if (errBox) errBox.hidden = true;
+    b.disabled = true;
+    try {
+      const { user } = await signInWithPopup(auth, provider);
+      await ensureMember(user);
+      location.href = "mypage.html";
+    } catch (ex) {
+      b.disabled = false;
+      if (ex.code === "auth/popup-closed-by-user" || ex.code === "auth/cancelled-popup-request") return;
+      if (ex.code === "auth/popup-blocked") { await signInWithRedirect(auth, provider); return; }
+      show(errBox, message(ex));
+    }
+  }));
+}
 
 // ---------- sign up ----------
 const reg = document.querySelector(".reg-form");
