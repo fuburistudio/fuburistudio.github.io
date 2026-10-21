@@ -731,3 +731,9 @@ h1, h2, h3, .hero-sub, .page-head p { word-break: auto-phrase; }
 [data-google-error] { margin-top: 12px; }
 .or { display: flex; align-items: center; gap: 14px; margin: 22px 0 18px; font-size: .78rem; color: var(--muted); }
 .or::before, .or::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+/* keep form fields inside their box on iPhone Safari */
+input, select, textarea { max-width: 100%; min-width: 0; }
+.auth-form label, .rsv-field { grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.auth-form input:not([type="checkbox"]), .rsv-field input, .rsv-field textarea { display: block; width: 100%; -webkit-appearance: none; appearance: none; }
+.rsv-field input[type="date"] { min-height: 3.1em; }

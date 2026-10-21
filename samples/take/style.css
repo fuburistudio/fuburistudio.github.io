@@ -423,3 +423,9 @@ h1, h2, h3 { word-break: auto-phrase; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .rv { opacity: 1; transform: none; }
 }
+
+/* keep form fields inside their box on iPhone Safari */
+input, select, textarea { max-width: 100%; min-width: 0; }
+.field { grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.field input, .field select { display: block; -webkit-appearance: none; appearance: none; border-radius: 0; }
+.field input[type="date"] { min-height: 3.1em; }

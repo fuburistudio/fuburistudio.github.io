@@ -1610,6 +1610,12 @@ body.is-loaded .page-photo img { scale: 1; }
   .cf-row { grid-template-columns: 1fr; }
 }
 
+
+/* keep form fields inside their box on iPhone Safari */
+input, select, textarea { max-width: 100%; min-width: 0; }
+.cf-field { grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.cf-field input, .cf-field textarea { display: block; -webkit-appearance: none; appearance: none; }
+
 /* ---------- premium showcase ---------- */
 .premium { padding: clamp(90px, 11vw, 170px) 0; background: var(--ink); color: var(--paper); }
 .premium .sec-label { color: rgba(242, 238, 231, .6); }
