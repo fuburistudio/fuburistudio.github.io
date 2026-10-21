@@ -70,11 +70,19 @@
 
   <section class="block news rv">
     <div class="block-head"><p class="en">News</p><h2>お知らせ</h2></div>
-    <ul class="news-list">
+    <ul class="news-list" data-sheet="news">
       <li><time>2026.10.01</time><span class="tag">営業</span>10月の休業日のお知らせ</li>
       <li><time>2026.09.15</time><span class="tag">メニュー</span>秋限定のヘッドスパメニューを始めました</li>
       <li><time>2026.09.01</time><span class="tag">お知らせ</span>Web予約の受付時間を延長しました</li>
     </ul>
+    <details class="sheet-demo">
+      <summary><span class="sheet-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg></span><span class="sheet-sum">このお知らせは、<b>Googleスプレッドシート</b>から自動で表示しています</span><span class="sheet-open">仕組みを見る</span></summary>
+      <div class="sheet-body">
+        <p>お店の方は、スプレッドシートを書き換えるだけ。ホームページのお知らせが自動で新しくなります。<b>下の表のマスを書き換えてみてください。</b>上のお知らせが、その場で変わります。</p>
+        <div class="sheet-grid" data-sheet-view></div>
+        <p class="fine">※このサンプルでは、スプレッドシートの代わりに同じ形のCSVファイルを読み込んでいます。表を書き換えても保存はされません。</p>
+      </div>
+    </details>
   </section>
 
   <section class="block insta rv">

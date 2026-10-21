@@ -96,6 +96,72 @@
     track.addEventListener("click", function (e) { if (moved) e.preventDefault(); }, true);
   }
 
+  // ---------- news from a spreadsheet ----------
+  // In production this points at the salon's Google Sheet ("File > Share > Publish to web > CSV").
+  var newsBox = document.querySelector('[data-sheet="news"]');
+  var sheetView = document.querySelector("[data-sheet-view]");
+  if (newsBox) {
+    var esc = function (t) {
+      return String(t).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
+    };
+    var parseCSV = function (text) {
+      var rows = [], row = [], cell = "", q = false;
+      for (var i = 0; i < text.length; i++) {
+        var c = text[i];
+        if (q) {
+          if (c === '"' && text[i + 1] === '"') { cell += '"'; i++; }
+          else if (c === '"') q = false;
+          else cell += c;
+        } else if (c === '"') q = true;
+        else if (c === ",") { row.push(cell); cell = ""; }
+        else if (c === "\n" || c === "\r") {
+          if (c === "\r" && text[i + 1] === "\n") i++;
+          row.push(cell); rows.push(row); row = []; cell = "";
+        } else cell += c;
+      }
+      if (cell || row.length) { row.push(cell); rows.push(row); }
+      return rows.filter(function (r) { return r.join("").trim() !== ""; });
+    };
+    var rows = null;
+    var paintNews = function (flash) {
+      newsBox.innerHTML = rows.slice(1).map(function (r) {
+        return "<li><time>" + esc((r[0] || "").replace(/-/g, ".")) + '</time><span class="tag">' + esc(r[1] || "") + "</span>" + esc(r[2] || "") + "</li>";
+      }).join("");
+      if (flash) {
+        newsBox.classList.remove("is-fresh");
+        void newsBox.offsetWidth;
+        newsBox.classList.add("is-fresh");
+      }
+    };
+    var paintGrid = function () {
+      if (!sheetView) return;
+      var cols = rows[0].length;
+      var html = "<table><thead><tr><th></th>";
+      for (var c = 0; c < cols; c++) html += "<th>" + String.fromCharCode(65 + c) + "</th>";
+      html += "</tr></thead><tbody>";
+      rows.forEach(function (r, ri) {
+        html += '<tr class="' + (ri === 0 ? "hdr" : "") + '"><th>' + (ri + 1) + "</th>";
+        for (var ci = 0; ci < cols; ci++) {
+          html += "<td" + (ri > 0 ? ' contenteditable="true" spellcheck="false"' : "") + ' data-r="' + ri + '" data-c="' + ci + '">' + esc(r[ci] || "") + "</td>";
+        }
+        html += "</tr>";
+      });
+      sheetView.innerHTML = html + "</tbody></table>";
+    };
+    if (sheetView) {
+      sheetView.addEventListener("input", function (e) {
+        var td = e.target.closest("td[data-r]");
+        if (!td) return;
+        rows[+td.getAttribute("data-r")][+td.getAttribute("data-c")] = td.textContent;
+        paintNews(true);
+      });
+    }
+    fetch("data/news.csv", { cache: "no-store" })
+      .then(function (res) { if (!res.ok) throw new Error(res.status); return res.text(); })
+      .then(function (text) { rows = parseCSV(text); paintNews(false); paintGrid(); })
+      .catch(function () { /* keep the fallback markup */ });
+  }
+
   // ---------- web reservation (demo) ----------
   var form = document.querySelector(".rsv-form");
   if (form) {

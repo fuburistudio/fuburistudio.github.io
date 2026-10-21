@@ -1624,6 +1624,7 @@ body.is-loaded .page-photo img { scale: 1; }
 .pf-text { display: flex; flex-direction: column; gap: 8px; padding: clamp(22px, 2.4vw, 32px); }
 .pf--wide .pf-text { justify-content: center; }
 .pf-no { margin: 0; font-family: var(--mono); font-size: .72rem; color: var(--accent); }
+.pf-tag { margin-left: 8px; padding: 2px 10px; border: 1px solid rgba(242, 238, 231, .3); border-radius: 999px; color: rgba(242, 238, 231, .75); }
 .pf h3 { font-size: clamp(1.3rem, 1.9vw, 1.8rem); letter-spacing: -.03em; line-height: 1.2; }
 .pf p:not(.pf-no) { margin: 0; color: rgba(242, 238, 231, .7); font-size: .95rem; }
 .pf-try { margin-top: auto; padding-top: 14px; font-size: .88rem; color: var(--accent); }
