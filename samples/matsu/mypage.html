@@ -51,11 +51,26 @@
   </section>
   <div data-member-content>
   <section class="sec member-grid">
-    <div class="m-card next rv">
+    <div class="m-card next rv" data-booking>
       <p class="m-label">次回のご予約</p>
-      <p class="m-big">10月18日（土）14:00</p>
-      <p>整体 スタンダード（60分）／ 担当：凪 院長</p>
-      <div class="m-actions"><a href="reserve.html" class="btn btn-gold">予約を変更する</a><button type="button" class="btn btn-ghost dark">キャンセル</button></div>
+      <div data-booking-view hidden>
+        <p class="m-big" data-booking-when>—</p>
+        <p data-booking-menu></p>
+        <div class="m-actions"><button type="button" class="btn btn-gold" data-booking-change>日時を変更する</button><button type="button" class="btn btn-ghost dark" data-booking-cancel>キャンセル</button></div>
+      </div>
+      <div data-booking-empty hidden>
+        <p class="m-big">ご予約はまだありません</p>
+        <p>ご都合のよい日時を、24時間いつでもお選びいただけます。</p>
+        <div class="m-actions"><a href="reserve.html" class="btn btn-gold">新しく予約する</a></div>
+      </div>
+      <form class="booking-edit" data-booking-edit hidden novalidate>
+        <label class="rsv-field">新しい日付<input type="date" name="date"></label>
+        <p class="rsv-closed" hidden>木曜日は定休日です。別の日をお選びください。</p>
+        <div class="rsv-slots" data-edit-slots></div>
+        <p class="auth-error" role="alert" hidden></p>
+        <div class="m-actions"><button type="submit" class="btn btn-gold">この日時に変更する</button><button type="button" class="btn btn-ghost dark" data-edit-close>やめる</button></div>
+      </form>
+      <p class="auth-note-ok" data-booking-msg role="status" hidden></p>
     </div>
     <div class="m-card stamps rv" data-stamp-card>
       <p class="m-label">スタンプカード</p>
@@ -63,6 +78,7 @@
       <ol class="stamp-grid" data-stamp-grid aria-label="来院スタンプ"></ol>
       <p class="stamp-note">5個目：ヘッドケア10分無料 ／ 10個目：施術1回 ¥2,000 OFF</p>
       <button type="button" class="stamp-demo" data-stamp-demo>＋ 来院スタンプを押してみる（デモ）</button>
+      <p class="auth-error stamp-msg" data-stamp-msg role="alert" hidden></p>
     </div>
     <div class="m-card plan rv">
       <p class="m-label">ご契約中のプラン</p>
@@ -87,7 +103,7 @@
       <a href="blog/post-1.html" class="more">関連する記事を読む →</a>
     </div>
   </section>
-  <div class="logout-wrap"><button type="button" class="btn btn-ghost dark" data-logout>ログアウト</button></div>
+  <div class="logout-wrap"><a href="reserve.html" class="btn btn-gold">新しく予約する</a><button type="button" class="btn btn-ghost dark" data-logout>ログアウト</button></div>
   </div>
 </main>
 <footer class="footer">

@@ -369,6 +369,7 @@
           "</span></div><div>" + s.html + "</div></li>";
       }).join("");
       document.querySelector("[data-rsv-summary]").textContent = when + "〜 ／ " + menu[0];
+      document.dispatchEvent(new CustomEvent("nagi:reserved", { detail: { menu: menu[0], minutes: parseInt(menu[1], 10), date: dateIn.value, time: picked } }));
 
       rsvForm.hidden = true;
       document.querySelector(".rsv-side").hidden = true;

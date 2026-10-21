@@ -737,3 +737,29 @@ input, select, textarea { max-width: 100%; min-width: 0; }
 .auth-form label, .rsv-field { grid-template-columns: minmax(0, 1fr); min-width: 0; }
 .auth-form input:not([type="checkbox"]), .rsv-field input, .rsv-field textarea { display: block; width: 100%; -webkit-appearance: none; appearance: none; }
 .rsv-field input[type="date"] { min-height: 3.1em; }
+
+/* member booking card, member reservation, email-link page */
+.next .booking-edit { display: grid; gap: 14px; margin-top: 8px; }
+.next .booking-edit[hidden], .next [data-booking-view][hidden], .next [data-booking-empty][hidden] { display: none; }
+.next .rsv-field { color: rgba(239, 231, 218, .7); }
+.next .rsv-field input { background: var(--paper); }
+.next .rsv-closed { color: #f0b3a8; }
+.next .slot { background: rgba(239, 231, 218, .08); color: var(--sand); border-color: rgba(239, 231, 218, .2); }
+.next .slot.on { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.next .slot:disabled { background: transparent; color: rgba(239, 231, 218, .25); }
+.next .auth-note-ok { margin-top: 18px; }
+.stamp-msg { margin-top: 10px; }
+.logout-wrap { display: flex; flex-wrap: wrap; gap: 12px; }
+.rsv-member { grid-column: 1 / -1; padding: 22px 26px; border: 1px solid var(--gold); background: rgba(196, 154, 90, .08); }
+.rsv-member[hidden] { display: none; }
+.rsv-member p { margin: 0; font-size: .86rem; color: #3d4650; }
+.rsv-member .rsv-member-head { margin-bottom: 6px; font-family: var(--serif); font-size: 1.1rem; color: var(--ink); }
+.rsv-badge { display: inline-block; margin-right: 10px; padding: 0 10px; background: var(--gold); color: var(--ink); font-family: "Noto Sans JP", sans-serif; font-size: .7rem; letter-spacing: .1em; vertical-align: middle; }
+.rsv-member-note { margin-top: 10px !important; padding-top: 10px; border-top: 1px solid var(--line); }
+.rsv-saved { display: inline-block; margin: 0 0 14px; }
+.action-card { text-align: center; }
+.action-mark { width: 64px; height: 64px; margin: 0 auto 18px; padding: 14px; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); transition: background .6s, color .6s; }
+.action-mark svg { width: 100%; height: 100%; }
+.is-done .action-mark { background: var(--gold); color: var(--ink); }
+.action-card .newpass-form { margin-top: 18px; text-align: left; }
+.action-card [data-action-go] { margin-top: 22px; }

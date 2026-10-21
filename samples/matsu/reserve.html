@@ -42,6 +42,11 @@
   </section>
 
   <section class="sec rsv">
+    <div class="rsv-member" data-rsv-member hidden>
+      <p class="rsv-member-head"><span class="rsv-badge">会員</span><b data-rsv-member-name></b> 様としてご予約いただけます</p>
+      <p>お名前とメールアドレスは会員情報から入力済みです。ご予約はマイページに保存され、日時の変更やキャンセルもマイページからできます。</p>
+      <p class="rsv-member-note" data-rsv-member-note hidden></p>
+    </div>
     <form class="rsv-form rv" novalidate>
       <fieldset class="rsv-step">
         <legend><span>01</span>メニュー</legend>
@@ -87,6 +92,7 @@
       <p class="en">Thank you</p>
       <h2>ご予約を受け付けました</h2>
       <p class="rsv-summary" data-rsv-summary></p>
+      <p class="auth-note-ok rsv-saved" data-rsv-saved hidden>マイページに保存しました。<a href="mypage.html" class="u">マイページで確認する →</a></p>
       <p class="rsv-lead">このあと、次のことが自動で行われます。</p>
       <ol class="auto-flow" data-auto-flow></ol>
       <p class="auth-fine">※このサンプルは動作見本のため、実際にはメールは届かず、カレンダーにも登録されません。実際の制作では、お店のGoogleアカウントで動く仕組み（Google Apps Script）でメール送信とカレンダー登録を自動化します。月額の利用料はかかりません。</p>

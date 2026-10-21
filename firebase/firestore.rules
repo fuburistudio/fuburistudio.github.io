@@ -12,9 +12,17 @@ service cloud.firestore {
 
       allow update: if request.auth != null && request.auth.uid == uid
         && request.auth.token.email_verified == true
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['stamps', 'updatedAt'])
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['stamps', 'updatedAt', 'booking'])
         && request.resource.data.stamps is int
-        && request.resource.data.stamps >= 0 && request.resource.data.stamps <= 10;
+        && request.resource.data.stamps >= 0 && request.resource.data.stamps <= 10
+        && (!request.resource.data.keys().hasAny(['booking'])
+            || request.resource.data.booking == null
+            || (request.resource.data.booking is map
+                && request.resource.data.booking.keys().hasOnly(['menu', 'minutes', 'date', 'time'])
+                && request.resource.data.booking.menu is string && request.resource.data.booking.menu.size() <= 40
+                && request.resource.data.booking.minutes is int
+                && request.resource.data.booking.date is string && request.resource.data.booking.date.size() == 10
+                && request.resource.data.booking.time is string && request.resource.data.booking.time.size() <= 5));
 
       allow delete: if false;
     }
