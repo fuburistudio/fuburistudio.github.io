@@ -23,7 +23,7 @@
     e.preventDefault();
     veil.classList.remove("is-off");
     veil.classList.add("is-on");
-    setTimeout(function () { location.href = url.href; }, 620);
+    setTimeout(function () { location.href = url.href; }, 1000);
   });
   window.addEventListener("pageshow", function (e) {
     if (e.persisted) { veil.classList.remove("is-on"); veil.classList.add("is-off"); }
@@ -101,7 +101,7 @@
   if (reduce || doc.classList.contains("in-frame") || !document.querySelector(".intro")) {
     ready();
   } else {
-    setTimeout(ready, 900);
+    setTimeout(ready, 2200);
   }
 
   // ---------- reveal + counters ----------
@@ -111,8 +111,8 @@
     var start = null;
     function step(ts) {
       if (!start) start = ts;
-      var p = Math.min((ts - start) / 1600, 1);
-      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 4))).toLocaleString("ja-JP");
+      var p = Math.min((ts - start) / 3200, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 2.4))).toLocaleString("ja-JP");
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);

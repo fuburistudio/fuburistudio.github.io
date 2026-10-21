@@ -47,10 +47,12 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; margin: 0; line-height
   align-items: center;
   justify-content: center;
   clip-path: inset(0 0 0 0);
-  transition: clip-path 1.2s cubic-bezier(.76, 0, .24, 1) .2s;
+  transition: clip-path 1.8s cubic-bezier(.76, 0, .24, 1) .3s;
 }
 
-.intro-mark { display: flex; align-items: center; gap: 16px; font-family: var(--serif); font-size: 3rem; opacity: 0; animation: introIn 1s var(--ease) .1s forwards; }
+.intro-mark { display: flex; align-items: center; gap: 16px; font-family: var(--serif); font-size: 3rem; opacity: 0; animation: introIn 1.6s var(--ease) .2s forwards; }
+.intro-leaf * { animation: leafDraw 2.2s var(--ease) .2s both; }
+@keyframes leafDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 .intro-leaf { width: 46px; height: 46px; color: var(--gold); }
 @keyframes introIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .is-ready .intro { clip-path: inset(0 0 100% 0); }
@@ -546,10 +548,12 @@ h1, h2, h3, .hero-sub, .page-head p { word-break: auto-phrase; }
 .img-reveal.on img { transform: none; }
 
 /* page veil between pages */
-.veil { position: fixed; top: 0; left: 0; right: 0; height: 100vh; height: 100lvh; min-height: 100%; z-index: 150; display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--gold); font-family: var(--serif); font-size: 2.4rem; clip-path: inset(0 0 0 0); transition: clip-path .9s cubic-bezier(.76, 0, .24, 1); pointer-events: none; }
+.veil { position: fixed; top: 0; left: 0; right: 0; height: 100vh; height: 100lvh; min-height: 100%; z-index: 150; display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--gold); font-family: var(--serif); font-size: 2.4rem; clip-path: inset(0 0 0 0); transition: clip-path 1.4s cubic-bezier(.76, 0, .24, 1); pointer-events: none; }
 .veil span { opacity: .8; }
 .veil.is-off { clip-path: inset(0 0 100% 0); }
-.veil.is-on { clip-path: inset(0 0 0 0); transition-duration: .6s; }
+.veil.is-on { clip-path: inset(0 0 0 0); transition-duration: 1s; }
+.veil span { animation: veilIn 1.2s var(--ease) both; }
+@keyframes veilIn { from { opacity: 0; transform: translateY(10px); } }
 .in-frame .veil { display: none; }
 
 /* menu rows book straight away */
@@ -688,7 +692,7 @@ h1, h2, h3, .hero-sub, .page-head p { word-break: auto-phrase; }
 
 /* numbers draw a fine rule as they count */
 .stats > div { position: relative; padding-top: 18px; }
-.stats > div::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 1.8s var(--ease); }
+.stats > div::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 3.2s var(--ease); }
 .stats.on > div::before { transform: scaleX(1); }
 .stats.on > div:nth-child(2)::before { transition-delay: .2s; }
 .stats.on > div:nth-child(3)::before { transition-delay: .4s; }
