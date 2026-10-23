@@ -403,23 +403,7 @@
   var heroInner = document.querySelector(".hero-inner");
   var lightSections = document.querySelectorAll("[data-header='light']");
   var depthEls = document.querySelectorAll("[data-depth]");
-  var hscroll = document.querySelector(".hscroll");
-  var hTrack = hscroll ? hscroll.querySelector(".hscroll-track") : null;
   var parallaxImgs = document.querySelectorAll("[data-parallax]");
-  var hsActive = false;
-  var hsDist = 0;
-
-  function layoutHScroll() {
-    if (!hscroll || !hTrack) return;
-    hsActive = !reduce && window.innerWidth > 900;
-    if (hsActive) {
-      hsDist = Math.max(0, hTrack.scrollWidth - hTrack.clientWidth);
-      hscroll.style.height = (hsDist + window.innerHeight) + "px";
-    } else {
-      hscroll.style.height = "";
-      hTrack.style.transform = "";
-    }
-  }
 
   function updateScroll() {
     scrollTicking = false;
@@ -466,13 +450,6 @@
       });
     });
 
-    if (hsActive) {
-      var hr = hscroll.getBoundingClientRect();
-      var total = hscroll.offsetHeight - vh;
-      var hp = total > 0 ? clamp(-hr.top / total, 0, 1) : 0;
-      hTrack.style.transform = "translate3d(" + (-hp * hsDist).toFixed(1) + "px,0,0)";
-    }
-
     parallaxImgs.forEach(function (img) {
       var r = img.parentElement.getBoundingClientRect();
       if (r.bottom < 0 || r.top > vh) return;
@@ -490,9 +467,108 @@
   }
 
   window.addEventListener("scroll", requestScrollUpdate, { passive: true });
-  window.addEventListener("resize", function () { layoutHScroll(); requestScrollUpdate(); });
-  window.addEventListener("load", function () { layoutHScroll(); requestScrollUpdate(); });
-  layoutHScroll();
+  window.addEventListener("resize", requestScrollUpdate);
+  window.addEventListener("load", requestScrollUpdate);
+
+  // ---------- process: the site builds itself over 30 days ----------
+  var flow = document.querySelector(".flow");
+  if (flow) {
+    var flowSteps = flow.querySelectorAll(".flow-steps li");
+    var flowDay = flow.querySelector("[data-flow-day]");
+    var flowLabel = flow.querySelector("[data-flow-label]");
+    var flowTag = flow.querySelector("[data-flow-tag]");
+    var flowUrl = flow.querySelector("[data-flow-url]");
+    var flowStrip = flow.querySelector(".flow-strip");
+    var FLOW_NAMES = {
+      en: ["Inquiry", "Consultation", "First draft", "Revisions", "Launch"],
+      ja: ["お問い合わせ", "ご相談", "初期納品", "調整・修正", "公開"]
+    };
+    // each step starts on this day, at this point of the scroll
+    var FLOW_DAYS = [1, 3, 14, 21, 30];
+    var FLOW_AT = [0, .17, .34, .51, .68];
+    var FLOW_URL = "komorebi-coffee.jp";
+
+    var strip = "";
+    for (var fd = 1; fd <= 30; fd++) {
+      var ms = FLOW_DAYS.indexOf(fd) > -1;
+      strip += "<i" + (ms ? ' class="ms"' : "") + ' data-d="' + fd + '">' + (ms ? "<span>" + fd + "</span>" : "") + "</i>";
+    }
+    flowStrip.innerHTML = strip;
+    var flowTicks = flowStrip.querySelectorAll("i");
+
+    var confetti = flow.querySelector(".fb-confetti");
+    var confColors = ["#ff5a1f", "#121110", "#ffe58a", "#8de055"];
+    for (var fc = 0; fc < 26; fc++) {
+      var piece = document.createElement("i");
+      var ang = (fc / 26) * Math.PI * 2;
+      var dist = 22 + (fc % 5) * 7;
+      piece.style.cssText = "--x:" + (Math.cos(ang) * dist).toFixed(1) + "cqw;--y:" + (Math.sin(ang) * dist * .8).toFixed(1) +
+        "cqw;--r:" + (fc * 47 % 360) + "deg;background:" + confColors[fc % 4];
+      confetti.appendChild(piece);
+    }
+
+    var typeTimer = null, typed = false;
+    function typeUrl(on) {
+      if (on === typed) return;
+      typed = on;
+      clearInterval(typeTimer);
+      flow.classList.remove("is-live");
+      if (!on) { flow.classList.remove("is-typing"); flowUrl.textContent = "about:blank"; return; }
+      if (reduce) { flowUrl.textContent = "https://" + FLOW_URL; flow.classList.add("is-live"); return; }
+      var n = 0;
+      flowUrl.textContent = "";
+      flow.classList.add("is-typing");
+      typeTimer = setInterval(function () {
+        n++;
+        flowUrl.textContent = "https://" + FLOW_URL.slice(0, n);
+        if (n >= FLOW_URL.length) {
+          clearInterval(typeTimer);
+          flow.classList.remove("is-typing");
+          flow.classList.add("is-live");
+        }
+      }, 55);
+    }
+
+    var lastFlow = "";
+    function updateFlow() {
+      var r = flow.getBoundingClientRect();
+      var total = flow.offsetHeight - window.innerHeight;
+      var p = total > 0 ? clamp(-r.top / total, 0, 1) : 0;
+      // keep the floating button off the stage while it is pinned
+      body.classList.toggle("in-flow", r.top < window.innerHeight * .5 && r.bottom > window.innerHeight * .5);
+      var s = 0;
+      for (var k = 0; k < FLOW_AT.length; k++) if (p >= FLOW_AT[k]) s = k;
+      // days run between the steps' start days, then hold on day 30
+      var day = s === 4 ? 30 : Math.round(FLOW_DAYS[s] + (FLOW_DAYS[s + 1] - FLOW_DAYS[s]) * clamp((p - FLOW_AT[s]) / (FLOW_AT[s + 1] - FLOW_AT[s]), 0, 1));
+      var end = p >= .86;
+      var lang = doc.lang === "ja" ? "ja" : "en";
+      var key = s + "|" + day + "|" + end + "|" + lang;
+      if (key === lastFlow) return;
+      lastFlow = key;
+
+      for (var c = 0; c <= 5; c++) flow.classList.toggle("s" + c, c <= (end ? 5 : s));
+      flowSteps.forEach(function (li, i) {
+        li.classList.toggle("is-on", i === s);
+        li.classList.toggle("is-done", i < s || end);
+      });
+      flowTicks.forEach(function (t, i) {
+        t.classList.toggle("is-past", i + 1 <= day);
+        t.classList.toggle("is-today", i + 1 === day && !end);
+      });
+      flowDay.textContent = (day < 10 ? "0" : "") + day;
+      var onStart = FLOW_DAYS[s] === day;
+      flowTag.textContent = end ? "DONE" : "TODAY";
+      flowLabel.textContent = s === 4 ? (lang === "ja" ? "公開！" : "Live!") :
+        FLOW_NAMES[lang][s] + (onStart ? "" : (lang === "ja" ? " 進行中" : " in progress"));
+      typeUrl(s === 4);
+    }
+
+    window.addEventListener("scroll", updateFlow, { passive: true });
+    window.addEventListener("resize", updateFlow);
+    langButtons.forEach(function (btn) { btn.addEventListener("click", function () { lastFlow = ""; updateFlow(); }); });
+    window.addEventListener("load", function () { lastFlow = ""; updateFlow(); });
+    setTimeout(function () { lastFlow = ""; updateFlow(); }, 0);
+  }
 
   // ---------- contact form (sent by email through FormSubmit) ----------
   var cform = document.querySelector(".cform");
