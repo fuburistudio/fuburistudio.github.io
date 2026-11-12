@@ -56,10 +56,17 @@
       '<text><textPath href="#fab-ring">RESERVE ONLINE · 24H · RESERVE ONLINE · 24H · </textPath></text></svg><span>予約</span>';
     body.appendChild(fab);
     var hero = document.querySelector(".hero, .sub-head");
+    var ctaOnScreen = new Set();
     var showFab = function () {
       var limit = hero ? hero.offsetHeight * 0.6 : 300;
-      fab.classList.toggle("is-shown", window.scrollY > limit);
+      fab.classList.toggle("is-shown", window.scrollY > limit && ctaOnScreen.size === 0);
     };
+    // step aside while another booking button or the footer is on screen
+    var ctaIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) ctaOnScreen.add(en.target); else ctaOnScreen.delete(en.target); });
+      showFab();
+    }, { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reserve-card, .footer, .cta").forEach(function (el) { ctaIo.observe(el); });
     window.addEventListener("scroll", showFab, { passive: true });
     showFab();
   }

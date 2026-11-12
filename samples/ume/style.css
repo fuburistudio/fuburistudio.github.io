@@ -2,7 +2,9 @@
   --bg: #f7f0e4;
   --card: #fffaf2;
   --ink: #3b2a1e;
-  --muted: #8a7563;
+  --muted: #76614f;
+  /* deeper terracotta for text on the cream ground */
+  --accent-text: #a4532a;
   --accent: #c0673a;
   --leaf: #6f7d5a;
   --line: rgba(59, 42, 30, .14);
@@ -28,7 +30,7 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 h1, h2, h3, h4 { font-family: "Zen Old Mincho", serif; font-weight: 700; margin: 0; line-height: 1.5; }
 
-.hand { margin: 0 0 4px; font-family: "Caveat", cursive; font-size: 1.7rem; font-weight: 700; letter-spacing: .01em; line-height: 1.1; color: var(--accent); transform: rotate(-3deg); transform-origin: left; }
+.hand { margin: 0 0 4px; font-family: "Caveat", cursive; font-size: 1.7rem; font-weight: 700; letter-spacing: .01em; line-height: 1.1; color: var(--accent-text); transform: rotate(-3deg); transform-origin: left; }
 
 /* header */
 .header {
@@ -42,22 +44,20 @@ h1, h2, h3, h4 { font-family: "Zen Old Mincho", serif; font-weight: 700; margin:
   gap: 24px;
   padding: 10px 14px 10px 18px;
   border-radius: 999px;
-  background: rgba(255, 250, 242, .88);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: var(--card);
   box-shadow: 0 10px 30px -18px rgba(59, 42, 30, .4);
 }
 
 .logo { display: flex; align-items: center; gap: 10px; font-family: "Zen Old Mincho", serif; font-size: 1.1rem; font-weight: 700; line-height: 1.2; }
 .logo span { display: flex; flex-direction: column; }
-.logo small { font-family: "Zen Maru Gothic", sans-serif; font-size: .56rem; letter-spacing: .22em; color: var(--muted); }
+.logo small { font-family: "Zen Maru Gothic", sans-serif; font-size: .75rem; letter-spacing: .22em; color: var(--muted); }
 .logo-sun { width: 28px; height: 28px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; animation: spin 24s linear infinite; }
 .logo-sun circle { fill: #f2c68c; stroke: none; }
-.nav { display: flex; gap: 26px; margin-left: auto; font-size: .88rem; }
+.nav { display: flex; gap: 26px; margin-left: auto; font-size: .875rem; }
 .nav a { position: relative; }
 .nav a::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--accent); transform: scale(0); transition: transform .3s var(--ease); }
 .nav a:hover::after { transform: scale(1); }
-.open-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: .72rem; letter-spacing: .08em; }
+.open-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: .75rem; letter-spacing: .08em; }
 .open-pill i { width: 7px; height: 7px; border-radius: 50%; background: #9fd18b; box-shadow: 0 0 0 0 rgba(159, 209, 139, .6); animation: pulse 2s infinite; }
 
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -73,7 +73,7 @@ h1, h2, h3, h4 { font-family: "Zen Old Mincho", serif; font-weight: 700; margin:
 .hero-text { position: absolute; z-index: 1; left: clamp(32px, 8vw, 120px); bottom: 16vh; color: #fff; }
 .hero-text .hand { color: #f6c89a; font-size: 2.2rem; }
 .hero h1 { font-size: clamp(2.2rem, 5.4vw, 4rem); letter-spacing: .06em; text-shadow: 0 4px 30px rgba(0, 0, 0, .25); }
-.hero-sub { margin: 14px 0 0; font-size: .95rem; opacity: .9; }
+.hero-sub { margin: 14px 0 0; font-size: 1rem; opacity: .9; }
 
 .stamp { position: absolute; z-index: 1; right: clamp(24px, 6vw, 80px); bottom: 9vh; width: clamp(110px, 12vw, 150px); animation: spin 20s linear infinite; }
 .stamp text { font-family: "Zen Maru Gothic", sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 2.4px; fill: #fff; }
@@ -90,14 +90,14 @@ h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 26px; letter-spacin
 @keyframes bob { 50% { transform: translateY(-10px) rotate(6deg); } }
 .concept-body > p:not(.hand) { color: #5c4636; }
 .points { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.points li { padding: 16px 12px; border-radius: 20px; background: var(--card); text-align: center; font-size: .8rem; color: var(--muted); line-height: 1.6; box-shadow: 0 10px 24px -20px rgba(59, 42, 30, .5); }
+.points li { padding: 16px 12px; border-radius: 20px; background: var(--card); text-align: center; font-size: .75rem; color: var(--muted); line-height: 1.6; box-shadow: 0 10px 24px -20px rgba(59, 42, 30, .5); }
 .points b { display: block; font-family: "Zen Old Mincho", serif; font-size: 1.35rem; color: var(--ink); }
 
 /* menu */
 .menu-head { text-align: center; margin-bottom: 20px; }
 .menu-head .hand { transform-origin: center; }
 .menu-cat { display: flex; align-items: baseline; gap: 14px; margin: 56px 0 24px; font-size: 1.15rem; }
-.menu-cat span { font-family: "Caveat", cursive; font-size: 2.4rem; color: var(--accent); line-height: 1; }
+.menu-cat span { font-family: "Caveat", cursive; font-size: 2.4rem; color: var(--accent-text); line-height: 1; }
 .menu-cat::after { content: ""; flex: 1; height: 0; border-top: 2px dotted var(--line); transform: translateY(-6px); }
 
 .menu-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
@@ -142,20 +142,20 @@ h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 26px; letter-spacin
 .item:hover .item-img img { transform: translateY(-8px) rotate(-6deg) scale(1.05); }
 
 .item h4 { font-size: 1rem; letter-spacing: .04em; word-break: auto-phrase; }
-.item p { word-break: auto-phrase; margin: 6px 0 14px; font-size: .78rem; color: var(--muted); line-height: 1.7; }
-.price { margin-top: auto; padding: 4px 16px; border-radius: 999px; background: var(--ink); color: var(--bg); font-family: "Zen Old Mincho", serif; font-size: .95rem; }
+.item p { word-break: auto-phrase; margin: 6px 0 14px; font-size: .75rem; color: var(--muted); line-height: 1.7; }
+.price { margin-top: auto; padding: 4px 16px; border-radius: 999px; background: var(--ink); color: var(--bg); font-family: "Zen Old Mincho", serif; font-size: 1rem; }
 
-.pick { position: absolute; top: 14px; right: 14px; z-index: 1; padding: 4px 10px 4px 12px; border-radius: 999px; background: var(--accent); color: #fff; font-size: .7rem; transform: rotate(6deg); }
+.pick { position: absolute; top: 14px; right: 14px; z-index: 1; padding: 4px 10px 4px 12px; border-radius: 999px; background: var(--accent-text); color: #fff; font-size: .75rem; transform: rotate(6deg); }
 
 .beans { display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: center; margin-top: 48px; padding: 28px 36px; border-radius: 32px; background: var(--ink); color: var(--bg); }
 .beans img { width: 160px; filter: drop-shadow(0 14px 16px rgba(0, 0, 0, .35)); animation: bob 6s ease-in-out infinite; }
 .beans .hand { color: #f6c89a; }
 .beans h3 { font-size: 1.35rem; }
-.beans p:not(.hand) { margin: 6px 0 0; font-size: .88rem; opacity: .8; }
+.beans p:not(.hand) { margin: 6px 0 0; font-size: .875rem; opacity: .8; }
 
 /* info */
 .info-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: start; }
-.info table { width: 100%; border-collapse: collapse; font-size: .92rem; background: var(--card); border-radius: 24px; overflow: hidden; }
+.info table { width: 100%; border-collapse: collapse; font-size: .875rem; background: var(--card); border-radius: 24px; overflow: hidden; }
 .info th, .info td { text-align: left; padding: 16px 20px; border-bottom: 1px dashed var(--line); vertical-align: top; }
 .info tr:last-child th, .info tr:last-child td { border-bottom: 0; }
 .info th { width: 7.5em; font-weight: 500; color: var(--muted); }
@@ -172,16 +172,16 @@ h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 26px; letter-spacin
   justify-content: center;
 }
 
-.map span { position: relative; padding: 8px 16px; background: var(--accent); color: #fff; font-size: .8rem; border-radius: 999px; }
+.map span { position: relative; padding: 8px 16px; background: var(--accent-text); color: #fff; font-size: .75rem; border-radius: 999px; }
 .map span::after { content: ""; position: absolute; left: 50%; bottom: -7px; margin-left: -7px; border: 7px solid transparent; border-bottom: 0; border-top-color: var(--accent); }
 
-.insta { display: inline-block; margin-top: 32px; padding: 14px 28px; border-radius: 999px; background: var(--card); box-shadow: 0 10px 24px -18px rgba(59, 42, 30, .5); font-size: .9rem; transition: background .3s, color .3s; }
+.insta { display: inline-block; margin-top: 32px; padding: 14px 28px; border-radius: 999px; background: var(--card); box-shadow: 0 10px 24px -18px rgba(59, 42, 30, .5); font-size: .875rem; transition: background .3s, color .3s; }
 .insta:hover { background: var(--ink); color: var(--bg); }
 
 .footer { padding: 56px 24px 40px; text-align: center; background: var(--ink); color: #e9dfd2; border-radius: 40px 40px 0 0; }
 .footer .hand { color: #f6c89a; font-size: 2.2rem; transform-origin: center; }
 .footer-name { margin: 10px 0 4px; font-family: "Zen Old Mincho", serif; }
-.footer small { opacity: .6; }
+.footer small { opacity: .8; }
 
 .fade { opacity: 0; transform: translateY(24px); transition: opacity 1s ease, transform 1s var(--ease); }
 .fade.on { opacity: 1; transform: none; }
@@ -189,7 +189,7 @@ h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 26px; letter-spacin
 .menu-cards .fade:nth-child(3) { transition-delay: .16s; }
 .menu-cards .fade:nth-child(4) { transition-delay: .24s; }
 
-.sample-badge { position: fixed; left: 16px; bottom: 16px; z-index: 20; padding: 8px 14px; border-radius: 99px; background: #111; color: #fff; font-size: .7rem; letter-spacing: .05em; }
+.sample-badge { position: fixed; left: 16px; bottom: 16px; z-index: 20; padding: 8px 14px; border-radius: 99px; background: #111; color: #fff; font-size: .75rem; letter-spacing: .05em; }
 .in-frame .sample-badge { display: none; }
 
 @media (max-width: 900px) {
@@ -205,7 +205,7 @@ h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 26px; letter-spacin
   .concept-sticker { right: -6px; width: 34%; }
   .menu-cards { gap: 12px; }
   .item { padding: 16px 12px 18px; border-radius: 22px; }
-  .item h4 { font-size: .9rem; }
+  .item h4 { font-size: .875rem; }
   .beans { grid-template-columns: 1fr; text-align: center; padding: 28px 24px; }
   .beans img { width: 120px; margin: 0 auto; }
   .stamp { bottom: auto; top: 90px; width: 96px; }
@@ -215,3 +215,16 @@ h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); margin-bottom: 26px; letter-spacin
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .fade { opacity: 1; transform: none; }
 }
+
+/* dark grounds keep the original colours for text */
+.footer, .open-pill, .price, .beans { --accent-text: var(--accent); --muted: #b9a593; }
+
+/* ---------- keyboard focus ---------- */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+:focus:not(:focus-visible) { outline: none; }
+
+/* ---------- comfortable tap targets ---------- */
+.nav a { display: inline-flex; align-items: center; min-height: 44px; }
+td small { font-size: .75rem; }
+.logo small, .open-pill { white-space: nowrap; }
+@media (max-width: 760px) { .logo small { letter-spacing: .1em; } .open-pill { padding: 6px 12px; letter-spacing: .02em; } }
