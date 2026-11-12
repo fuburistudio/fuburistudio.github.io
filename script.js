@@ -157,6 +157,13 @@
     };
     window.addEventListener("scroll", showFab, { passive: true });
     showFab();
+    // step aside while another call to action is on screen
+    var ctaSeen = new Set();
+    var ctaIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) ctaSeen.add(en.target); else ctaSeen.delete(en.target); });
+      body.classList.toggle("cta-near", ctaSeen.size > 0);
+    }, { rootMargin: "0px 0px -15% 0px" });
+    document.querySelectorAll(".hero-cta, .plans-compare, .premium-foot, .page-cta, .contact-box").forEach(function (el) { ctaIo.observe(el); });
   }
 
   // ---------- page transitions ----------
