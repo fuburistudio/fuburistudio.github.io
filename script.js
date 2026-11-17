@@ -637,3 +637,11 @@
   setLang(getStore(localStorage, LANG_KEY) || "en");
 
 })();
+
+// hand-drawn wobble on the service illustrations stays still for reduced motion
+(function () {
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var defs = document.querySelector(".svg-defs");
+    if (defs && defs.pauseAnimations) defs.pauseAnimations();
+  }
+})();
