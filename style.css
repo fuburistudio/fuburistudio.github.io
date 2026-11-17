@@ -1294,6 +1294,7 @@ html[lang="ja"] .bento-type { font-family: "Shippori Mincho", serif; font-weight
   border-bottom: 1px solid var(--line);
 }
 
+.client-row + .client-row { margin-top: 0; border-top: 0; }
 .client-row .mono { color: var(--muted); }
 .client-name { font-size: var(--fs-lg); font-weight: 600; letter-spacing: -.045em; transition: color .3s; }
 .client-row:hover .client-name { color: var(--accent-text); }
@@ -1581,6 +1582,7 @@ body.is-loaded .page-photo img { scale: 1; }
   border-top: 1px solid var(--line);
 }
 
+.work-card + .work-card { margin-top: clamp(56px, 7vw, 96px); }
 .work-visual { position: relative; overflow: hidden; aspect-ratio: 4 / 3; border-radius: var(--r-lg); }
 .work-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
 .work-card:hover .work-visual img { transform: scale(1.05); }
