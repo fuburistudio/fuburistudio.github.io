@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>トップ背景の試作 — FUBURI Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2eee7; --paper-2:#e8e2d8; --cream:#fffaf3; --ink:#121110; --muted:#6f6a63;
+  --accent:#ff5a1f; --accent-text:#b8380a; --green:#6f8a5a; --blue:#8fb0c2;
+  --sans:"Inter Tight","Noto Sans JP",system-ui,sans-serif; --serif:"Instrument Serif","Shippori Mincho",serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace; --ease:cubic-bezier(.16,1,.3,1);
+  --pad:clamp(16px,3.2vw,48px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+
+/* lab bar */
+.lab-bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px var(--pad);background:rgba(18,17,16,.92);color:var(--paper);font-size:.8rem;backdrop-filter:blur(6px)}
+.lab-bar b{font-weight:600;margin-right:auto}
+.lab-bar nav{display:flex;gap:6px;flex-wrap:wrap}
+.lab-bar nav a{padding:6px 12px;border:1px solid rgba(242,238,231,.25);border-radius:999px;text-decoration:none;font-family:var(--mono);font-size:.72rem}
+.lab-bar nav a:hover{background:var(--paper);color:var(--ink)}
+
+/* shared hero frame */
+.demo{position:relative;min-height:calc(100svh - 46px);display:grid;grid-template-rows:auto 1fr auto;padding:20px var(--pad) clamp(28px,4vw,52px);overflow:hidden;border-bottom:1px solid rgba(18,17,16,.14)}
+.tag{position:relative;z-index:3;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.tag i{font-style:normal;font-family:var(--mono);font-size:.72rem;padding:4px 10px;border-radius:999px;background:var(--ink);color:var(--paper)}
+.tag b{color:var(--ink);font-size:.95rem}
+.vis{position:relative;min-height:0}
+.copy{position:relative;z-index:2;display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:end}
+.copy h1{grid-column:1/-1;margin:0 0 clamp(18px,3vh,36px);font-size:clamp(2.1rem,5.6vw,6rem);font-weight:900;letter-spacing:-.045em;line-height:1.08}
+.copy h1 em{font-style:normal;color:var(--accent-text)}
+.copy p{grid-column:1/span 5;margin:0;max-width:44ch;font-size:.95rem;line-height:1.8;color:var(--muted)}
+.copy .cta{grid-column:6/span 3}
+.btn{display:inline-flex;align-items:center;gap:14px;padding:14px 22px;border-radius:999px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:500}
+.btn span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--ink);font-size:.8rem}
+.copy ul{grid-column:10/span 3;justify-self:end;list-style:none;margin:0;padding:0;display:grid;gap:6px;text-align:right;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+@media (max-width:760px){
+  .copy{grid-template-columns:1fr;gap:18px}
+  .copy p,.copy .cta,.copy ul{grid-column:1}
+  .copy ul{justify-self:start;text-align:left}
+  .copy h1{font-size:10.4vw}
+}
+
+/* ============ 1. hand-drawn street ============ */
+.vis1{display:flex;align-items:center;justify-content:center;padding:24px 0 8px}
+.vis1 .pan{width:100%;max-width:1240px}
+.vis1 svg{display:block;width:100%;height:auto;overflow:visible}
+.st .sk{filter:url(#boil)}
+.st .ln{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.st .fl{opacity:0}
+.st .tx{opacity:0;font-family:var(--mono);font-weight:500;fill:var(--ink)}
+.st .acc{fill:var(--accent)} .st .crm{fill:var(--cream)} .st .grn{fill:var(--green)} .st .blu{fill:var(--blue)} .st .p2{fill:var(--paper-2)}
+.on .st .ln{animation:draw 1s var(--ease) forwards;animation-delay:var(--d)}
+.on .st .fl,.on .st .tx{animation:fade .8s ease forwards;animation-delay:calc(var(--d) + .5s)}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fade{to{opacity:1}}
+.st .glow{fill:#ffcf7a;opacity:0}
+.on .st .glow{animation:glow 9s ease-in-out infinite;animation-delay:calc(5.5s + var(--g,0s))}
+@keyframes glow{0%,30%{opacity:0}40%,85%{opacity:.55}95%,100%{opacity:0}}
+.st .awn,.st .swing,.st .flag,.st .leaf,.st .tail,.st .steam,.st .s-open,.st .s-closed{transform-box:fill-box}
+.on .st .awn{transform-origin:50% 0;animation:awn 3.2s ease-in-out infinite;animation-delay:calc(5s + var(--g,0s))}
+@keyframes awn{0%,100%{transform:skewX(0)}50%{transform:skewX(-2.5deg) scaleY(1.03)}}
+.on .st .swing{transform-origin:50% 0;animation:swing 2.6s ease-in-out infinite 5s}
+@keyframes swing{0%,100%{transform:rotate(5deg)}50%{transform:rotate(-5deg)}}
+.on .st .flag{transform-origin:0 50%;animation:flag 1.4s ease-in-out infinite 5s}
+@keyframes flag{0%,100%{transform:skewY(0) scaleX(1)}50%{transform:skewY(6deg) scaleX(.9)}}
+.on .st .leaf{transform-origin:50% 100%;animation:leaf 3s ease-in-out infinite;animation-delay:calc(5s + var(--g,0s))}
+@keyframes leaf{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+.on .st .tail{transform-origin:0 100%;animation:tail 2.2s ease-in-out infinite 5s}
+@keyframes tail{0%,100%{transform:rotate(0)}50%{transform:rotate(-24deg)}}
+.st .steam{stroke-dasharray:none;stroke-dashoffset:0;opacity:0}
+.on .st .steam{animation:steam 2.8s ease-out infinite;animation-delay:calc(5s + var(--g,0s))}
+@keyframes steam{0%{opacity:0;transform:translateY(6px)}30%{opacity:.8}100%{opacity:0;transform:translateY(-16px)}}
+.st .s-open{opacity:0}
+.on .st .s-closed{transform-origin:50% 0;animation:sclosed 8s ease-in-out infinite 5.5s}
+.on .st .s-open{transform-origin:50% 0;animation:sopen 8s ease-in-out infinite 5.5s}
+@keyframes sclosed{0%,20%{opacity:1;transform:scaleX(1)}26%{opacity:1;transform:scaleX(0)}27%,93%{opacity:0}100%{opacity:1;transform:scaleX(1)}}
+@keyframes sopen{0%,26%{opacity:0;transform:scaleX(0)}27%{opacity:1;transform:scaleX(0)}33%,88%{opacity:1;transform:scaleX(1)}93%,100%{opacity:0;transform:scaleX(0)}}
+@media (max-width:760px){
+  .vis1{justify-content:flex-start}
+  .vis1 .pan{width:820px;max-width:none;flex:none}
+  .on .vis1 .pan{animation:pan 22s ease-in-out infinite alternate 4s}
+  @keyframes pan{to{transform:translateX(calc(100vw - 2 * var(--pad) - 820px))}}
+}
+
+/* ============ 2. page builds itself ============ */
+.vis2{display:flex;align-items:center;justify-content:flex-end;padding:24px 0}
+.browser{position:relative;width:min(760px,100%,calc((100svh - 400px) * 1.6));min-width:min(320px,100%);aspect-ratio:16/10;border:2px solid var(--ink);border-radius:14px;background:var(--cream);overflow:hidden;box-shadow:10px 10px 0 var(--paper-2)}
+.b-top{display:flex;align-items:center;gap:7px;height:9%;padding:0 3%;border-bottom:2px solid var(--ink)}
+.b-top i{width:10px;height:10px;border-radius:50%;border:1.6px solid var(--ink)}
+.b-top i:first-child{background:var(--accent)}
+.b-url{margin-left:3%;flex:1;max-width:58%;height:56%;border:1.6px solid var(--ink);border-radius:999px;display:flex;align-items:center;padding:0 12px;font-family:var(--mono);font-size:clamp(9px,1.4vw,12px);white-space:nowrap;overflow:hidden}
+.b-url .car{width:1.5px;height:1.1em;background:var(--accent);margin-left:1px;animation:blink .9s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.site{position:absolute;inset:9% 0 0;padding:4% 5%;display:grid;grid-template-rows:auto 1fr auto;gap:5%}
+.w{position:relative;border:1.6px dashed rgba(18,17,16,.45);border-radius:6px;opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease),transform .5s var(--ease),border-color .4s}
+.s-nav{display:flex;align-items:center;gap:4%;height:clamp(18px,3.4vw,30px)}
+.s-nav .logo{width:26%;height:100%;display:flex;align-items:center;padding:0 8px;font-weight:700;font-size:clamp(9px,1.5vw,14px);white-space:nowrap;overflow:hidden}
+.s-nav .lk{width:8%;height:30%;margin-left:auto}
+.s-nav .lk+.lk{margin-left:0}
+.s-nav .bt{width:14%;height:100%;border-radius:999px}
+.s-hero{display:grid;grid-template-columns:1.25fr 1fr;gap:5%;min-height:0}
+.s-img{overflow:hidden}
+.s-img img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transform:scale(1.08);transition:opacity .7s ease,transform 1.6s var(--ease)}
+.s-txt{display:flex;flex-direction:column;justify-content:center;gap:9%;border:0}
+.s-txt .h{font-weight:900;font-size:clamp(11px,2.3vw,22px);line-height:1.25;letter-spacing:-.03em;opacity:0;transition:opacity .5s}
+.s-txt .l{height:6px;border-radius:3px;background:var(--ink);opacity:.18;transform-origin:0 50%;transform:scaleX(0);transition:transform .6s var(--ease)}
+.s-txt .l:nth-child(3){width:80%} .s-txt .l:nth-child(4){width:60%}
+.s-txt .go{align-self:flex-start;padding:5px 14px;border-radius:999px;background:var(--accent);color:var(--ink);font-size:clamp(8px,1.2vw,12px);font-weight:700;opacity:0;transition:opacity .4s,transform .2s}
+.s-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:4%;height:clamp(40px,8vw,84px)}
+.s-cards .w{overflow:hidden}
+.s-cards img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .6s ease}
+.cursor{position:absolute;left:80%;top:95%;width:22px;z-index:4;opacity:0;transition:left 1.1s var(--ease),top 1.1s var(--ease),opacity .3s}
+.cursor.click{transform:scale(.85)}
+.site.s1 .w{opacity:1;transform:none}
+.site.s1 .s-nav .w:nth-child(2){transition-delay:.08s} .site.s1 .s-nav .w:nth-child(3){transition-delay:.14s} .site.s1 .s-nav .w:nth-child(4){transition-delay:.2s}
+.site.s1 .s-img{transition-delay:.25s} .site.s1 .s-txt{transition-delay:.35s}
+.site.s1 .s-cards .w:nth-child(1){transition-delay:.45s} .site.s1 .s-cards .w:nth-child(2){transition-delay:.52s} .site.s1 .s-cards .w:nth-child(3){transition-delay:.6s}
+.site.s2 .s-img img{opacity:1;transform:none}
+.site.s2 .s-img{border-color:transparent}
+.site.s3 .s-txt .h,.site.s3 .s-txt .go{opacity:1}
+.site.s3 .s-txt .l{transform:none}
+.site.s3 .s-nav .w{border-style:solid;border-color:transparent}
+.site.s3 .s-nav .lk{background:var(--ink);opacity:.25}
+.site.s3 .s-nav .bt{background:var(--ink)}
+.site.s4 .s-cards img{opacity:1}
+.site.s4 .s-cards .w{border-color:transparent}
+.site.s4 .s-cards .w:nth-child(2) img{transition-delay:.12s} .site.s4 .s-cards .w:nth-child(3) img{transition-delay:.24s}
+.site.out .w{opacity:0;transition-duration:.6s;transition-delay:0s!important}
+@media (max-width:760px){.vis2{justify-content:center}}
+
+/* ============ 3. kinetic type ============ */
+.vis3{display:flex;flex-direction:column;justify-content:center;gap:8px;overflow:hidden;margin:0 calc(var(--pad) * -1)}
+.mq{display:flex;width:max-content;animation:mq 40s linear infinite}
+.mq.rev{animation-direction:reverse;animation-duration:52s}
+.mq span{font-family:var(--serif);font-size:clamp(3rem,9vw,9rem);line-height:1;padding-right:.4em;color:transparent;-webkit-text-stroke:1.2px rgba(18,17,16,.28);white-space:nowrap}
+.mq span em{color:var(--accent);-webkit-text-stroke:0;font-style:italic}
+@keyframes mq{to{transform:translateX(-50%)}}
+.copy3 h1 .rot{position:relative;display:inline-block;vertical-align:bottom;height:1.12em;overflow:hidden;transition:width .6s var(--ease);color:var(--accent-text)}
+.copy3 h1 .rot span{position:absolute;left:0;top:0;white-space:nowrap;transition:transform .7s var(--ease)}
+.copy3 h1 .rot span.in{transform:translateY(110%)}
+.copy3 h1 .rot span.outgo{transform:translateY(-110%)}
+.copy3 h1 .rot::after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.09em;background:var(--accent);border-radius:9px;transform-origin:0 50%;animation:ul 2.2s var(--ease) infinite}
+@keyframes ul{0%{transform:scaleX(0)}35%,80%{transform:scaleX(1)}100%{transform:scaleX(1);opacity:0}}
+.measure{position:absolute;visibility:hidden;white-space:nowrap}
+
+/* ============ 4. paper-cut collage ============ */
+.demo4{background:var(--paper)}
+.vis4{position:relative}
+.vis4 .cut{position:absolute;left:var(--x);top:var(--y);width:var(--w);transform:translate(calc(var(--mx,0) * var(--dp) * 1px),calc(var(--my,0) * var(--dp) * 1px));transition:transform .9s var(--ease)}
+.vis4 .cut svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(3px 4px 0 rgba(18,17,16,.16));animation:bob var(--t,9s) ease-in-out infinite alternate;transform-origin:50% 50%}
+@keyframes bob{0%{transform:translateY(0) rotate(var(--r0,-4deg))}100%{transform:translateY(-14px) rotate(var(--r1,5deg))}}
+.vis4 .cut{opacity:0;scale:.6;transition:transform .9s var(--ease),opacity .6s ease,scale .8s var(--ease)}
+.on .vis4 .cut{opacity:1;scale:1;transition-delay:0s,var(--in,0s),var(--in,0s)}
+.grain{position:absolute;inset:0;pointer-events:none;z-index:1;opacity:.35;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .4 0 0 0 0 .35 0 0 0 .25 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ============ 5. ink on washi ============ */
+.demo5{background:#f4efe4}
+.demo5 .grain{opacity:.55}
+.vis5{display:flex;align-items:center;justify-content:center}
+.vis5 svg{width:min(560px,92%);height:auto;overflow:visible}
+.ink .enso{fill:none;stroke:var(--ink);stroke-width:26;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.ink .enso2{stroke-width:9;opacity:.5}
+.ink .blot{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+.ink .halo{opacity:0}
+.ink .kana{font-family:"Shippori Mincho",serif;font-weight:700;font-size:150px;fill:var(--accent);opacity:0}
+.ink .sig{font-family:var(--mono);font-size:13px;letter-spacing:4px;fill:var(--ink);opacity:0}
+.ink .stamp{opacity:0;transform-box:fill-box;transform-origin:center}
+.on .ink .enso{animation:draw 2.4s cubic-bezier(.6,.05,.3,1) forwards .3s}
+.on .ink .enso2{animation-delay:.45s}
+.on .ink .blot{animation:blot 3.2s var(--ease) forwards;animation-delay:var(--d)}
+@keyframes blot{to{transform:scale(1)}}
+.on .ink .halo{animation:halo 5s ease forwards 1.2s}
+@keyframes halo{to{opacity:.22}}
+.on .ink .kana{animation:kana 1.6s ease forwards 2.4s}
+@keyframes kana{from{opacity:0;filter:blur(8px)}to{opacity:1;filter:blur(0)}}
+.on .ink .sig{animation:fade 1s ease forwards 3.4s}
+.on .ink .stamp{animation:stamp .5s cubic-bezier(.3,1.6,.5,1) forwards 3.8s}
+@keyframes stamp{from{opacity:0;transform:scale(1.6) rotate(-8deg)}to{opacity:1;transform:scale(1) rotate(-8deg)}}
+.ink.fadeout{transition:opacity 1s ease;opacity:0}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="lab-bar">
+  <b>トップ背景の試作（確認用・非公開ページ）</b>
+  <nav><a href="#d1">1 商店街</a><a href="#d2">2 ページ完成</a><a href="#d3">3 文字</a><a href="#d4">4 切り絵</a><a href="#d5">5 墨</a></nav>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="boil" x="-3%" y="-3%" width="106%" height="106%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="1"><animate attributeName="seed" values="1;4;7;10" dur=".56s" calcMode="discrete" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" scale="3" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="rough" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" seed="4"/><feDisplacementMap in="SourceGraphic" scale="12" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="bleed" x="-40%" y="-40%" width="180%" height="180%"><feTurbulence type="fractalNoise" baseFrequency=".06" numOctaves="2" seed="8" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="28" result="d"/><feGaussianBlur in="d" stdDeviation="4" result="b"/><feColorMatrix in="b" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8"/></filter>
+  <filter id="soft"><feGaussianBlur stdDeviation="14"/></filter>
+</svg>
+
+<!-- ===================== 1 ===================== -->
+<section class="demo" id="d1">
+  <div class="tag"><i>案1</i><b>手描きの商店街</b><span>線画のお店が描かれていき、日よけが揺れたり、灯りがついたり、札が OPEN に裏返ったりします。</span></div>
+  <div class="vis vis1"><div class="pan"><svg class="st" id="street" viewBox="0 0 1240 440" aria-hidden="true"><g class="sk"></g></svg></div></div>
+  <div class="copy">
+    <h1>あなたのお店に、<br><em>ふさわしい</em>ホームページを。</h1>
+    <p>飲食店・美容室・整体院など、個人店のためのホームページをデザインし、制作します。個人店でも申し込みやすい、わかりやすい価格で。</p>
+    <div class="cta"><a class="btn" href="contact.html">相談してみる <span>&nearr;</span></a></div>
+    <ul><li>3プラン — ¥50,000〜</li><li>約1か月で公開</li><li>公開後の修正無料</li></ul>
+  </div>
+</section>
+
+<!-- ===================== 2 ===================== -->
+<section class="demo" id="d2">
+  <div class="tag"><i>案2</i><b>白紙のホームページが完成していく</b><span>点線の下書き → 写真 → 文字 → 完成、を3つの見本サイトで順番に繰り返します。</span></div>
+  <div class="vis vis2">
+    <div class="browser">
+      <div class="b-top"><i></i><i></i><i></i><div class="b-url"><span class="u"></span><span class="car"></span></div></div>
+      <div class="site">
+        <div class="s-nav"><div class="w logo"></div><div class="w lk"></div><div class="w lk"></div><div class="w bt"></div></div>
+        <div class="s-hero"><div class="w s-img"><img alt=""></div><div class="w s-txt"><div class="h"></div><div class="l"></div><div class="l"></div><div class="l"></div><span class="go"></span></div></div>
+        <div class="s-cards"><div class="w"><img alt=""></div><div class="w"><img alt=""></div><div class="w"><img alt=""></div></div>
+      </div>
+      <svg class="cursor" viewBox="0 0 24 24"><path d="M3 2l17 9-7.5 1.8L9 20z" fill="#121110" stroke="#fffaf3" stroke-width="1.5" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+  <div class="copy">
+    <h1>あなたのお店に、<br><em>ふさわしい</em>ホームページを。</h1>
+    <p>飲食店・美容室・整体院など、個人店のためのホームページをデザインし、制作します。個人店でも申し込みやすい、わかりやすい価格で。</p>
+    <div class="cta"><a class="btn" href="contact.html">相談してみる <span>&nearr;</span></a></div>
+    <ul><li>3プラン — ¥50,000〜</li><li>約1か月で公開</li><li>公開後の修正無料</li></ul>
+  </div>
+</section>
+
+<!-- ===================== 3 ===================== -->
+<section class="demo" id="d3">
+  <div class="tag"><i>案3</i><b>大きな文字が入れ替わる</b><span>「あなたのお店」の部分が、カフェ・美容室・整体院…と入れ替わります。背景には業種名がゆっくり流れます。</span></div>
+  <div class="vis vis3" aria-hidden="true">
+    <div class="mq"><span>Cafés <em>&amp;</em> bakeries</span><span>Hair salons</span><span>Body care <em>&amp;</em> clinics</span><span>Gift shops</span><span>Tour guides</span><span>Cafés <em>&amp;</em> bakeries</span><span>Hair salons</span><span>Body care <em>&amp;</em> clinics</span><span>Gift shops</span><span>Tour guides</span></div>
+    <div class="mq rev"><span>Small shops</span><span><em>Independent</em></span><span>Restaurants</span><span>Florists</span><span>Studios</span><span>Small shops</span><span><em>Independent</em></span><span>Restaurants</span><span>Florists</span><span>Studios</span></div>
+  </div>
+  <div class="copy copy3">
+    <h1><span class="rot" id="rot"><span>あなたのお店</span></span>に、<br><em>ふさわしい</em>ホームページを。</h1>
+    <p>飲食店・美容室・整体院など、個人店のためのホームページをデザインし、制作します。個人店でも申し込みやすい、わかりやすい価格で。</p>
+    <div class="cta"><a class="btn" href="contact.html">相談してみる <span>&nearr;</span></a></div>
+    <ul><li>3プラン — ¥50,000〜</li><li>約1か月で公開</li><li>公開後の修正無料</li></ul>
+  </div>
+</section>
+
+<!-- ===================== 4 ===================== -->
+<section class="demo demo4" id="d4">
+  <div class="grain"></div>
+  <div class="tag"><i>案4</i><b>切り絵のコラージュ</b><span>紙を切り抜いたような形が、ゆっくり漂います。パソコンではマウスの動きに少しついてきます。</span></div>
+  <div class="vis vis4" id="collage" aria-hidden="true">
+    <div class="cut" style="--x:58%;--y:4%;--w:clamp(90px,13vw,190px);--dp:10;--t:8s;--in:.1s"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#ff5a1f"/></svg></div>
+    <div class="cut" style="--x:74%;--y:30%;--w:clamp(110px,15vw,220px);--dp:22;--t:10s;--in:.25s;--r0:6deg;--r1:-3deg"><svg viewBox="0 0 120 100"><path d="M14 22h70v40a30 30 0 0 1-30 30h-10a30 30 0 0 1-30-30z" fill="#121110"/><path d="M84 34h8a14 14 0 0 1 0 28h-8v-9h7a5 5 0 0 0 0-10h-7z" fill="#121110"/><path d="M34 4c-6 6 6 8 0 14M50 2c-6 6 6 8 0 14" stroke="#121110" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div>
+    <div class="cut" style="--x:44%;--y:36%;--w:clamp(70px,9vw,130px);--dp:-14;--t:7s;--in:.4s;--r0:-14deg;--r1:10deg"><svg viewBox="0 0 80 120"><path d="M40 4C70 30 72 80 40 116 8 80 10 30 40 4z" fill="#6f8a5a"/><path d="M40 20v92" stroke="#f2eee7" stroke-width="3"/></svg></div>
+    <div class="cut" style="--x:86%;--y:2%;--w:clamp(80px,10vw,150px);--dp:-8;--t:11s;--in:.55s"><svg viewBox="0 0 100 100"><path d="M6 96V52a44 44 0 0 1 88 0v44z" fill="#8fb0c2"/><path d="M30 96V60a20 20 0 0 1 40 0v36z" fill="#f2eee7"/></svg></div>
+    <div class="cut" style="--x:62%;--y:52%;--w:clamp(120px,16vw,240px);--dp:16;--t:9s;--in:.7s;--r0:-2deg;--r1:3deg"><svg viewBox="0 0 160 110"><path d="M10 50L80 8l70 42v56H10z" fill="#e8e2d8"/><path d="M10 50L80 8l70 42" fill="none" stroke="#121110" stroke-width="5" stroke-linejoin="round"/><rect x="64" y="64" width="32" height="42" fill="#ff5a1f"/><rect x="24" y="62" width="26" height="22" fill="#121110"/><rect x="110" y="62" width="26" height="22" fill="#121110"/></svg></div>
+    <div class="cut" style="--x:50%;--y:2%;--w:clamp(60px,8vw,110px);--dp:-20;--t:6s;--in:.85s;--r0:30deg;--r1:42deg"><svg viewBox="0 0 40 140"><rect x="8" y="10" width="24" height="96" fill="#ff5a1f"/><rect x="8" y="10" width="24" height="16" fill="#121110"/><path d="M8 106h24l-12 30z" fill="#e8e2d8"/><path d="M16 126h8l-4 10z" fill="#121110"/></svg></div>
+    <div class="cut" style="--x:80%;--y:62%;--w:clamp(80px,11vw,170px);--dp:-12;--t:12s;--in:1s;--r0:-8deg;--r1:-1deg"><svg viewBox="0 0 140 60"><path d="M0 40c18-24 34-24 52 0s34 24 52 0 24-18 36-8v28H0z" fill="#121110"/></svg></div>
+    <div class="cut" style="--x:40%;--y:62%;--w:clamp(50px,6vw,90px);--dp:26;--t:8s;--in:1.15s"><svg viewBox="0 0 60 60"><rect x="6" y="6" width="48" height="48" rx="4" fill="#fffaf3" stroke="#121110" stroke-width="4"/><path d="M16 22h28M16 32h20M16 42h24" stroke="#121110" stroke-width="4" stroke-linecap="round"/></svg></div>
+  </div>
+  <div class="copy">
+    <h1>あなたのお店に、<br><em>ふさわしい</em>ホームページを。</h1>
+    <p>飲食店・美容室・整体院など、個人店のためのホームページをデザインし、制作します。個人店でも申し込みやすい、わかりやすい価格で。</p>
+    <div class="cta"><a class="btn" href="contact.html">相談してみる <span>&nearr;</span></a></div>
+    <ul><li>3プラン — ¥50,000〜</li><li>約1か月で公開</li><li>公開後の修正無料</li></ul>
+  </div>
+</section>
+
+<!-- ===================== 5 ===================== -->
+<section class="demo demo5" id="d5">
+  <div class="grain"></div>
+  <div class="tag"><i>案5</i><b>紙と墨のにじみ</b><span>和紙に筆で円を描き、墨がにじんだあと、中に「ふ」の字が浮かびます。10秒ごとに描き直します。</span></div>
+  <div class="vis vis5" aria-hidden="true">
+    <svg class="ink" id="ink" viewBox="0 0 600 400">
+      <g class="halo" filter="url(#soft)"><circle cx="300" cy="200" r="150" fill="#121110"/></g>
+      <g filter="url(#bleed)" fill="#121110">
+        <circle class="blot" cx="214" cy="112" r="22" style="--d:2.2s"/>
+        <circle class="blot" cx="238" cy="96" r="14" style="--d:2.3s"/>
+        <circle class="blot" cx="430" cy="252" r="9" style="--d:1.6s"/>
+        <circle class="blot" cx="452" cy="276" r="5" style="--d:1.7s"/>
+        <circle class="blot" cx="148" cy="300" r="6" style="--d:1.1s"/>
+      </g>
+      <g filter="url(#rough)">
+        <path class="enso" pathLength="1" d="M320.8 81.8A120 120 0 1 1 240 96.1"/>
+        <path class="enso enso2" pathLength="1" d="M330 90A110 110 0 1 1 236 108"/>
+      </g>
+      <text class="kana" x="300" y="252" text-anchor="middle">ふ</text>
+      <text class="sig" x="300" y="372" text-anchor="middle">FUBURI STUDIO</text>
+      <g class="stamp"><rect x="412" y="300" width="34" height="34" rx="3" fill="#b8380a"/><text x="429" y="323" text-anchor="middle" font-family="Shippori Mincho,serif" font-weight="700" font-size="17" fill="#f4efe4">吹</text></g>
+    </svg>
+  </div>
+  <div class="copy">
+    <h1>あなたのお店に、<br><em>ふさわしい</em>ホームページを。</h1>
+    <p>飲食店・美容室・整体院など、個人店のためのホームページをデザインし、制作します。個人店でも申し込みやすい、わかりやすい価格で。</p>
+    <div class="cta"><a class="btn" href="contact.html">相談してみる <span>&nearr;</span></a></div>
+    <ul><li>3プラン — ¥50,000〜</li><li>約1か月で公開</li><li>公開後の修正無料</li></ul>
+  </div>
+</section>
+
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+  function add(p, tag, a) { var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; }
+
+  /* ---------- 1. build the street ---------- */
+  var root = document.querySelector("#street .sk"), G = 410, clipN = 0;
+  function ln(p, tag, a) { a["class"] = ((a["class"] || "") + " ln").trim(); a.pathLength = 1; return add(p, tag, a); }
+  function fl(p, tag, a, c) { a["class"] = "fl " + c; return add(p, tag, a); }
+  function tx(p, x, y, s, size, cls) { var t = add(p, "text", { x: x, y: y, "class": "tx " + (cls || ""), "text-anchor": "middle", "font-size": size || 15 }); t.textContent = s; return t; }
+  function awning(p, x, y, w, h, n, col, g) {
+    var sw = w / n, id = "aw" + (clipN++), wrap = add(p, "g", { "class": "awn", style: "--g:" + g + "s" });
+    var d = "M" + x + " " + y + "H" + (x + w) + "V" + (y + h);
+    for (var i = 0; i < n; i++) d += "a" + sw / 2 + " " + sw / 2.4 + " 0 0 1 " + (-sw) + " 0";
+    d += "Z";
+    var cp = add(add(p.ownerSVGElement || p, "defs", {}), "clipPath", { id: id }); add(cp, "path", { d: d });
+    var fills = add(wrap, "g", { "clip-path": "url(#" + id + ")" });
+    for (var j = 0; j < n + 1; j++) fl(fills, "rect", { x: x + j * sw, y: y, width: sw, height: h + sw }, j % 2 ? "crm" : col);
+    ln(wrap, "path", { d: d });
+    return wrap;
+  }
+  function shop(o) {
+    var g = add(root, "g", {}), x = o.x, w = o.w, top = o.top;
+    if (o.gable) { fl(g, "path", { d: "M" + (x - 10) + " " + top + "L" + (x + w / 2) + " " + (top - 54) + "L" + (x + w + 10) + " " + top + "Z" }, "p2"); ln(g, "path", { d: "M" + (x - 10) + " " + top + "L" + (x + w / 2) + " " + (top - 54) + "L" + (x + w + 10) + " " + top }); }
+    ln(g, "path", { d: "M" + x + " " + G + "V" + top + "H" + (x + w) + "V" + G });
+    ln(g, "rect", { x: x - 8, y: top - 12, width: w + 16, height: 12 });
+    var sy = top + 14;
+    ln(g, "rect", { x: x + w / 2 - 58, y: sy, width: 116, height: 28, rx: 4 });
+    tx(g, x + w / 2, sy + 19.5, o.sign, o.signSize || 15);
+    var ay = sy + 40;
+    if (o.awn) awning(g, x - 6, ay, w + 12, 30, o.n || 8, o.awn, o.g || 0);
+    var wy = ay + (o.awn ? 48 : 12), wx = x + 14, ww = Math.round(w * 0.52), wh = G - 22 - wy;
+    add(g, "rect", { "class": "glow", x: wx, y: wy, width: ww, height: wh, style: "--g:" + (o.g || 0) + "s" });
+    if (o.arch) {
+      var r = ww / 2; ln(g, "path", { d: "M" + wx + " " + (wy + wh) + "V" + (wy + r) + "a" + r + " " + r + " 0 0 1 " + ww + " 0V" + (wy + wh) + "Z" });
+    } else {
+      ln(g, "rect", { x: wx, y: wy, width: ww, height: wh });
+      ln(g, "path", { d: "M" + (wx + ww / 2) + " " + wy + "V" + (wy + wh) });
+    }
+    ln(g, "path", { d: "M" + (wx - 6) + " " + (wy + wh) + "H" + (wx + ww + 6) });
+    var dx = wx + ww + 14, dw = x + w - 14 - dx, dy = wy - 4;
+    ln(g, "path", { d: "M" + dx + " " + G + "V" + (dy + 10) + "q0 -10 10 -10H" + (dx + dw - 10) + "q10 0 10 10V" + G });
+    ln(g, "circle", { cx: dx + dw - 9, cy: dy + (G - dy) * 0.55, r: 2.5 });
+    if (o.decor) o.decor(g, { wx: wx, wy: wy, ww: ww, wh: wh, dx: dx, dw: dw, dy: dy, x: x, w: w, top: top });
+  }
+  ln(root, "path", { d: "M0 " + G + "H1240" });
+  for (var k = 0; k < 18; k++) ln(root, "path", { d: "M" + (20 + k * 68) + " " + (G + 14) + "h22" });
+
+  shop({ x: 30, w: 210, top: 150, sign: "CAFE", awn: "acc", g: 0, decor: function (g, b) {
+    var cx = b.wx + b.ww / 2 - 4, cy = b.wy + b.wh - 30;
+    ln(g, "path", { d: "M" + (cx - 18) + " " + cy + "h36v14a14 14 0 0 1-14 14h-8a14 14 0 0 1-14-14z" });
+    ln(g, "path", { d: "M" + (cx + 18) + " " + (cy + 4) + "h5a6 6 0 0 1 0 12h-5" });
+    for (var i = 0; i < 3; i++) add(g, "path", { "class": "ln steam", pathLength: 1, d: "M" + (cx - 9 + i * 9) + " " + (cy - 8) + "c-5 -6 5 -10 0 -18", style: "--g:" + i * 0.5 + "s" });
+    var sg = add(g, "g", { "class": "swing" }), sx = b.dx + b.dw / 2, sy2 = b.dy + 24;
+    ln(sg, "path", { d: "M" + (sx - 14) + " " + (sy2 + 10) + "L" + sx + " " + sy2 + "L" + (sx + 14) + " " + (sy2 + 10) });
+    var c1 = add(sg, "g", { "class": "s-closed" }); ln(c1, "rect", { x: sx - 26, y: sy2 + 10, width: 52, height: 20, rx: 3 }); tx(c1, sx, sy2 + 24, "CLOSED", 9.5);
+    var c2 = add(sg, "g", { "class": "s-open" }); fl(c2, "rect", { x: sx - 26, y: sy2 + 10, width: 52, height: 20, rx: 3 }, "acc"); tx(c2, sx, sy2 + 24, "OPEN", 10);
+  } });
+  shop({ x: 268, w: 200, top: 112, sign: "HAIR", awn: null, arch: true, g: 1.2, decor: function (g, b) {
+    var px = b.x + b.w + 2, py = b.top + 60, sg = add(g, "g", { "class": "swing" });
+    ln(sg, "path", { d: "M" + (px - 18) + " " + py + "h18v12" });
+    ln(sg, "circle", { cx: px, cy: py + 34, r: 22 });
+    ln(sg, "circle", { cx: px - 8, cy: py + 42, r: 4.5 }); ln(sg, "circle", { cx: px + 8, cy: py + 42, r: 4.5 });
+    ln(sg, "path", { d: "M" + (px - 5) + " " + (py + 38) + "L" + (px + 7) + " " + (py + 20) + "M" + (px + 5) + " " + (py + 38) + "L" + (px - 7) + " " + (py + 20) });
+    var mx = b.wx + b.ww / 2;
+    ln(g, "path", { d: "M" + (mx - 22) + " " + (b.wy + b.wh) + "v-40a22 26 0 0 1 44 0v40" });
+  } });
+  shop({ x: 496, w: 200, top: 168, sign: "整体", signSize: 16, awn: "grn", n: 7, g: 2.1, decor: function (g, b) {
+    for (var i = 0; i < 2; i++) {
+      var px = i ? b.dx + b.dw + 22 : b.dx - 4, base = G;
+      if (i === 0) continue;
+      ln(g, "path", { d: "M" + (px - 12) + " " + base + "l-3 -24h30l-3 24z" });
+      var lf = add(g, "g", { "class": "leaf", style: "--g:" + i * 0.4 + "s" });
+      ln(lf, "path", { d: "M" + px + " " + (base - 24) + "c-16 -10 -18 -30 -6 -40c4 14 8 26 6 40z" });
+      ln(lf, "path", { d: "M" + (px + 2) + " " + (base - 24) + "c14 -12 22 -24 14 -42c-10 12 -14 26 -14 42z" });
+    }
+    var cx = b.wx + b.ww / 2, cy = b.wy + b.wh / 2;
+    ln(g, "path", { d: "M" + cx + " " + (cy + 26) + "c-28 -18 -26 -46 0 -56c26 10 28 38 0 56z" });
+    ln(g, "path", { d: "M" + cx + " " + (cy + 22) + "v-44" });
+    var cat = add(g, "g", {}), kx = b.x + b.w - 70, ky = b.top - 12;
+    ln(cat, "path", { d: "M" + kx + " " + ky + "c0 -20 6 -28 14 -28l3 -10 5 8h6l5 -8 3 10c8 0 10 10 8 28" });
+    ln(cat, "circle", { cx: kx + 22, cy: ky - 22, r: 1.6 });
+    add(cat, "path", { "class": "ln tail", pathLength: 1, d: "M" + (kx + 44) + " " + ky + "c14 -2 18 -14 12 -26" });
+  } });
+  shop({ x: 726, w: 196, top: 150, sign: "ZAKKA", awn: "acc", n: 7, gable: true, g: 3.0, decor: function (g, b) {
+    var y1 = b.wy + b.wh * 0.42, y2 = b.wy + b.wh * 0.8;
+    ln(g, "path", { d: "M" + b.wx + " " + y1 + "h" + b.ww + "M" + b.wx + " " + y2 + "h" + b.ww });
+    ln(g, "path", { d: "M" + (b.wx + 14) + " " + y1 + "v-22a8 8 0 0 1 16 0v22" });
+    ln(g, "path", { d: "M" + (b.wx + 64) + " " + y1 + "c-10 0 -12 -26 0 -30c12 4 10 30 0 30" });
+    ln(g, "rect", { x: b.wx + 10, y: y2 - 18, width: 22, height: 18 });
+    ln(g, "circle", { cx: b.wx + 70, cy: y2 - 10, r: 10 });
+  } });
+  shop({ x: 950, w: 220, top: 138, sign: "TOURS", awn: "blu", n: 8, g: 3.8, decor: function (g, b) {
+    var fx = b.x + b.w + 24;
+    ln(g, "path", { d: "M" + fx + " " + G + "V" + (b.top - 30) });
+    var fg = add(g, "g", { "class": "flag" });
+    fl(fg, "path", { d: "M" + fx + " " + (b.top - 30) + "l46 12l-46 12z" }, "acc");
+    ln(fg, "path", { d: "M" + fx + " " + (b.top - 30) + "l46 12l-46 12" });
+    var px = b.dx - 4;
+    ln(g, "path", { d: "M" + (b.x + b.w + 6) + " " + G + "L" + (b.x + b.w - 14) + " " + (b.wy + 10) });
+    ln(g, "path", { d: "M" + (b.x + b.w - 14) + " " + (b.wy + 10) + "c-6 -14 -2 -30 6 -34c6 6 6 22 -6 34z" });
+    var mx = b.wx + b.ww / 2, my = b.wy + b.wh / 2 + 8;
+    ln(g, "path", { d: "M" + (b.wx + 10) + " " + (my + 22) + "l24 -34 14 18 12 -24 26 40" });
+    ln(g, "circle", { cx: b.wx + b.ww - 22, cy: my - 30, r: 9 });
+  } });
+
+  var lines = document.querySelectorAll("#street .ln");
+  lines.forEach(function (e, i) { e.style.setProperty("--d", (i * 0.032).toFixed(3) + "s"); });
+  document.querySelectorAll("#street .fl, #street .tx").forEach(function (e) {
+    var prev = e.previousElementSibling, d = prev && prev.style.getPropertyValue("--d");
+    if (!d) { var n = e.closest("g"); var l = n && n.querySelector(".ln"); d = l ? l.style.getPropertyValue("--d") : "1s"; }
+    e.style.setProperty("--d", d);
+  });
+
+  /* ---------- 2. page builds itself ---------- */
+  var sites = [
+    { url: "komorebi-coffee.com", name: "こもれび珈琲", h: "住宅街の、<br>小さな焙煎所。", go: "メニューを見る", hero: "samples/ume/img/hero.jpg", c: ["samples/ume/img/menu-latte.webp", "samples/ume/img/menu-cheesecake.webp", "samples/ume/img/menu-drip.webp"] },
+    { url: "hair-ame.com", name: "hair salon AME", h: "雨の日も、<br>髪が好きになる。", go: "予約する", hero: "samples/take/img/hero.jpg", c: ["samples/take/img/ig-1.jpg", "samples/take/img/ig-2.jpg", "samples/take/img/ig-3.jpg"] },
+    { url: "nagi-bodycare.com", name: "整体院 凪", h: "からだを、<br>凪の状態へ。", go: "空き枠を見る", hero: "samples/matsu/img/hero.jpg", c: ["samples/matsu/img/room.jpg", "samples/matsu/img/tea.jpg", "samples/matsu/img/towel.jpg"] }
+  ];
+  var site = document.querySelector(".site"), urlEl = document.querySelector(".b-url .u"), cur = document.querySelector(".cursor"), si = 0, timers = [];
+  sites.forEach(function (s) { [s.hero].concat(s.c).forEach(function (u) { var im = new Image(); im.src = u; }); });
+  function later(fn, t) { timers.push(setTimeout(fn, t)); }
+  function runSite() {
+    timers.forEach(clearTimeout); timers = [];
+    var s = sites[si % sites.length]; si++;
+    site.className = "site";
+    cur.style.opacity = 0; cur.style.left = "80%"; cur.style.top = "95%"; cur.classList.remove("click");
+    site.querySelector(".logo").textContent = "";
+    site.querySelector(".s-img img").src = s.hero;
+    site.querySelectorAll(".s-cards img").forEach(function (im, i) { im.src = s.c[i]; });
+    site.querySelector(".h").innerHTML = s.h;
+    site.querySelector(".go").textContent = s.go;
+    urlEl.textContent = "";
+    for (var i = 0; i <= s.url.length; i++) (function (i) { later(function () { urlEl.textContent = s.url.slice(0, i); }, 60 * i); })(i);
+    later(function () { site.classList.add("s1"); }, 300);
+    later(function () { site.classList.add("s2"); site.querySelector(".logo").textContent = s.name; }, 1700);
+    later(function () { site.classList.add("s3"); }, 2700);
+    later(function () { site.classList.add("s4"); }, 3600);
+    later(function () { cur.style.opacity = 1; var go = site.querySelector(".go"), br = document.querySelector(".browser").getBoundingClientRect(), r = go.getBoundingClientRect(); cur.style.left = ((r.left - br.left + r.width * 0.6) / br.width * 100) + "%"; cur.style.top = ((r.top - br.top + r.height * 0.5) / br.height * 100) + "%"; }, 4400);
+    later(function () { cur.classList.add("click"); site.querySelector(".go").style.transform = "scale(.92)"; }, 5600);
+    later(function () { cur.classList.remove("click"); site.querySelector(".go").style.transform = ""; }, 5800);
+    later(function () { site.classList.add("out"); cur.style.opacity = 0; }, 7000);
+    later(runSite, 7800);
+  }
+
+  /* ---------- 3. rotating word ---------- */
+  var words = ["カフェ", "美容室", "整体院", "雑貨店", "パン屋", "ガイド", "あなたのお店"], wi = 0, rot = document.getElementById("rot"), meas = document.createElement("span"), rotTimer;
+  meas.className = "measure"; rot.parentNode.appendChild(meas);
+  function fit(word) { meas.textContent = word; rot.style.width = meas.getBoundingClientRect().width + "px"; }
+  function nextWord() {
+    var w = words[wi % words.length]; wi++;
+    var old = rot.querySelector("span:not(.outgo)"), nw = document.createElement("span");
+    nw.textContent = w; nw.className = "in"; rot.appendChild(nw); fit(w);
+    requestAnimationFrame(function () { requestAnimationFrame(function () { nw.className = ""; if (old) old.className = "outgo"; }); });
+    setTimeout(function () { if (old && old.parentNode) old.parentNode.removeChild(old); }, 800);
+  }
+  document.fonts && document.fonts.ready.then(function () { fit(rot.textContent); });
+  window.addEventListener("resize", function () { var s = rot.querySelector("span:not(.outgo)"); if (s) fit(s.textContent); });
+
+  /* ---------- 4. collage follows the pointer ---------- */
+  var col = document.getElementById("collage");
+  document.getElementById("d4").addEventListener("pointermove", function (e) {
+    var r = col.getBoundingClientRect();
+    col.style.setProperty("--mx", ((e.clientX - r.left) / r.width - .5).toFixed(3));
+    col.style.setProperty("--my", ((e.clientY - r.top) / r.height - .5).toFixed(3));
+  });
+
+  /* ---------- 5. ink loop ---------- */
+  var ink = document.getElementById("ink"), inkTimer;
+  function inkLoop() {
+    ink.classList.add("fadeout");
+    setTimeout(function () { var s = document.getElementById("d5"); s.classList.remove("on"); ink.classList.remove("fadeout"); void ink.getBoundingClientRect(); s.classList.add("on"); }, 1000);
+  }
+
+  /* ---------- start each demo when it is on screen ---------- */
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var id = e.target.id;
+      if (e.isIntersecting) {
+        if (e.target.classList.contains("on")) return;
+        e.target.classList.add("on");
+        if (id === "d2") runSite();
+        if (id === "d3") { nextWord(); rotTimer = setInterval(nextWord, 2200); }
+        if (id === "d5") inkTimer = setInterval(inkLoop, 10000);
+      } else {
+        e.target.classList.remove("on");
+        if (id === "d2") { timers.forEach(clearTimeout); timers = []; }
+        if (id === "d3") clearInterval(rotTimer);
+        if (id === "d5") clearInterval(inkTimer);
+      }
+    });
+  }, { threshold: 0.35 });
+  document.querySelectorAll(".demo").forEach(function (s) { io.observe(s); });
+})();
+</script>
+</body>
+</html>
