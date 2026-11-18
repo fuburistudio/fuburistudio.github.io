@@ -2117,3 +2117,64 @@ body.in-flow .fab, body.cta-near .fab { opacity: 0; transform: scale(.6) rotate(
 }
 @keyframes u-closed { 0% { opacity: 1; } 48% { opacity: 0; } 100% { opacity: 1; } }
 @keyframes u-open { 0% { opacity: 0; } 48% { opacity: 1; } 100% { opacity: 0; } }
+
+/* ---------- home hero: hand-drawn shop street ---------- */
+.hero--street { background: var(--paper); color: var(--ink); padding-top: clamp(96px, 12vh, 132px); justify-content: space-between; }
+.hero--street .hero-lede { color: var(--muted); }
+.hero--street .hero-title { font-size: clamp(3rem, 7.6vw, 8.6rem); }
+.hero--street .hero-title--ja { font-size: clamp(2.4rem, 5.6vw, 6rem); }
+.hero--street .hero-bottom { margin-top: clamp(28px, 5vh, 56px); }
+.hero--street .hero-meta { color: var(--muted); }
+.hero-street { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; padding: 0 var(--pad) clamp(12px, 3vh, 32px); }
+.hs-pan { width: 100%; max-width: 1240px; }
+.hero-street svg { display: block; width: 100%; height: auto; max-height: 32vh; overflow: visible; }
+.hero-street .sk { filter: url(#boil); }
+.hero-street .ln { fill: none; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.hero-street .fl, .hero-street .tx { opacity: 0; }
+.hero-street .tx { font-family: var(--mono); font-weight: 500; fill: var(--ink); }
+.hero-street .acc { fill: var(--accent); }
+.hero-street .crm { fill: #fffaf3; }
+.hero-street .grn { fill: #6f8a5a; }
+.hero-street .blu { fill: #8fb0c2; }
+.hero-street .p2 { fill: var(--paper-2); }
+.hero-street .glow { fill: #ffcf7a; opacity: 0; }
+.hero-street .s-open { opacity: 0; }
+.hero-street .awn, .hero-street .swing, .hero-street .flag, .hero-street .leaf, .hero-street .tail, .hero-street .steam, .hero-street .s-open, .hero-street .s-closed { transform-box: fill-box; }
+.hero-street .steam { stroke-dasharray: none; stroke-dashoffset: 0; opacity: 0; }
+body.is-loaded .hero-street .ln { animation: hs-draw 1s var(--ease) forwards; animation-delay: calc(var(--d) + .5s); }
+body.is-loaded .hero-street .fl, body.is-loaded .hero-street .tx { animation: hs-fade .8s ease forwards; animation-delay: calc(var(--d) + 1s); }
+body.is-loaded .hero-street .glow { animation: hs-glow 9s ease-in-out infinite; animation-delay: calc(6s + var(--g, 0s)); }
+body.is-loaded .hero-street .awn { transform-origin: 50% 0; animation: hs-awn 3.2s ease-in-out infinite; animation-delay: calc(5.5s + var(--g, 0s)); }
+body.is-loaded .hero-street .swing { transform-origin: 50% 0; animation: hs-swing 2.6s ease-in-out infinite 5.5s; }
+body.is-loaded .hero-street .flag { transform-origin: 0 50%; animation: hs-flag 1.4s ease-in-out infinite 5.5s; }
+body.is-loaded .hero-street .leaf { transform-origin: 50% 100%; animation: hs-leaf 3s ease-in-out infinite; animation-delay: calc(5.5s + var(--g, 0s)); }
+body.is-loaded .hero-street .tail { transform-origin: 0 100%; animation: hs-tail 2.2s ease-in-out infinite 5.5s; }
+body.is-loaded .hero-street .steam { animation: hs-steam 2.8s ease-out infinite; animation-delay: calc(5.5s + var(--g, 0s)); }
+body.is-loaded .hero-street .s-closed { transform-origin: 50% 0; animation: hs-closed 8s ease-in-out infinite 6s; }
+body.is-loaded .hero-street .s-open { transform-origin: 50% 0; animation: hs-open 8s ease-in-out infinite 6s; }
+.hero-street.is-paused *, .hero-street.is-paused .hs-pan { animation-play-state: paused !important; }
+@keyframes hs-draw { to { stroke-dashoffset: 0; } }
+@keyframes hs-fade { to { opacity: 1; } }
+@keyframes hs-glow { 0%, 30% { opacity: 0; } 40%, 85% { opacity: .55; } 95%, 100% { opacity: 0; } }
+@keyframes hs-awn { 0%, 100% { transform: skewX(0); } 50% { transform: skewX(-2.5deg) scaleY(1.03); } }
+@keyframes hs-swing { 0%, 100% { transform: rotate(5deg); } 50% { transform: rotate(-5deg); } }
+@keyframes hs-flag { 0%, 100% { transform: skewY(0) scaleX(1); } 50% { transform: skewY(6deg) scaleX(.9); } }
+@keyframes hs-leaf { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(5deg); } }
+@keyframes hs-tail { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-24deg); } }
+@keyframes hs-steam { 0% { opacity: 0; transform: translateY(6px); } 30% { opacity: .8; } 100% { opacity: 0; transform: translateY(-16px); } }
+@keyframes hs-closed { 0%, 20% { opacity: 1; transform: scaleX(1); } 26% { opacity: 1; transform: scaleX(0); } 27%, 93% { opacity: 0; } 100% { opacity: 1; transform: scaleX(1); } }
+@keyframes hs-open { 0%, 26% { opacity: 0; transform: scaleX(0); } 27% { opacity: 1; transform: scaleX(0); } 33%, 88% { opacity: 1; transform: scaleX(1); } 93%, 100% { opacity: 0; transform: scaleX(0); } }
+@media (max-width: 760px) {
+  .hero--street { padding-top: 80px; }
+  .hero-street { justify-content: flex-start; overflow: hidden; padding: 8px 0 20px; }
+  .hs-pan { width: 660px; max-width: none; flex: none; padding-left: var(--pad); }
+  .hero-street svg { max-height: none; }
+  body.is-loaded .hs-pan { animation: hs-pan 24s ease-in-out infinite alternate 4.5s; }
+  @keyframes hs-pan { to { transform: translateX(calc(100vw - 660px - var(--pad))); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-street * , .hs-pan { animation: none !important; }
+  .hero-street .ln { stroke-dashoffset: 0; }
+  .hero-street .fl, .hero-street .tx, .hero-street .s-closed { opacity: 1; }
+  .hero-street .steam, .hero-street .s-open, .hero-street .glow { opacity: 0; }
+}

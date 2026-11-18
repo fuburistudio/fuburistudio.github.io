@@ -645,3 +645,122 @@
     if (defs && defs.pauseAnimations) defs.pauseAnimations();
   }
 })();
+
+// ---------- home hero: hand-drawn shop street ----------
+(function () {
+  if (!document.getElementById("hero-street")) return;
+  var NS = "http://www.w3.org/2000/svg";
+  function add(p, tag, a) { var e = document.createElementNS(NS, tag); for (var k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; }
+  /* ---------- 1. build the street ---------- */
+  var root = document.querySelector("#hero-street .sk"), G = 410, clipN = 0;
+  function ln(p, tag, a) { a["class"] = ((a["class"] || "") + " ln").trim(); a.pathLength = 1; return add(p, tag, a); }
+  function fl(p, tag, a, c) { a["class"] = "fl " + c; return add(p, tag, a); }
+  function tx(p, x, y, s, size, cls) { var t = add(p, "text", { x: x, y: y, "class": "tx " + (cls || ""), "text-anchor": "middle", "font-size": size || 15 }); t.textContent = s; return t; }
+  function awning(p, x, y, w, h, n, col, g) {
+    var sw = w / n, id = "aw" + (clipN++), wrap = add(p, "g", { "class": "awn", style: "--g:" + g + "s" });
+    var d = "M" + x + " " + y + "H" + (x + w) + "V" + (y + h);
+    for (var i = 0; i < n; i++) d += "a" + sw / 2 + " " + sw / 2.4 + " 0 0 1 " + (-sw) + " 0";
+    d += "Z";
+    var cp = add(add(p.ownerSVGElement || p, "defs", {}), "clipPath", { id: id }); add(cp, "path", { d: d });
+    var fills = add(wrap, "g", { "clip-path": "url(#" + id + ")" });
+    for (var j = 0; j < n + 1; j++) fl(fills, "rect", { x: x + j * sw, y: y, width: sw, height: h + sw }, j % 2 ? "crm" : col);
+    ln(wrap, "path", { d: d });
+    return wrap;
+  }
+  function shop(o) {
+    var g = add(root, "g", {}), x = o.x, w = o.w, top = o.top;
+    if (o.gable) { fl(g, "path", { d: "M" + (x - 10) + " " + top + "L" + (x + w / 2) + " " + (top - 54) + "L" + (x + w + 10) + " " + top + "Z" }, "p2"); ln(g, "path", { d: "M" + (x - 10) + " " + top + "L" + (x + w / 2) + " " + (top - 54) + "L" + (x + w + 10) + " " + top }); }
+    ln(g, "path", { d: "M" + x + " " + G + "V" + top + "H" + (x + w) + "V" + G });
+    ln(g, "rect", { x: x - 8, y: top - 12, width: w + 16, height: 12 });
+    var sy = top + 14;
+    ln(g, "rect", { x: x + w / 2 - 58, y: sy, width: 116, height: 28, rx: 4 });
+    tx(g, x + w / 2, sy + 19.5, o.sign, o.signSize || 15);
+    var ay = sy + 40;
+    if (o.awn) awning(g, x - 6, ay, w + 12, 30, o.n || 8, o.awn, o.g || 0);
+    var wy = ay + (o.awn ? 48 : 12), wx = x + 14, ww = Math.round(w * 0.52), wh = G - 22 - wy;
+    add(g, "rect", { "class": "glow", x: wx, y: wy, width: ww, height: wh, style: "--g:" + (o.g || 0) + "s" });
+    if (o.arch) {
+      var r = ww / 2; ln(g, "path", { d: "M" + wx + " " + (wy + wh) + "V" + (wy + r) + "a" + r + " " + r + " 0 0 1 " + ww + " 0V" + (wy + wh) + "Z" });
+    } else {
+      ln(g, "rect", { x: wx, y: wy, width: ww, height: wh });
+      ln(g, "path", { d: "M" + (wx + ww / 2) + " " + wy + "V" + (wy + wh) });
+    }
+    ln(g, "path", { d: "M" + (wx - 6) + " " + (wy + wh) + "H" + (wx + ww + 6) });
+    var dx = wx + ww + 14, dw = x + w - 14 - dx, dy = wy - 4;
+    ln(g, "path", { d: "M" + dx + " " + G + "V" + (dy + 10) + "q0 -10 10 -10H" + (dx + dw - 10) + "q10 0 10 10V" + G });
+    ln(g, "circle", { cx: dx + dw - 9, cy: dy + (G - dy) * 0.55, r: 2.5 });
+    if (o.decor) o.decor(g, { wx: wx, wy: wy, ww: ww, wh: wh, dx: dx, dw: dw, dy: dy, x: x, w: w, top: top });
+  }
+  ln(root, "path", { d: "M0 " + G + "H1240" });
+  for (var k = 0; k < 18; k++) ln(root, "path", { d: "M" + (20 + k * 68) + " " + (G + 14) + "h22" });
+
+  shop({ x: 30, w: 210, top: 150, sign: "CAFE", awn: "acc", g: 0, decor: function (g, b) {
+    var cx = b.wx + b.ww / 2 - 4, cy = b.wy + b.wh - 30;
+    ln(g, "path", { d: "M" + (cx - 18) + " " + cy + "h36v14a14 14 0 0 1-14 14h-8a14 14 0 0 1-14-14z" });
+    ln(g, "path", { d: "M" + (cx + 18) + " " + (cy + 4) + "h5a6 6 0 0 1 0 12h-5" });
+    for (var i = 0; i < 3; i++) add(g, "path", { "class": "ln steam", pathLength: 1, d: "M" + (cx - 9 + i * 9) + " " + (cy - 8) + "c-5 -6 5 -10 0 -18", style: "--g:" + i * 0.5 + "s" });
+    var sg = add(g, "g", { "class": "swing" }), sx = b.dx + b.dw / 2, sy2 = b.dy + 24;
+    ln(sg, "path", { d: "M" + (sx - 14) + " " + (sy2 + 10) + "L" + sx + " " + sy2 + "L" + (sx + 14) + " " + (sy2 + 10) });
+    var c1 = add(sg, "g", { "class": "s-closed" }); ln(c1, "rect", { x: sx - 26, y: sy2 + 10, width: 52, height: 20, rx: 3 }); tx(c1, sx, sy2 + 24, "CLOSED", 9.5);
+    var c2 = add(sg, "g", { "class": "s-open" }); fl(c2, "rect", { x: sx - 26, y: sy2 + 10, width: 52, height: 20, rx: 3 }, "acc"); tx(c2, sx, sy2 + 24, "OPEN", 10);
+  } });
+  shop({ x: 268, w: 200, top: 112, sign: "HAIR", awn: null, arch: true, g: 1.2, decor: function (g, b) {
+    var px = b.x + b.w + 2, py = b.top + 60, sg = add(g, "g", { "class": "swing" });
+    ln(sg, "path", { d: "M" + (px - 18) + " " + py + "h18v12" });
+    ln(sg, "circle", { cx: px, cy: py + 34, r: 22 });
+    ln(sg, "circle", { cx: px - 8, cy: py + 42, r: 4.5 }); ln(sg, "circle", { cx: px + 8, cy: py + 42, r: 4.5 });
+    ln(sg, "path", { d: "M" + (px - 5) + " " + (py + 38) + "L" + (px + 7) + " " + (py + 20) + "M" + (px + 5) + " " + (py + 38) + "L" + (px - 7) + " " + (py + 20) });
+    var mx = b.wx + b.ww / 2;
+    ln(g, "path", { d: "M" + (mx - 22) + " " + (b.wy + b.wh) + "v-40a22 26 0 0 1 44 0v40" });
+  } });
+  shop({ x: 496, w: 200, top: 168, sign: "整体", signSize: 16, awn: "grn", n: 7, g: 2.1, decor: function (g, b) {
+    for (var i = 0; i < 2; i++) {
+      var px = i ? b.dx + b.dw + 22 : b.dx - 4, base = G;
+      if (i === 0) continue;
+      ln(g, "path", { d: "M" + (px - 12) + " " + base + "l-3 -24h30l-3 24z" });
+      var lf = add(g, "g", { "class": "leaf", style: "--g:" + i * 0.4 + "s" });
+      ln(lf, "path", { d: "M" + px + " " + (base - 24) + "c-16 -10 -18 -30 -6 -40c4 14 8 26 6 40z" });
+      ln(lf, "path", { d: "M" + (px + 2) + " " + (base - 24) + "c14 -12 22 -24 14 -42c-10 12 -14 26 -14 42z" });
+    }
+    var cx = b.wx + b.ww / 2, cy = b.wy + b.wh / 2;
+    ln(g, "path", { d: "M" + cx + " " + (cy + 26) + "c-28 -18 -26 -46 0 -56c26 10 28 38 0 56z" });
+    ln(g, "path", { d: "M" + cx + " " + (cy + 22) + "v-44" });
+    var cat = add(g, "g", {}), kx = b.x + b.w - 70, ky = b.top - 12;
+    ln(cat, "path", { d: "M" + kx + " " + ky + "c0 -20 6 -28 14 -28l3 -10 5 8h6l5 -8 3 10c8 0 10 10 8 28" });
+    ln(cat, "circle", { cx: kx + 22, cy: ky - 22, r: 1.6 });
+    add(cat, "path", { "class": "ln tail", pathLength: 1, d: "M" + (kx + 44) + " " + ky + "c14 -2 18 -14 12 -26" });
+  } });
+  shop({ x: 726, w: 196, top: 150, sign: "ZAKKA", awn: "acc", n: 7, gable: true, g: 3.0, decor: function (g, b) {
+    var y1 = b.wy + b.wh * 0.42, y2 = b.wy + b.wh * 0.8;
+    ln(g, "path", { d: "M" + b.wx + " " + y1 + "h" + b.ww + "M" + b.wx + " " + y2 + "h" + b.ww });
+    ln(g, "path", { d: "M" + (b.wx + 14) + " " + y1 + "v-22a8 8 0 0 1 16 0v22" });
+    ln(g, "path", { d: "M" + (b.wx + 64) + " " + y1 + "c-10 0 -12 -26 0 -30c12 4 10 30 0 30" });
+    ln(g, "rect", { x: b.wx + 10, y: y2 - 18, width: 22, height: 18 });
+    ln(g, "circle", { cx: b.wx + 70, cy: y2 - 10, r: 10 });
+  } });
+  shop({ x: 950, w: 220, top: 138, sign: "TOURS", awn: "blu", n: 8, g: 3.8, decor: function (g, b) {
+    var fx = b.x + b.w + 24;
+    ln(g, "path", { d: "M" + fx + " " + G + "V" + (b.top - 30) });
+    var fg = add(g, "g", { "class": "flag" });
+    fl(fg, "path", { d: "M" + fx + " " + (b.top - 30) + "l46 12l-46 12z" }, "acc");
+    ln(fg, "path", { d: "M" + fx + " " + (b.top - 30) + "l46 12l-46 12" });
+    var px = b.dx - 4;
+    ln(g, "path", { d: "M" + (b.x + b.w + 6) + " " + G + "L" + (b.x + b.w - 14) + " " + (b.wy + 10) });
+    ln(g, "path", { d: "M" + (b.x + b.w - 14) + " " + (b.wy + 10) + "c-6 -14 -2 -30 6 -34c6 6 6 22 -6 34z" });
+    var mx = b.wx + b.ww / 2, my = b.wy + b.wh / 2 + 8;
+    ln(g, "path", { d: "M" + (b.wx + 10) + " " + (my + 22) + "l24 -34 14 18 12 -24 26 40" });
+    ln(g, "circle", { cx: b.wx + b.ww - 22, cy: my - 30, r: 9 });
+  } });
+
+  var lines = document.querySelectorAll("#hero-street .ln");
+  lines.forEach(function (e, i) { e.style.setProperty("--d", (i * 0.032).toFixed(3) + "s"); });
+  document.querySelectorAll("#hero-street .fl, #hero-street .tx").forEach(function (e) {
+    var prev = e.previousElementSibling, d = prev && prev.style.getPropertyValue("--d");
+    if (!d) { var n = e.closest("g"); var l = n && n.querySelector(".ln"); d = l ? l.style.getPropertyValue("--d") : "1s"; }
+    e.style.setProperty("--d", d);
+  });
+
+
+  var hs = document.querySelector(".hero-street");
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { hs.classList.toggle("is-paused", !es[0].isIntersecting); }).observe(hs);
+})();
